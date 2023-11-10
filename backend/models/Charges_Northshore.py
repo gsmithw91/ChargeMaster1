@@ -1,0 +1,27 @@
+from pydantic import BaseModel, ValidationError
+from typing import Optional
+
+class NorthshoreCharges(BaseModel):
+    SystemID :  Optional [int]
+    LocationName :  Optional [int ]
+    InternalCode :  Optional [str]
+    ServiceDecsription :  Optional [str ]
+    BillingCode :  Optional [str]
+    GrossCharge : Optional [float]
+    BlueCrossBlueShieldOP : Optional [float]
+    BlueCrossBlueShieldIP : Optional [float]
+    AetnaOP : Optional [float]
+    AetnaIP : Optional [float]
+    UnitedHealthcareOP : Optional [float]
+    UnitedHealthcareIP : Optional [float]
+    CignaOP : Optional [float]
+    CignaIP : Optional [float]
+    HumanaOP : Optional [float]
+    HumanaIP : Optional [float]
+    MedicareMedicareAdvantageOP : Optional [float]
+    MedicareMedicareAdvantageIP : Optional [float]
+    MedicaidMedicaidMCOOP : Optional [float]
+    MedicaidMedicaidMCOIP : Optional [float]
+    DiscountedCashPrice : Optional [float]
+    DeidentifiedMaximumCharge : Optional [float]
+    DeidentifiedMinimumCharge : Optional [float]

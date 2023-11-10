@@ -1,0 +1,40 @@
+I want a functions in a separate script called db_helpers.py
+
+
+get_table_data()-returns all data for specific table
+get_available_locations()- gets all available locations
+get_locations_by_system_id() get all locations for specific ID
+get_data_by_location()-Gets specific table data for specified SystemID 
+get_columns_by_system_id()- retries the columns for the specified SystemID  
+
+
+
+
+
+can i change this to use the mapping below to decide which table do display?
+
+(system_id_to_table_mapping= {
+    1: 'Charges_Advocate',
+    2: 'Charges_LoyolaIns',
+    3: 'Charges_NorthShore',
+    4: 'Charges_NorthWestern',
+    5: 'Charges_Rush',
+    6: 'Charges_UCMC'
+}
+
+def get_charge_data_by_system_id(system_id, model):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            system_name = SYSTEM_ID_TO_NAME_MAPPING.get(system_id)
+            if system_name is None:
+                print(f"No charge table for system ID: {system_id}")
+                return None
+
+            table_name = f"Charges_{system_name}"
+            cursor.execute(f"SELECT * FROM {table_name}")
+            columns = [column[0] for column in cursor.description]
+            charge_data = [model(**dict(zip(columns, row))).dict() for row in cursor.fetchall()]
+            return charge_data
+    finally:
+        conn.close())  

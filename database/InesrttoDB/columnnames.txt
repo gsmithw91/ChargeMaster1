@@ -1,0 +1,8 @@
+locationName
+billingCode
+serviceDescription
+revenueCode
+grossCharge
+deidentifiedMinimumCharge
+deidentifiedMaximumCharge
+discountedCashPrice
