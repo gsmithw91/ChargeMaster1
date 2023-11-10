@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %} Home Page {% endblock %} {% block
+content %}
+<h1>Welcome to the ChargeMaster Project</h1>
+<div id="systems-container">
+  <!-- Buttons will be added here by JavaScript -->
+</div>
+
+<div id="charges-container">
+  <table id="charges-table">
+    <!-- Table headers and rows will be added here by JavaScript -->
+  </table>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='SystemsLocations.js') }}"></script>
+{% endblock %}

@@ -64,16 +64,15 @@ def get_locations_by_system(system_id):
 @api.route('/charges/system/<int:system_id>', methods=['GET'])
 def get_charges_by_system(system_id):
     api_logger.info(f"Fetching charges for system ID: {system_id}")
-    charge_model = charge_models_mapping.get(system_id)
     
-    if not charge_model:
-        api_logger.error(f"No charge model found for system ID: {system_id}")
-        return jsonify({"error": "Charge model not found for the given system ID"}), 404
+    charge_data, columns = get_charge_data_by_system_id(system_id)
+    
+    if not columns:
+        api_logger.error(f"No charge table found for system ID: {system_id}")
+        return jsonify({"error": "Charge table not found for the given system ID"}), 404
 
-    charge_data = get_charge_data_by_system_id(system_id, charge_model)
-    
     if charge_data:
-        return jsonify(charge_data)
+        return jsonify({"data": charge_data, "columns": columns})
     else:
         api_logger.error(f"Charge data not found for system ID: {system_id}")
         return jsonify({"error": "Charge data not found for the given system ID"}), 404

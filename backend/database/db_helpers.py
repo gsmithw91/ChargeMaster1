@@ -57,7 +57,7 @@ system_id_to_table_mapping = {
     6: 'Charges_UCMC'
 }
 
-def get_charge_data_by_system_id(system_id, model):
+def get_charge_data_by_system_id(system_id):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
@@ -65,14 +65,12 @@ def get_charge_data_by_system_id(system_id, model):
             table_name = system_id_to_table_mapping.get(system_id)
             if table_name is None:
                 print(f"No charge table for system ID: {system_id}")
-                return None
+                return None, None  # Return two Nones for unpacking
 
             # Query the table using the table name from the mapping
             cursor.execute(f"SELECT * FROM {table_name}")
             columns = [column[0] for column in cursor.description]
-            # You might not need to instantiate the model here if the tables have different structures
-            # Instead, just return the rows as dictionaries
             charge_data = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            return charge_data
+            return charge_data, columns  # Return both the data and the columns
     finally:
         conn.close()
