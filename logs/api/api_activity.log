@@ -107,3 +107,7 @@
 2023-11-09 21:26:00,650 - api_logger - INFO - Fetching charges for system ID: 5
 2023-11-09 21:27:35,600 - api_logger - INFO - Fetching all systems.
 2023-11-09 21:27:36,587 - api_logger - INFO - Fetching charges for system ID: 1
+2023-11-09 21:36:50,069 - api_logger - INFO - Fetching all systems.
+2023-11-09 21:36:51,885 - api_logger - INFO - Fetching charges for system ID: 1
+2023-11-09 21:37:18,886 - api_logger - INFO - Fetching charges for system ID: 3
+2023-11-09 21:38:01,562 - api_logger - INFO - Fetching charges for system ID: 6
