@@ -1,0 +1,75 @@
+/* Center the title and apply a modern font */
+h1 {
+  text-align: center;
+  font-family: "Arial", sans-serif; /* Use a modern font (you can replace 'Arial' with your preferred font) */
+  font-weight: bold; /* Make the title bold */
+  font-size: 24px; /* Adjust the font size as needed */
+  margin-top: 20px; /* Add some top margin for spacing */
+}
+
+/* Center the systems-container */
+#systems-container {
+  text-align: center;
+}
+
+/* Style for the system buttons */
+.system-button {
+  background-color: #3498db; /* A shade of blue */
+  color: white;
+  padding: 10px 20px; /* Increase padding for a more rounded look */
+  margin: 5px;
+  border: none;
+  border-radius: 20px; /* Rounded edges */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.system-button.selected {
+  background-color: #27ae60; /* A shade of green when selected */
+}
+
+/* Style for the table */
+#charges-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  margin: 20px auto; /* Center the table and provide some spacing */
+}
+
+#charges-table {
+  display: block;
+  white-space: nowrap; /* Ensure the table spans the full width */
+  border-collapse: collapse; /* Remove cell spacing and borders */
+  width: 100%; /* Make the table take the full width */
+}
+
+/* Style for the table headers */
+#charges-table thead th {
+  background-color: #3498db; /* A shade of blue for headers */
+  color: white;
+  padding: 10px;
+  border-radius: 10px 10px 0 0; /* Rounded top corners */
+  border: none;
+  text-align: left;
+}
+
+/* Style for table cells */
+#charges-table tbody td {
+  background-color: #f2f2f2; /* Light gray for table cells */
+  padding: 10px;
+  border: none;
+}
+
+/* Pagination styles if needed */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background-color: #3498db;
+  color: white;
+  border-radius: 20px;
+  margin: 2px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+/* FixedHeader specific styles if necessary */
+.fixedHeader-floating {
+  background-color: #333; /* Example style */
+  /* Add other styles */
+}

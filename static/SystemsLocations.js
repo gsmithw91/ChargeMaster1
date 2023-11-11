@@ -5,47 +5,47 @@ window.onload = function () {
       const systemsContainer = document.getElementById("systems-container");
       data.forEach((system) => {
         const button = document.createElement("button");
+        button.className = "system-button";
         button.innerText = system.SystemName;
-        button.addEventListener("click", () =>
-          loadChargesForSystem(system.SystemID)
-        );
+        button.addEventListener("click", function () {
+          document
+            .querySelectorAll(".system-button")
+            .forEach((btn) => btn.classList.remove("selected"));
+          button.classList.add("selected");
+          loadChargesForSystem(system.SystemID);
+        });
         systemsContainer.appendChild(button);
       });
     })
     .catch((error) => console.error("Error fetching systems:", error));
 };
-
+let isDataTableInitialized = false;
 function loadChargesForSystem(systemId) {
-  const chargesTable = document.getElementById("charges-table");
-  chargesTable.innerHTML = ""; // Clear previous table data
+  // Get the charges table element
+  const chargesTable = $("#charges-table");
+
+  // Check if the DataTable instance already exists and destroy it if so
+  if ($.fn.DataTable.isDataTable("#charges-table")) {
+    chargesTable.DataTable().clear().destroy();
+  }
+
+  // Clear the table element itself
+  chargesTable.empty();
 
   fetch(`/api/charges/system/${systemId}`)
     .then((response) => response.json())
     .then((response) => {
-      const { data: chargeData, columns: columnOrder } = response;
-      if (chargeData && chargeData.length > 0) {
-        // Create table headers
-        const thead = document.createElement("thead");
-        const headerRow = thead.insertRow();
-        columnOrder.forEach((header) => {
-          const th = document.createElement("th");
-          th.textContent = header;
-          headerRow.appendChild(th);
+      if (response.data && response.data.length > 0) {
+        chargesTable.DataTable({
+          data: response.data,
+          columns: response.columns.map((col) => ({ title: col, data: col })),
+          paging: true,
+          searching: true,
+          ordering: true,
+          scrollX: true,
+          fixedHeader: true,
         });
-        chargesTable.appendChild(thead);
-
-        // Create table body
-        const tbody = document.createElement("tbody");
-        chargeData.forEach((item) => {
-          const row = tbody.insertRow();
-          columnOrder.forEach((header) => {
-            const cell = row.insertCell();
-            cell.textContent = item[header];
-          });
-        });
-        chargesTable.appendChild(tbody);
       } else {
-        // Handle no data
         console.log("No charge data available for this system.");
       }
     })
