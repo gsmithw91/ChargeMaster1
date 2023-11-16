@@ -38,3 +38,4 @@ def get_charge_data_by_system_id(system_id, model):
             return charge_data
     finally:
         conn.close())  
+

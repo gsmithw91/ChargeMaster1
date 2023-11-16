@@ -12,27 +12,56 @@ window.onload = function () {
             .querySelectorAll(".system-button")
             .forEach((btn) => btn.classList.remove("selected"));
           button.classList.add("selected");
-          loadChargesForSystem(system.SystemID);
+          fetchAndDisplayLocations(system.SystemID);
         });
         systemsContainer.appendChild(button);
       });
     })
     .catch((error) => console.error("Error fetching systems:", error));
 };
-let isDataTableInitialized = false;
-function loadChargesForSystem(systemId) {
-  // Get the charges table element
-  const chargesTable = $("#charges-table");
 
-  // Check if the DataTable instance already exists and destroy it if so
+let map;
+
+function initMap(latitude, longitude) {
+  const location = { lat: latitude, lng: longitude };
+  map = new google.maps.Map(document.getElementById("map-container"), {
+    center: location,
+    zoom: 14,
+  });
+
+  new google.maps.Marker({
+    position: location,
+    map: map,
+  });
+}
+
+function fetchAndDisplayLocations(systemId) {
+  fetch(`/api/locations/${systemId}`)
+    .then((response) => response.json())
+    .then((locations) => {
+      const locationsContainer = document.getElementById("locations-container");
+      locationsContainer.innerHTML = ""; // Clear existing buttons
+      locations.forEach((location) => {
+        const locButton = document.createElement("button");
+        locButton.className = "location-button";
+        locButton.innerText = location.LocationName;
+        locButton.addEventListener("click", () => {
+          loadChargesForLocation(systemId, location.LocationID);
+          displayLocationInformation(location.LocationID); // Call to display location information
+        });
+        locationsContainer.appendChild(locButton);
+      });
+    })
+    .catch((error) => console.error("Error fetching locations:", error));
+}
+
+function loadChargesForLocation(systemId, locationId) {
+  const chargesTable = $("#charges-table");
   if ($.fn.DataTable.isDataTable("#charges-table")) {
     chargesTable.DataTable().clear().destroy();
   }
-
-  // Clear the table element itself
   chargesTable.empty();
-
-  fetch(`/api/charges/system/${systemId}`)
+  fetch(`/api/charges/location/${systemId}/${locationId}`)
     .then((response) => response.json())
     .then((response) => {
       if (response.data && response.data.length > 0) {
@@ -46,8 +75,28 @@ function loadChargesForSystem(systemId) {
           fixedHeader: true,
         });
       } else {
-        console.log("No charge data available for this system.");
+        console.log("No charge data available for this location.");
       }
     })
     .catch((error) => console.error("Error fetching charge data:", error));
+}
+
+function displayLocationInformation(locationId) {
+  fetch(`/api/locations/details/${locationId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const infoContainer = document.getElementById("location-information");
+      infoContainer.innerHTML = ""; // Clear existing information
+      // Create and append the HTML content for the location information
+      const detailsHTML = `
+        <h2>Location Information</h2>
+        <p>Name: ${data.LocationName}</p>
+        <p>Address: ${data.Address}, ${data.City}, ${data.State} ${data.ZipCode}</p>
+        <p>Phone: ${data.Phone}</p>
+      `;
+      infoContainer.innerHTML = detailsHTML;
+    })
+    .catch((error) =>
+      console.error("Error fetching location information:", error)
+    );
 }

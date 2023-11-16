@@ -1,0 +1,58 @@
+2023-11-15 23:13:11,689 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:13:12,868 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:13:13,684 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 4
+2023-11-15 23:13:25,713 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:13:26,608 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:13:27,228 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 4
+2023-11-15 23:13:38,133 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:13:39,404 - api_logger - INFO - Fetching locations for system ID: 3
+2023-11-15 23:13:42,962 - api_logger - INFO - Fetching locations for system ID: 4
+2023-11-15 23:13:44,184 - api_logger - INFO - Fetching locations for system ID: 2
+2023-11-15 23:13:45,546 - api_logger - INFO - Fetching charges for system ID: 2, location ID: 14
+2023-11-15 23:13:47,234 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:13:48,705 - api_logger - INFO - Fetching locations for system ID: 4
+2023-11-15 23:13:50,281 - api_logger - INFO - Fetching charges for system ID: 4, location ID: 20
+2023-11-15 23:13:51,468 - api_logger - INFO - Fetching charges for system ID: 4, location ID: 21
+2023-11-15 23:13:54,380 - api_logger - INFO - Fetching charges for system ID: 4, location ID: 22
+2023-11-15 23:14:04,124 - api_logger - INFO - Fetching charges for system ID: 4, location ID: 27
+2023-11-15 23:16:19,038 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:16:19,974 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:16:20,763 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 4
+2023-11-15 23:19:40,061 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:19:41,187 - api_logger - INFO - Fetching locations for system ID: 2
+2023-11-15 23:19:41,890 - api_logger - INFO - Fetching charges for system ID: 2, location ID: 14
+2023-11-15 23:19:56,552 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:19:57,401 - api_logger - INFO - Fetching locations for system ID: 2
+2023-11-15 23:19:58,164 - api_logger - INFO - Fetching charges for system ID: 2, location ID: 14
+2023-11-15 23:21:37,168 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:21:37,989 - api_logger - INFO - Fetching locations for system ID: 2
+2023-11-15 23:21:38,616 - api_logger - INFO - Fetching charges for system ID: 2, location ID: 14
+2023-11-15 23:21:55,894 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:22:47,226 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:22:48,173 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:22:49,251 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 4
+2023-11-15 23:38:01,052 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:38:02,015 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:38:02,961 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 3
+2023-11-15 23:38:25,357 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:38:26,906 - api_logger - INFO - Fetching locations for system ID: 2
+2023-11-15 23:38:27,835 - api_logger - INFO - Fetching charges for system ID: 2, location ID: 14
+2023-11-15 23:41:06,045 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:41:06,952 - api_logger - INFO - Fetching locations for system ID: 3
+2023-11-15 23:41:08,758 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:41:09,651 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 3
+2023-11-15 23:41:13,023 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 3
+2023-11-15 23:41:13,294 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 3
+2023-11-15 23:44:49,649 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 10
+2023-11-15 23:46:08,256 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:46:10,217 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:46:12,459 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 3
+2023-11-15 23:46:26,438 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 4
+2023-11-15 23:46:28,053 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 11
+2023-11-15 23:46:31,459 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 11
+2023-11-15 23:46:38,312 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 9
+2023-11-15 23:46:41,937 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 13
+2023-11-15 23:46:46,072 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 4
+2023-11-15 23:48:06,385 - api_logger - INFO - Fetching all systems.
+2023-11-15 23:48:07,229 - api_logger - INFO - Fetching locations for system ID: 1
+2023-11-15 23:48:07,985 - api_logger - INFO - Fetching charges for system ID: 1, location ID: 3

@@ -74,3 +74,37 @@ def get_charge_data_by_system_id(system_id):
             return charge_data, columns  # Return both the data and the columns
     finally:
         conn.close()
+        
+        
+def get_charge_data_by_location_id(system_id, location_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Use the mapping to get the table name
+            table_name = system_id_to_table_mapping.get(system_id)
+            if table_name is None:
+                print(f"No charge table for system ID: {system_id}")
+                return None, None
+
+            # Query the table using the table name from the mapping, filtered by LocationID
+            query = f"SELECT * FROM {table_name} WHERE LocationID = ?"
+            cursor.execute(query, (location_id,))
+            columns = [column[0] for column in cursor.description]
+            charge_data = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return charge_data, columns
+    finally:
+        conn.close()
+        
+def get_location_details(location_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM HospitalLocation WHERE LocationID = ?", (location_id,))
+            columns = [column[0] for column in cursor.description]
+            results = cursor.fetchone()  # Assuming LocationID is unique and only one record is returned
+            if results:
+                return dict(zip(columns, results))
+            else:
+                return None
+    finally:
+        conn.close()

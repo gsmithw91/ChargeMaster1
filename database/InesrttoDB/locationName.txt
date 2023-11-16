@@ -1,0 +1,12 @@
+locationName
+billingCode
+serviceDescription
+revenueCode
+grossCharge
+deidentifiedMinimumCharge
+deidentifiedMaximumCharge
+discountedCashPrice
+
+
+connection string
+Server=localhost\MSSQLSERVER02;Database=master;Trusted_Connection=True;

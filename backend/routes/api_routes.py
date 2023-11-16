@@ -7,9 +7,8 @@ from backend.models.Charges_Northshore import NorthshoreCharges
 from backend.models.Charges_Northwestern import NorthwesternCharges
 from backend.models.Charges_Rush import RushCharges
 from backend.models.Charges_UCMC import UCMCCharges
-
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id 
+from backend.database.db_helpers import get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
 from flask import Blueprint, jsonify, request
 from logs.custom_logger import get_api_logger
 
@@ -76,3 +75,25 @@ def get_charges_by_system(system_id):
     else:
         api_logger.error(f"Charge data not found for system ID: {system_id}")
         return jsonify({"error": "Charge data not found for the given system ID"}), 404
+
+
+@api.route('/charges/location/<int:system_id>/<int:location_id>', methods=['GET'])
+def get_charges_by_location(system_id, location_id):
+    api_logger.info(f"Fetching charges for system ID: {system_id}, location ID: {location_id}")
+    
+    charge_data, columns = get_charge_data_by_location_id(system_id, location_id)
+    
+    if not columns:
+        api_logger.error(f"No charge data found for system ID: {system_id}, location ID: {location_id}")
+        return jsonify({"error": "Charge data not found for the given system and location ID"}), 404
+
+    return jsonify({"data": charge_data, "columns": columns})
+
+
+@api.route('/locations/details/<int:location_id>', methods=['GET'])
+def get_location_information(location_id):
+    location_details = get_location_details(location_id)
+    if location_details:
+        return jsonify(location_details)
+    else:
+        return jsonify({"error": "Location not found"}), 404

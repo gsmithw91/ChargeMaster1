@@ -1,34 +1,53 @@
 /* Center the title and apply a modern font */
 h1 {
   text-align: center;
-  font-family: "Arial", sans-serif; /* Use a modern font (you can replace 'Arial' with your preferred font) */
-  font-weight: bold; /* Make the title bold */
-  font-size: 24px; /* Adjust the font size as needed */
-  margin-top: 20px; /* Add some top margin for spacing */
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 20px;
 }
 
-/* Center the systems-container */
-#systems-container {
+/* Style for labels */
+.label {
   text-align: center;
+  font-family: "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333; /* Dark text for better readability */
+  margin: 10px 0; /* Spacing above and below the label */
 }
 
-/* Style for the system buttons */
-.system-button {
-  background-color: #3498db; /* A shade of blue */
+/* Center the systems-container and locations-container */
+#systems-container,
+#locations-container {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Adds space between buttons */
+}
+
+/* Style for the system and location buttons */
+.system-button,
+.location-button {
+  background-color: #1989f8;
   color: white;
-  padding: 10px 20px; /* Increase padding for a more rounded look */
+  padding: 10px 20px;
   margin: 5px;
   border: none;
-  border-radius: 20px; /* Rounded edges */
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
 }
 
-.system-button.selected {
-  background-color: #27ae60; /* A shade of green when selected */
+.system-button.selected,
+.location-button:hover {
+  background-color: #27ae60; /* Changes color when selected or hovered */
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3); /* Enhances the shadow on hover */
 }
 
-/* Style for the table */
+/* Style for the charges container to look like a card */
 #charges-container {
   overflow-x: auto; /* Enable horizontal scrolling */
   margin: 20px auto; /* Center the table and provide some spacing */
@@ -36,14 +55,14 @@ h1 {
 
 #charges-table {
   display: block;
-  white-space: nowrap; /* Ensure the table spans the full width */
+  white-space: nowrap; /* Ensure the table spans the full width if needed */
   border-collapse: collapse; /* Remove cell spacing and borders */
-  width: 100%; /* Make the table take the full width */
+  width: 100%; /* Make the table take the full width of its container */
 }
 
 /* Style for the table headers */
 #charges-table thead th {
-  background-color: #3498db; /* A shade of blue for headers */
+  background-color: #1989f8; /* A shade of blue for headers */
   color: white;
   padding: 10px;
   border-radius: 10px 10px 0 0; /* Rounded top corners */
@@ -51,16 +70,33 @@ h1 {
   text-align: left;
 }
 
-/* Style for table cells */
-#charges-table tbody td {
-  background-color: #f2f2f2; /* Light gray for table cells */
-  padding: 10px;
-  border: none;
+/* Style for the location information div */
+#location-information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 20px;
+  overflow: hidden;
+  max-width: 90%;
 }
 
-/* Pagination styles if needed */
+#location-information h2 {
+  margin: 10px 0;
+}
+
+#location-information p {
+  margin: 5px 0;
+}
+
+/* Pagination styles */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  background-color: #3498db;
+  background-color: #1989f8;
   color: white;
   border-radius: 20px;
   margin: 2px;
@@ -68,8 +104,18 @@ h1 {
   cursor: pointer;
 }
 
-/* FixedHeader specific styles if necessary */
+/* FixedHeader specific styles */
 .fixedHeader-floating {
-  background-color: #333; /* Example style */
-  /* Add other styles */
+  background-color: #333;
+}
+
+/* Media query for responsive table layout */
+@media screen and (max-width: 600px) {
+  #systems-container,
+  #locations-container {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+  }
+  #charges-table {
+    white-space: normal; /* Allows table to stack on smaller screens */
+  }
 }
