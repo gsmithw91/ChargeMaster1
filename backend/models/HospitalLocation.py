@@ -8,7 +8,7 @@ class HospitalLocation(BaseModel):
     Address : Optional [str]
     City : Optional [str]
     State : Optional [str]
-    ZipCode : Optional [str]
-    Phone : Optional [str]
+    ZipCode : Optional [int]
+    Phone : Optional [int]
 
 
