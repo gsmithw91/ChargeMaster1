@@ -13,7 +13,7 @@ def get_connection():
             r"DRIVER={ODBC Driver 18 for SQL Server};" +
             r"SERVER=172.234.28.216;" +  # Replace with your Linode server IP or hostname
             r"DATABASE=ChargeMasterDB;" +
-            r"UID=sa;" +            # Replace with your SQL username
+            r"UID=SA;" +            # Replace with your SQL username
             r"PWD=B90b909021!;" +   # Replace with your SQL password
             r"TrustServerCertificate=yes;"  # This might be optional depending on your setup
         )
