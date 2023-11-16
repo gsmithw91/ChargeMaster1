@@ -2,8 +2,8 @@ from pydantic import BaseModel, ValidationError
 from typing import Optional
 
 class HospitalSystem(BaseModel):
-    SystemID : Optional [int]
-    SystemName : Optional [str]
-    Headquarters : Optional [str]
-    FoundedYear : Optional [int]
-    Description : Optional [str]
+    SystemID : Optional [int] = None
+    SystemName : Optional [str] = None
+    Headquarters : Optional [str] = None
+    FoundedYear : Optional [int] = None
+    Description : Optional [str] = None

@@ -1,4 +1,0 @@
-2023-11-15 18:23:29,416 - api_logger - INFO - Fetching all systems.
-2023-11-15 18:23:30,410 - api_logger - INFO - Fetching charges for system ID: 1
-2023-11-15 18:23:34,669 - api_logger - INFO - Fetching charges for system ID: 2
-2023-11-15 18:23:37,235 - api_logger - INFO - Fetching charges for system ID: 3
