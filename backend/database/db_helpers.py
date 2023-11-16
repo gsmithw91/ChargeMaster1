@@ -16,7 +16,8 @@ def get_connection():
             r"DATABASE=ChargeMasterDB;" +
             r"UID=sa;" +            # Replace with your SQL username
             r"PWD=B90b909021!;" +   # Replace with your SQL password
-            r"TrustServerCertificate=yes;"  # This might be optional depending on your setup
+            r"TrustServerCertificate=yes;" +# This might be optional depending on your setup
+            r"timeout=30;"
         )
     else:
         # Connection string for the desktop
