@@ -8,6 +8,12 @@ class HospitalSystem(BaseModel):
     FoundedYear : Optional [int] = None
     Description : Optional [str] = None
     
+   
     @validator('FoundedYear', pre=True, allow_reuse=True)
     def parse_founded_year(cls, v):
-        return None if v in ['NULL', 'null', 'Null'] else v
+        if v in ['NULL', 'null', 'Null', ''] or v is None:
+            return None
+        try:
+            return int(v)
+        except ValueError:
+            raise ValueError(f"Invalid value for FoundedYear: {v}")
