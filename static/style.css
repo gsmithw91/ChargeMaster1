@@ -119,3 +119,37 @@ h1 {
     white-space: normal; /* Allows table to stack on smaller screens */
   }
 }
+
+/* Style for visibility toggle buttons */
+.visibility-button {
+  background-color: #1989f8; /* Blue background for unselected (consistent with your theme) */
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for active (selected) visibility toggle buttons */
+.visibility-button.active,
+.visibility-button:hover {
+  background-color: #27ae60; /* Green background for selected or on hover */
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* DataTables buttons container */
+#buttonContainer .dt-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  flex-wrap: wrap;
+}
+
+/* Corrects the padding for buttons within DataTables */
+#buttonContainer .dt-button {
+  padding: 0; /* Remove padding to prevent override */
+  margin-right: 5px; /* Space between buttons */
+  margin-bottom: 5px; /* Space between rows of buttons */
+}

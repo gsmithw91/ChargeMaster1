@@ -73,6 +73,13 @@ function loadChargesForLocation(systemId, locationId) {
           ordering: true,
           scrollX: true,
           fixedHeader: true,
+          dom: "Bfrtip",
+          buttons: [
+            {
+              extend: "colvis",
+              text: "Select Columns",
+            },
+          ],
         });
       } else {
         console.log("No charge data available for this location.");
