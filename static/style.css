@@ -1,155 +1,109 @@
-/* Center the title and apply a modern font */
-h1 {
-  text-align: center;
-  font-family: "Arial", sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  margin-top: 20px;
-}
-
-/* Style for labels */
-.label {
-  text-align: center;
-  font-family: "Arial", sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  color: #333; /* Dark text for better readability */
-  margin: 10px 0; /* Spacing above and below the label */
-}
-
-/* Center the systems-container and locations-container */
-#systems-container,
-#locations-container {
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px; /* Adds space between buttons */
-}
-
-/* Style for the system and location buttons */
-.system-button,
-.location-button {
-  background-color: #1989f8;
-  color: white;
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-}
-
-.system-button.selected,
-.location-button:hover {
-  background-color: #27ae60; /* Changes color when selected or hovered */
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3); /* Enhances the shadow on hover */
-}
-
-/* Style for the charges container to look like a card */
-#charges-container {
-  overflow-x: auto; /* Enable horizontal scrolling */
-  margin: 20px auto; /* Center the table and provide some spacing */
-}
-
-#charges-table {
-  display: block;
-  white-space: nowrap; /* Ensure the table spans the full width if needed */
-  border-collapse: collapse; /* Remove cell spacing and borders */
-  width: 100%; /* Make the table take the full width of its container */
-}
-
-/* Style for the table headers */
-#charges-table thead th {
-  background-color: #1989f8; /* A shade of blue for headers */
-  color: white;
-  padding: 10px;
-  border-radius: 10px 10px 0 0; /* Rounded top corners */
-  border: none;
-  text-align: left;
-}
-
-/* Style for the location information div */
-#location-information {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  padding: 20px;
-  overflow: hidden;
-  max-width: 90%;
-}
-
-#location-information h2 {
-  margin: 10px 0;
-}
-
-#location-information p {
-  margin: 5px 0;
-}
-
-/* Pagination styles */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  background-color: #1989f8;
-  color: white;
-  border-radius: 20px;
-  margin: 2px;
-  padding: 5px 12px;
-  cursor: pointer;
-}
-
-/* FixedHeader specific styles */
-.fixedHeader-floating {
-  background-color: #333;
-}
-
-/* Media query for responsive table layout */
-@media screen and (max-width: 600px) {
-  #systems-container,
-  #locations-container {
-    flex-direction: column; /* Stack buttons vertically on smaller screens */
+/* Basic Reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
   }
+  
+  body, html {
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+  }
+  body {
+	background-image: url('./stsbackground.png'); /* Update with the actual image filename */
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+  }
+  
+  
+  /* Style for the main content wrapper to add transparency */
+  .content-wrapper {
+	background: rgba(255, 255, 255, 0.9); /* semi-transparent white background */
+	border-radius: 15px;
+	padding: 20px;
+	margin: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Typographic styles */
+  h1 {
+	font-size: 2.5rem;
+	color: #007d7e;
+	text-align: center;
+	margin-bottom: 20px;
+	text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .label {
+	font-size: 1.2rem;
+	color: #007d7e;
+	margin: 10px 0;
+	padding-left: 10px;
+  }
+  
+  /* Styling for the system and location containers */
+  #systems-container, #locations-container {
+	margin-bottom: 20px;
+  }
+  
+  /* Style for the table */
   #charges-table {
-    white-space: normal; /* Allows table to stack on smaller screens */
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	background: #fff;
   }
-}
-
-/* Style for visibility toggle buttons */
-.visibility-button {
-  background-color: #1989f8; /* Blue background for unselected (consistent with your theme) */
-  color: white;
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Style for active (selected) visibility toggle buttons */
-.visibility-button.active,
-.visibility-button:hover {
-  background-color: #27ae60; /* Green background for selected or on hover */
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* DataTables buttons container */
-#buttonContainer .dt-buttons {
-  display: flex;
-  justify-content: center; /* Center the buttons */
-  flex-wrap: wrap;
-}
-
-/* Corrects the padding for buttons within DataTables */
-#buttonContainer .dt-button {
-  padding: 0; /* Remove padding to prevent override */
-  margin-right: 5px; /* Space between buttons */
-  margin-bottom: 5px; /* Space between rows of buttons */
-}
+  
+  #charges-table th, #charges-table td {
+	text-align: left;
+	padding: 12px;
+  }
+  
+  #charges-table thead {
+	background-color: #007d7e;
+	color: #ffffff;
+  }
+  
+  #charges-table tbody tr:nth-child(odd) {
+	background-color: #f0f0f0;
+  }
+  
+  #charges-table tbody tr:hover {
+	background-color: #e1f5fe;
+  }
+  
+  /* Button styles */
+  button {
+	background-color: #007d7e;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	margin: 10px;
+	border-radius: 5px;	
+	cursor: pointer;
+	transition: background-color 0.2s;
+  }
+  
+  button:hover {
+	background-color: #005f5f;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+	.content-wrapper {
+	  margin: 10px;
+	  padding: 10px;
+	}
+  
+	h1 {
+	  font-size: 2rem;
+	}
+  
+	#charges-table {
+	  font-size: 0.9rem;
+	}
+  }
+  
+  /* Additional styles can be added below as needed */
+  
