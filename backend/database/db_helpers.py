@@ -6,7 +6,7 @@ import os
 def get_connection():
     # Check the environment variable
     app_env = os.getenv('APP_ENV', 'desktop')  # Defaults to 'desktop' if not set
-    app_env = 'server'
+    # app_env = 'server'
     if app_env == 'server':
         # Connection string for the server
         conn_str = (
