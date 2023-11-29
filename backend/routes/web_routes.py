@@ -15,6 +15,6 @@ web_logger = get_web_logger()
 @web.route('/')
 def index():
     web_logger.info(f"Accessed the home page with method {request.method} and headers {request.headers}")
-    systems_data = get_table_data("HospitalSystem")
+    systems_data = get_table_data("HospitalInfo", "HospitalSystem")
     systems = [HospitalSystem(**system).dict() for system in systems_data]
     return render_template('index.html', systems=systems)

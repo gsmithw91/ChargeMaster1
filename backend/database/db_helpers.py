@@ -6,7 +6,7 @@ import os
 def get_connection():
     # Check the environment variable
     app_env = os.getenv('APP_ENV', 'desktop')  # Defaults to 'desktop' if not set
-    # app_env = 'server'
+    app_env = 'server'
     if app_env == 'server':
         # Connection string for the server
         conn_str = (
@@ -31,13 +31,12 @@ def get_connection():
 
 
 
-
-def get_table_data(table_name):
-    # Assume table_name is safe to use or has been validated/sanitized
+def get_table_data(schema_name, table_name):
+    # Assume schema_name and table_name are safe to use or have been validated/sanitized
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            query = f"SELECT * FROM {table_name}"  # Be certain 'table_name' is not user-controlled or is properly sanitized
+            query = f"SELECT * FROM {schema_name}.{table_name}"  # Be certain 'schema_name.table_name' is not user-controlled or is properly sanitized
             cursor.execute(query)
             columns = [column[0] for column in cursor.description]
             data = []
@@ -48,12 +47,13 @@ def get_table_data(table_name):
         print("Database error:", e)
     finally:
         conn.close()
-        
+
+
 def get_available_locations():
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT LocationName FROM HospitalLocation")
+            cursor.execute("SELECT LocationName FROM HospitalInfo.HospitalLocation")
             return cursor.fetchall()
     finally:
         conn.close()
@@ -62,7 +62,7 @@ def get_locations_by_system_id(system_id):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM HospitalLocation WHERE SystemID = ?", (system_id,))
+            cursor.execute("SELECT * FROM HospitalInfo.HospitalLocation WHERE SystemID = ?", (system_id,))
             columns = [column[0] for column in cursor.description]
             data = [dict(zip(columns, row)) for row in cursor.fetchall()]
             return data
@@ -109,7 +109,7 @@ def get_charge_data_by_location_id(system_id, location_id):
                 return None, None
 
             # Query the table using the table name from the mapping, filtered by LocationID
-            query = f"SELECT * FROM {table_name} WHERE LocationID = ?"
+            query = f"SELECT * FROM Charges.{table_name} WHERE LocationID = ?"
             cursor.execute(query, (location_id,))
             columns = [column[0] for column in cursor.description]
             charge_data = [dict(zip(columns, row)) for row in cursor.fetchall()]
@@ -121,7 +121,7 @@ def get_location_details(location_id):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM HospitalLocation WHERE LocationID = ?", (location_id,))
+            cursor.execute("SELECT * FROM HospitalInfo.HospitalLocation WHERE LocationID = ?", (location_id,))
             columns = [column[0] for column in cursor.description]
             results = cursor.fetchone()  # Assuming LocationID is unique and only one record is returned
             if results:
