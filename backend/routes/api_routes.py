@@ -30,14 +30,14 @@ api = Blueprint('api', __name__, url_prefix='/api')
 @api.route('/systems', methods=['GET'])
 def get_systems():
     api_logger.info("Fetching all systems.")
-    systems_data = get_table_data("HospitalInfo", "HospitalSystem")  # Assuming 'HospitalInfo' is the schema name
+    systems_data = get_table_data("HospitalSystem")  # Assuming 'HospitalInfo' is the schema name
     systems = [HospitalSystem(**system).dict() for system in systems_data]
     return jsonify(systems)
 
 @api.route('/systems/<int:system_id>', methods=['GET'])
 def get_system(system_id):
     api_logger.info(f"Fetching system with ID: {system_id}")
-    systems_data = get_table_data("HospitalInfo", "HospitalSystem")
+    systems_data = get_table_data("HospitalSystem")
     system = next((HospitalSystem(**sys).dict() for sys in systems_data if sys['SystemID'] == system_id), None)
     if system:
         return jsonify(system)
@@ -48,7 +48,7 @@ def get_system(system_id):
 @api.route('/locations', methods=['GET'])
 def get_locations():
     api_logger.info("Fetching all locations.")
-    locations_data = get_table_data("HospitalInfo", "HospitalLocation")  # Assuming 'HospitalInfo' is the schema name
+    locations_data = get_table_data("HospitalLocation")  # Assuming 'HospitalInfo' is the schema name
     locations = [HospitalLocation(**location).dict() for location in locations_data]
     return jsonify(locations)
 
