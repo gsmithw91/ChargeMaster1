@@ -1,0 +1,274 @@
+﻿LocationName,EligibilityYear,InsuranceType,Carrier,PlanName,MarketPlaceTier
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Choice POS ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Choice POS II ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Elect Choice ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna EPO ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Health Network Only ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Health Network Option ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna HMO ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Illinois Preferred Plan,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Managed Choice POS ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna NAP ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Open Access Elect Choice ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Open Access HMO ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Open Access Managed Choice ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,"Aetna Open Choice PPO (including, but not limited to Aetna Signature Administrators® and Open Choice) ",
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Performance Network ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Premier Care Network ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Premier Care Network Plus ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna QPOS ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Savings Plus ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Select ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Student Health ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Traditional Choice ,
+Northwestern Memorial Hospital,2023,Commercial,Aetna,Aetna Voluntary Group Medical Plan (Indemnity Plan),
+Northwestern Memorial Hospital,2023,Commercial,MultiPlan/PHCS,BeechStreet (PHCS),
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,"Blue Cross Blue Shield - Blue Advantage HMO (only from contracted IPAs, referrals required for specialty services)",
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Cross Blue Shield - Blue Choice PPO ,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Cross Blue Shield - Blue Choice Options (Tier 1),
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Cross Blue Shield - HMOI (Medical Group/IPA Information in Legend below) (Patients must have a referral for services),
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Cross Blue Shield - PPO,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Gold PPO 204,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Gold PPO 707,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Gold HMO 207,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Gold HMO 703 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Gold HMO 707,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 303,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 203,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 706,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMO 206,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMO 306,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMO 704 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMO 706,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 302,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 502,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 201,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 202,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 601,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 701,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 705,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 708,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Bronze HMO 205,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Bronze HMO 701 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Bronze HMO 708,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Gold PPOSM 204 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Gold PPOSM 707,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Gold HMOSM 207,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Gold HMOSM 703 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Gold HMOSM 707,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 203,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 303,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 706,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 801 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMOSM 206,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMOSM 306,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMOSM 704 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Silver HMOSM 706,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 201,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 202,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 601 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 701 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 708,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 205,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 701 - Rx Copays,
+Northwestern Memorial Hospital,2023,Commercial,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 708,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Open Access ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Open Access Plus ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Choice Fund Open Access Plus ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - ChoiceCare PPO ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - EPO ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Global Health Benefits ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - GWH POS Open Access Plus ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - HMO (or POS) ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - HMO (or POS) Open Access ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Local Plus ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Network Open Access ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Network POS ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - One Health HMO eff 4/1/19 ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna Plus with Northwestern Medicine 4400 (Effective 1/1/2023)*,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna Plus with Northwestern Medicine 2000 (Effective 1/1/2023)*,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - POS ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - PPO ,
+Northwestern Memorial Hospital,2023,Commercial,Cigna,Cigna - Shared Administration PPO and OAP,
+Northwestern Memorial Hospital,2023,Commercial,ComPsych,ComPsych — Behavioral Health/Substance Abuse Network,
+Northwestern Memorial Hospital,2023,Commercial,Coventry,"Coventry Health Care - First Health HMO, PPO and POS",
+Northwestern Memorial Hospital,2023,Commercial,Curaechoice,Curaechoice,
+Northwestern Memorial Hospital,2023,Commercial,Global Excel,Global Excel - PPO,
+Northwestern Memorial Hospital,2023,Commercial,Health Alliance,Health Alliance - PPO,
+Northwestern Memorial Hospital,2023,Commercial,Health Alliance,Health Alliance - HMO,
+Northwestern Memorial Hospital,2023,Commercial,HFN,HFN - EPO (HFN20),
+Northwestern Memorial Hospital,2023,Commercial,HFN,HFN - PPO (HFN10),
+Northwestern Memorial Hospital,2023,Commercial,HFN,HFN - Workers' Compensation Program/Network,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - Choice POS ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - ChoiceCare PPO ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - EPO ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - HMO Premier ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - HMO Select ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - Illinois Platinum HMO ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - National Preferred POS - Open Access ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - PPO ,
+Northwestern Memorial Hospital,2023,Commercial,Humana,Humana - Preferred PPO,
+Northwestern Memorial Hospital,2023,Commercial,Imagine Health,Imagine Health,
+Northwestern Memorial Hospital,2023,Commercial,MultiPlan/PHCS,MultiPlan/PHCS,
+Northwestern Memorial Hospital,2023,Commercial,The Alliance,The Alliance,
+Northwestern Memorial Hospital,2023,Commercial,Optum,United Behavioral Health,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - All Savers ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Choice ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Choice Plus ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Core ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - HMO (Patients must have a referral for services),
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - HMO Plus ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Navigate ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Open Access (Patients must have a referral for services),
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Options PPO ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Select Plus ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare - Select ,
+Northwestern Memorial Hospital,2023,Commercial,United Healthcare,United Healthcare Affiliates - Participate through UHC PPO,
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 201,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 202,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 601,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 701,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 705,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 708,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Bronze HMO 205,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Bronze HMO 701 - Rx Copays,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Bronze HMO 708,1
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 0A*,1
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 5000 Rx Copay*,1
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine HSA 7050*,1
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 6800 Enhanced Diabetes Care*,1
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine Diabetes 7600 Enhanced Asthma COPD Care*,1
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Simple Choice 9100,1
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Simple Choice 7500,1
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 203,2
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 706,2
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Silver HMO 206,2
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Silver HMO 704 - Rx Copays,2
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Silver HMO 706,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 6000* ,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 3800-2* ,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 700-3* ,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 0-4A*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 0B*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 0-2*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 0-3*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 0-4B*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 3000 Rx Copay*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 2500-2 Rx Copay*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 350-3 Rx Copay*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 100-4 Rx Copay*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 8000*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 6150-2*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 2000-3*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 650-4*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 3800 Enhanced Diabetes Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 3000-2 Enhanced Diabetes Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 600-3 Enhanced Diabetes Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 40-4 Enhanced Diabetes Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 4200 Enhanced Asthma COPD Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 3550-2 Enhanced Asthma COPD Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 750-3 Enhanced Asthma COPD Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 50-4 Enhanced Asthma COPD Care*,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Simple Choice 5800,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Simple Choice 5700-2,2
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Simple Choice 0-4C ,2
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Gold PPO 204,3
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Gold PPO 707,3
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Gold HMO 207,3
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Gold HMO 703 - RX Copays,3
+Northwestern Memorial Hospital,2023,Exchange,Blue Cross Blue Shield,Blue Precision Gold HMO 707,3
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 750 Rx Copay*,3
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Simple Choice 2000,3
+Northwestern Memorial Hospital,2023,Exchange,Cigna,Cigna Plus Northwestern Medicine 1900 Enhanced Diabetes Care*,3
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 201,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 202,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 601 - Rx Copays,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 701 - Rx Copays,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 708,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 205,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 701 - Rx Copays,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 708,1
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus Bronze CMS Standard,1
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Bronze 5000 Indiv Med Deductible - Rx Copay,1
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 203,2
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 706,2
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 801 - Rx Copays,2
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Silver HMOSM 206,2
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Silver HMOSM 704 - Rx Copays,2
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Silver HMOSM 706,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus Silver CMS Standard,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus Silver-2 CMS Standard,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus Silver-3 CMS Standard,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus Silver-4 CMS Standard,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver 3000 Indiv Med Deductible - Rx Copay,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver-2 2500 Indiv Med Deductible - Rx Copay,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver-3 350 Indiv Med Deductible - Rx Copay,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver-4 100 Indiv Med Deductible - Rx Copay,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver 5000 Indiv Med Deductible,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver-2 3800 Indiv Med Deductible,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver-3 700 Indiv Med Deductible,2
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus with Northwestern Medicine Silver-4 0 Indiv Med Deductible,2
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Gold PPOSM 204 - Rx Copays,3
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Choice Preferred Gold PPOSM 707,3
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Gold HMOSM 207,3
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Gold HMOSM 703 - Rx Copays,3
+Northwestern Memorial Hospital,2024,Exchange,Blue Cross Blue Shield,Blue Precision Gold HMOSM 707,3
+Northwestern Memorial Hospital,2024,Exchange,Cigna,Cigna Plus Gold CMS Standard - Rx Copay,
+Northwestern Memorial Hospital,2023,Government,CHAMPUS,CHAMPUS,
+Northwestern Memorial Hospital,2023,Government,Medicare,Medicare ,
+Northwestern Memorial Hospital,2023,Government,Medicaid,Medicaid,
+Northwestern Memorial Hospital,2023,Government,VA,Veteran's Affairs Community Care Netwwork by Optum,
+Northwestern Memorial Hospital,2023,Government,Triicare East,Tricare East Administered by Humana Military,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Aetna,Aetna - HMO ,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Aetna,Aetna - PPO ,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Aetna,Aetna - Open Access HMO,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Aetna,Aetna Prime HMO-POS,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Blue Cross Blue Shield,Blue Cross Blue Shield - PPO  ,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Blue Cross Blue Shield,Blue Cross Blue Shield - HMO ,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Cigna,"Cigna True Choice Plus Medicare (PPO) (Out-of-Network as of January 1, 2024)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Cigna,"Cigna Preferred Medicare (HMO) (Out-of-Network as of January 1, 2024)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Cigna,"Cigna True Choice Medicare (PPO) (Out-of-Network as of January 1, 2024)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Cigna,"Cigna True Choice Savings Medicare (PPO) (Out-of-Network as of January 1, 2024)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Cigna,"Cigna Courage Medicare (HMO) (Out-of-Network as of January 1, 2024)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Cigna,"Cigna True Choice Courage Medicare (PPO) (Out-of-Network as of January 1, 2024)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Health Alliance,"Health Alliance  (Referrals required for specialty care, NO primary care is covered)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Humana,Humana HMO Gold Plus,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Humana,Humana PFFS,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Humana,Humana PPO,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,Humana Honor PPO (Veterans,Humana Honor PPO (Veterans Plan),
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United,United HealthCare Chronic Complete Assure (PPO C-SNP),
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United,"United HealthCare Medicare Complete Access (Referrals required for specialty care, NO primary care is covered)",
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United HealthCare,United HealthCare Medicare Advantage PPO ,
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United,United HealthCare AARP® Medicare Advantage Plan 1 (HMO),
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United,United HealthCare AARP® Medicare Advantage Plan 2 (HMO),
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United,United HealthCare AARP® Medicare Advantage Choice (PPO),
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United,United Healthcare AARP Medicare Advantage Walgreens (PPO),
+Northwestern Memorial Hospital,2023,Medicare Advantage Plan ,United,United HealthCare AARP® Medicare Advantage Patriot (PPO),
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare AARP® Medicare Advantage from UHC IL-0001 (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare AARP® Medicare Advantage from UHC IL-0002 (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare AARP® Medicare Advantage from UHC IL-0004 (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare AARP® Medicare Advantage Walgreens from UHC IL-0005 (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare AARP® Medicare Advantage from UHC IL-0003 (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare AARP® Medicare Advantage Walgreens from UHC IL-0006 (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare UHC Complete Care IL-001A (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,United,"United HealthCare AARP® Medicare Advantage Patriot No Rx IL-MA01 (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Choice (HMO) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Choice Diabetes & Heart Complete (PPO C-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Complete Select (HMO D-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Complete Open Choice (PPO D-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Complete Plus (HMO D-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Elite Diabetes & Heart (HMO C-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing ,"Zing Elite Select (HMO) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing ESRD Select (HMO C-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Essential Wellness Diabetes & Heart (HMO C-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Open Choice (PPO) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Open Choice Diabetes & Heart (PPO C-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Select Care (HMO) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Select Diabetes & Heart (HMO C-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2024,Medicare Advantage Plan ,Zing,"Zing Select Diabetes & Heart Complete (HMO C-SNP) (effective January 1, 2024)",
+Northwestern Memorial Hospital,2023,Medicare/Medicaid Alignment Initiative  (MMAI),Zing,Blue Cross Blue Shield,
+Northwestern Memorial Hospital,2023,Medicare/Medicaid Alignment Initiative  (MMAI),Zing,Humana,
+Northwestern Memorial Hospital,2023,Medicare/Medicaid Alignment Initiative  (MMAI),Zing,"Zing Health (effective January 1, 2024)",
+Northwestern Memorial Hospital,2023,Managed Medicaid,Blue Cross Blue Shield,Blue Cross Blue Shield,
+Northwestern Memorial Hospital,2023,Managed Medicaid,CountyCare,CountyCare,
+Northwestern Memorial Hospital,2023,Managed Medicaid,Meridian,Meridian,

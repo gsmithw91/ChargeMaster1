@@ -24,3 +24,20 @@ HUMANAPPO145 : Optional [float]
 UHCCORE346 : Optional [float]
 UHCHMOPPO535 : Optional [float]
 ChargeCode : Optional [float]
+
+
+
+
+Use ChargeMasterDB 
+
+
+Alter Schema dbo Transfer Charges.Charges_Advocate;
+Alter Schema dbo Transfer Charges.Charges_LoyolaCDM;
+Alter Schema dbo Transfer Charges.Charges_LoyolaIns;
+Alter Schema dbo Transfer Charges.Charges_Northshore;
+Alter Schema dbo Transfer Charges.Charges_Northwetsern;
+Alter Schema dbo Transfer Charges.Charges_Rush;
+Alter Schema dbo Transfer Charges.Charges_UCMC;
+
+Alter Schema dbo Transfer HospitalInfo.HospitalLocation;
+Alter Schema dbo Transfer HospitalInfo.HospitalSystem;

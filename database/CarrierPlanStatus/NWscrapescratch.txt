@@ -1,0 +1,40 @@
+I have the following from a CSV
+
+
+CarriersPlans.csv 
+
+I got them from this websites
+
+https://www.nm.org/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/northwestern-memorial-hospital#tab_Commercial
+https://www.nm.org/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/northwestern-memorial-hospital#exchange
+https://www.nm.org/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/northwestern-memorial-hospital#tab_Government
+
+And it looks like the picture I have attached. There are other locations on the page. "Lake Forest Hospital" and other locations that
+also have lists of insurance they are in network with. 
+
+I have uploaded a sample of the page in output.html
+
+These can be found in the ht
+'<li class="item-nav-sidebar active">Northwestern Memorial Hospital</li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/lake-forest-hospital" class="nav-item-link" target="_self">Lake Forest Hospital</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/global-components/Footer%20Links/For%20Medical%20Professionals" class="nav-item-link" target="_self">Central DuPage Hospital</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/northwestern-medical-group" class="nav-item-link" target="_self">Northwestern Medical Group</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/delnor-hospital" class="nav-item-link" target="_self">Delnor Hospital</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/huntley-mchenry-woodstock-hospitals" class="nav-item-link" target="_self">Huntley, McHenry and Woodstock Hospitals</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/kishwaukee-hospital" class="nav-item-link" target="_self">Kishwaukee Hospital</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/marianjoy" class="nav-item-link" target="_self">Marianjoy Rehabilitation Hospital</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/palos-hospital" class="nav-item-link" target="_self">Palos Hospital</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/palos-imaging-and-diagnostics" class="nav-item-link" target="_self">Northwestern Medicine Diagnostic Imaging Orland Park</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/regional-medical-group" class="nav-item-link" target="_self">Regional Medical Group</a></li>
+ <li class="item-nav-sidebar not-active"><a href="/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/valley-west-hospital" class="nav-item-link" target="_self">Valley West Hospital</a></li>"
+
+I want a script that appends each hospitals insurance carries and info to my current CarriersPlans.csv I have done all of Northwewstern Memorial Hospital so we could ignore it for now 
+
+clicking on '<li data-location-template=""><a href="#tab_Commercial">Commercial</a></li>' is how you navigate to the different Insurance Types for each location
+for plans with exchange I want to use the following mapping 
+
+'bronze: 1
+silver:2
+gold:3;
+
+if you look at outp
