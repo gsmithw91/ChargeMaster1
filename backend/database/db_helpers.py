@@ -130,3 +130,69 @@ def get_location_details(location_id):
                 return None
     finally:
         conn.close()
+
+def get_in_network_insurance(location_id=None):
+    # This function retrieves in-network insurance information.
+    # If location_id is provided, it will return results for that specific location.
+    try:
+        connection = get_connection()
+        with connection.cursor() as cursor:
+            if location_id:
+                sql = "SELECT * FROM dbo.Elig_Northwestern WHERE LocationID = ?"
+                cursor.execute(sql, (location_id,))
+            else:
+                sql = "SELECT * FROM dbo.Elig_Northwestern"
+                cursor.execute(sql)
+            # Fetch data and convert to a list of dictionaries
+            columns = [column[0] for column in cursor.description]
+            result = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return result
+    finally:
+        connection.close()
+
+
+def get_insurance_plan_details(plan_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM InsurancePlans WHERE PlanID = ?", (plan_id,))
+            columns = [column[0] for column in cursor.description]
+            result = cursor.fetchone()
+            if result:
+                return dict(zip(columns, result))
+            else:
+                return None
+    finally:
+        conn.close()
+
+def get_all_insurance_types():
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM InsuranceTypes")
+            columns = [column[0] for column in cursor.description]
+            results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return results
+    finally:
+        conn.close()
+
+def get_eligibility_by_year(year):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM Elig_Northwestern WHERE EligibilityYear = ?", (year,))
+            results = [Elig_Northwestern(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
+            return results
+    finally:
+        conn.close()
+
+def search_in_network_insurance(query):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            search_query = f"%{query}%"
+            cursor.execute("SELECT * FROM Elig_Northwestern WHERE PlanName LIKE ?", (search_query,))
+            results = [Elig_Northwestern(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
+            return results
+    finally:
+        conn.close()

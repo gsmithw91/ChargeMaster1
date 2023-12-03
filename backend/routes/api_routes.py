@@ -7,8 +7,9 @@ from backend.models.Charges_Northshore import NorthshoreCharges
 from backend.models.Charges_Northwestern import NorthwesternCharges
 from backend.models.Charges_Rush import RushCharges
 from backend.models.Charges_UCMC import UCMCCharges
+from backend.models.Elig_Northewestern import Eligible_Insurance
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
+from backend.database.db_helpers import search_in_network_insurance, get_in_network_insurance, get_all_insurance_types, get_eligibility_by_year, get_insurance_plan_details,get_in_network_insurance, get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
 from flask import Blueprint, jsonify, request
 from logs.custom_logger import get_api_logger
 
@@ -97,3 +98,48 @@ def get_location_information(location_id):
         return jsonify(location_details)
     else:
         return jsonify({"error": "Location not found"}), 404
+
+
+@api.route('/in_network_insurance', methods=['GET'])
+def in_network_insurance():
+    location_id = request.args.get('location_id', default=None, type=int)
+    results = get_in_network_insurance(location_id)
+    
+    # Create instances of your Pydantic model from the dictionary data
+    result_models = [Eligible_Insurance(**result) for result in results]
+    
+    # Convert the Pydantic model instances to dictionaries
+    result_dicts = [model.dict() for model in result_models]
+    
+    return jsonify(result_dicts)
+
+@api.route('/insurance/plans/<int:plan_id>', methods=['GET'])
+def insurance_plan_details(plan_id):
+    plan_details = get_insurance_plan_details(plan_id)
+    if plan_details:
+        return jsonify(plan_details.dict())
+    else:
+        return jsonify({"error": "Insurance plan not found"}), 404
+
+@api.route('/insurance/types', methods=['GET'])
+def insurance_types():
+    types = get_all_insurance_types()
+    return jsonify([type_.dict() for type_ in types])
+
+@api.route('/insurance/eligibility', methods=['GET'])
+def eligibility_by_year():
+    year = request.args.get('year', type=int)
+    if year:
+        eligibility_list = get_eligibility_by_year(year)
+        return jsonify([item.dict() for item in eligibility_list])
+    else:
+        return jsonify({"error": "Year parameter is required"}), 400
+
+@api.route('/insurance/search', methods=['GET'])
+def insurance_search():
+    query = request.args.get('query', default='', type=str)
+    if query:
+        search_results = search_in_network_insurance(query)
+        return jsonify([result.dict() for result in search_results])
+    else:
+        return jsonify({"error": "Search query parameter is required"}), 400
