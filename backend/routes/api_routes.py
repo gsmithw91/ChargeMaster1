@@ -7,7 +7,7 @@ from backend.models.Charges_Northshore import NorthshoreCharges
 from backend.models.Charges_Northwestern import NorthwesternCharges
 from backend.models.Charges_Rush import RushCharges
 from backend.models.Charges_UCMC import UCMCCharges
-from backend.models.Elig_Northewestern import Eligible_Insurance
+from backend.models.Elig_Northwestern import Eligible_Insurance
 from pydantic import ValidationError 
 from backend.database.db_helpers import search_in_network_insurance, get_in_network_insurance, get_all_insurance_types, get_eligibility_by_year, get_insurance_plan_details,get_in_network_insurance, get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
 from flask import Blueprint, jsonify, request

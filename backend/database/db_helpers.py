@@ -1,6 +1,7 @@
 # backend/db_helpers.py
 import pyodbc
 import os 
+from backend.models.Elig_Northwestern import Eligible_Insurance  # Import the model
 
 
 def get_connection():
@@ -181,7 +182,7 @@ def get_eligibility_by_year(year):
     try:
         with conn.cursor() as cursor:
             cursor.execute("SELECT * FROM Elig_Northwestern WHERE EligibilityYear = ?", (year,))
-            results = [Elig_Northwestern(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
+            results = [Eligible_Insurance(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
             return results
     finally:
         conn.close()
@@ -192,7 +193,7 @@ def search_in_network_insurance(query):
         with conn.cursor() as cursor:
             search_query = f"%{query}%"
             cursor.execute("SELECT * FROM Elig_Northwestern WHERE PlanName LIKE ?", (search_query,))
-            results = [Elig_Northwestern(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
+            results = [Eligible_Insurance(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
             return results
     finally:
         conn.close()
