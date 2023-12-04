@@ -132,25 +132,6 @@ def get_location_details(location_id):
     finally:
         conn.close()
 
-def get_in_network_insurance(location_id=None):
-    # This function retrieves in-network insurance information.
-    # If location_id is provided, it will return results for that specific location.
-    try:
-        connection = get_connection()
-        with connection.cursor() as cursor:
-            if location_id:
-                sql = "SELECT * FROM dbo.Elig_Northwestern WHERE LocationID = ?"
-                cursor.execute(sql, (location_id,))
-            else:
-                sql = "SELECT * FROM dbo.Elig_Northwestern"
-                cursor.execute(sql)
-            # Fetch data and convert to a list of dictionaries
-            columns = [column[0] for column in cursor.description]
-            result = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            return result
-    finally:
-        connection.close()
-
 
 def get_insurance_plan_details(plan_id):
     conn = get_connection()
@@ -177,23 +158,65 @@ def get_all_insurance_types():
     finally:
         conn.close()
 
-def get_eligibility_by_year(year):
+System_ID_Mapping_Table =  {
+    1:'Elig_Advocate',
+    2:'Elig_Loyola',
+    3:'Elig_Northshore',
+    4:'Elig_Northwestern',
+    5:'Elig_UCMC',
+}
+
+
+
+
+
+def get_eligibility_by_year(system_id, year):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM Elig_Northwestern WHERE EligibilityYear = ?", (year,))
+            # Determine the table name based on system_id
+            table_name = system_id_to_table_mapping.get(system_id, 'Elig_Northwestern')
+            sql = f"SELECT * FROM {table_name} WHERE EligibilityYear = ?"
+            cursor.execute(sql, (year,))
             results = [Eligible_Insurance(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
             return results
     finally:
         conn.close()
 
-def search_in_network_insurance(query):
+# Assuming system_id_to_table_mapping mapping is defined as shown previously
+
+def search_in_network_insurance(system_id, query):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
+            # Determine the table name based on system_id
+            table_name = system_id_to_table_mapping.get(system_id, 'Elig_Northwestern')
             search_query = f"%{query}%"
-            cursor.execute("SELECT * FROM Elig_Northwestern WHERE PlanName LIKE ?", (search_query,))
+            sql = f"SELECT * FROM {table_name} WHERE PlanName LIKE ?"
+            cursor.execute(sql, (search_query,))
             results = [Eligible_Insurance(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
             return results
+    finally:
+        conn.close()
+
+def get_insurances_by_system_and_location_id(system_id, location_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Determine the table name based on system_id
+            table_name = System_ID_Mapping_Table.get(system_id)
+            if table_name is None:
+                print(f"No eligibility table for system ID: {system_id}")
+                return None
+
+            # Query the table using the table name from the mapping, filtered by SystemID and LocationID
+            query = f"SELECT * FROM {table_name} WHERE SystemID = ? AND LocationID = ?"
+            cursor.execute(query, (system_id, location_id))
+            columns = [column[0] for column in cursor.description]
+            insurances = [Eligible_Insurance(**dict(zip(columns, row))) for row in cursor.fetchall()]
+            return insurances
+    except pyodbc.Error as e:
+        print("Database error:", e)
+        return None
     finally:
         conn.close()
