@@ -2,6 +2,7 @@
 from flask import Blueprint, render_template, request
 from backend.database.db_helpers import get_table_data
 from backend.models.HospitalSystem import HospitalSystem
+from backend.models.HospitalLocation import HospitalLocation
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
@@ -12,9 +13,16 @@ web = Blueprint('web', __name__)
 web_logger = get_web_logger()
 
 
-@web.route('/')
+@web.route('/chargemaster')
 def index():
     web_logger.info(f"Accessed the home page with method {request.method} and headers {request.headers}")
     systems_data = get_table_data("HospitalSystem")
     systems = [HospitalSystem(**system).dict() for system in systems_data]
-    return render_template('index.html', systems=systems)
+    return render_template('chargemaster.html', systems=systems)
+
+
+@web.route('/insurances')
+def insurances():
+    systems_data = get_table_data("HospitalSystem")
+    systems = [HospitalSystem(**system).dict() for system in systems_data]
+    return render_template('insurances.html', systems=systems)

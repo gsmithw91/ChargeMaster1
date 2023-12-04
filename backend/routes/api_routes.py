@@ -9,8 +9,8 @@ from backend.models.Charges_Rush import RushCharges
 from backend.models.Charges_UCMC import UCMCCharges
 from backend.models.Elig_Northwestern import Eligible_Insurance
 from pydantic import ValidationError 
-from backend.database.db_helpers import search_in_network_insurance, get_insurances_by_system_and_location_id, get_all_insurance_types, get_eligibility_by_year, get_insurance_plan_details, get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
-from flask import Blueprint, jsonify, request
+from backend.database.db_helpers import get_insurances_by_system_id, search_in_network_insurance, get_insurances_by_system_and_location_id, get_all_insurance_types, get_eligibility_by_year, get_insurance_plan_details, get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
+from flask import Blueprint, jsonify, request   
 from logs.custom_logger import get_api_logger
 
 
@@ -176,6 +176,25 @@ def insurance_search():
     else:
         api_logger.error("Search query parameter is required for insurance search")
         return jsonify({"error": "Search query parameter is required"}), 400
+
+
+# Add this to api_routes.py
+
+@api.route('/insurances/<int:system_id>', methods=['GET'])
+def get_insurances_by_system(system_id):
+    api_logger.info(f"Fetching insurances for system ID: {system_id}")
+    
+    # Fetch insurances by system_id using the helper function
+    insurances = get_insurances_by_system_id(system_id)
+    
+    if insurances:
+        # Convert the list of Pydantic models to a list of dictionaries
+        return jsonify([insurance.dict() for insurance in insurances])
+    else:
+        # Log an error and send a 404 response if no data was found
+        api_logger.error(f"No insurance data found for system ID: {system_id}")
+        return jsonify({"error": "No insurance data found for the given system ID"}), 404
+
 
 @api.route('/insurances/<int:system_id>/<int:location_id>', methods=['GET'])
 def get_insurances(system_id, location_id):

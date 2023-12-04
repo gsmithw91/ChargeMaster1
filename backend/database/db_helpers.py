@@ -220,3 +220,29 @@ def get_insurances_by_system_and_location_id(system_id, location_id):
         return None
     finally:
         conn.close()
+
+
+# Add this to db_helpers.py
+
+def get_insurances_by_system_id(system_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Determine the table name based on system_id
+            table_name = System_ID_Mapping_Table.get(system_id)
+            if table_name is None:
+                print(f"No eligibility table for system ID: {system_id}")
+                return []
+
+            # Query the table using the table name from the mapping, filtered by SystemID
+            query = f"SELECT * FROM {table_name} WHERE SystemID = ?"
+            cursor.execute(query, (system_id,))
+            columns = [column[0] for column in cursor.description]
+            insurances = [Eligible_Insurance(**dict(zip(columns, row))) for row in cursor.fetchall()]
+            return insurances
+    except pyodbc.Error as e:
+        print("Database error:", e)
+        return []
+    finally:
+        conn.close()
+    
