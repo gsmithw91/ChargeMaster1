@@ -41,3 +41,11 @@ Alter Schema dbo Transfer Charges.Charges_UCMC;
 
 Alter Schema dbo Transfer HospitalInfo.HospitalLocation;
 Alter Schema dbo Transfer HospitalInfo.HospitalSystem;
+
+      
+      
+      PlanID
+      CarrierID
+      InsuranceType
+      PlanName
+      InsuranceTypeID

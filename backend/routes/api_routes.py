@@ -8,8 +8,11 @@ from backend.models.Charges_Northwestern import NorthwesternCharges
 from backend.models.Charges_Rush import RushCharges
 from backend.models.Charges_UCMC import UCMCCharges
 from backend.models.Elig_Northwestern import Eligible_Insurance
+from backend.models.InsurancePlan import Insurance_Plan
+from backend.models.InsuranceTypes import Insurance_Type
+
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_insurances_by_system_id, search_in_network_insurance, get_insurances_by_system_and_location_id, get_all_insurance_types, get_eligibility_by_year, get_insurance_plan_details, get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
+from backend.database.db_helpers import get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_all_insurance_types, get_eligibility_by_year, get_insurance_plan_details, get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
 from flask import Blueprint, jsonify, request   
 from logs.custom_logger import get_api_logger
 
@@ -68,40 +71,25 @@ def get_locations_by_system(system_id):
     return jsonify(locations)
 
 
-@api.route('/charges/system/<int:system_id>', methods=['GET'])
-def get_charges_by_system(system_id):
-    api_logger.info(f"Fetching charges for system ID: {system_id}")
-    
-    charge_data, columns = get_charge_data_by_system_id(system_id)
-    
-    if not columns:
-        api_logger.error(f"No charge table found for system ID: {system_id}")
-        return jsonify({"error": "Charge table not found for the given system ID"}), 404
-
-    if charge_data:
-        return jsonify({"data": charge_data, "columns": columns})
-    else:
-        api_logger.error(f"Charge data not found for system ID: {system_id}")
-        return jsonify({"error": "Charge data not found for the given system ID"}), 404
-
-
-@api.route('/charges/location/<int:system_id>/<int:location_id>', methods=['GET'])
+@api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
 def get_charges_by_location(system_id, location_id):
     api_logger.info(f"Fetching charges for system ID: {system_id}, location ID: {location_id}")
     
-    charge_data, columns = get_charge_data_by_location_id(system_id, location_id)
+    charge_data, columns = get_charge_data(system_id, location_id)
     
-    if not columns:
+    if charge_data:
+        return jsonify({"data": charge_data, "columns": columns})
+    else:
         api_logger.error(f"No charge data found for system ID: {system_id}, location ID: {location_id}")
         return jsonify({"error": "Charge data not found for the given system and location ID"}), 404
 
-    return jsonify({"data": charge_data, "columns": columns})
 
-@api.route('/locations/details/<int:location_id>', methods=['GET'])
+@api.route('/locations/details/location/<int:location_id>', methods=['GET'])
 def get_location_information(location_id):
     api_logger.info(f"Fetching location information for location ID: {location_id}")
 
     location_details = get_location_details(location_id)
+    
     if location_details:
         return jsonify(location_details)
     else:
@@ -110,15 +98,16 @@ def get_location_information(location_id):
 
 
 
-
-@api.route('/insurance/plans/<int:plan_id>', methods=['GET'])
+@api.route('/insurances/plans/plan/<int:plan_id>', methods=['GET'])
 def insurance_plan_details(plan_id):
     api_logger.info(f"Fetching insurance plan details for plan ID: {plan_id}")
 
     plan_details = get_insurance_plan_details(plan_id)
+    
     if plan_details:
         try:
-            return jsonify(Eligible_Insurance(**plan_details).dict())
+            insurance_plan = Insurance_Plan(**plan_details)
+            return jsonify(insurance_plan.dict())
         except ValidationError as e:
             api_logger.error(f"Data validation error for insurance plan details: {e}")
             return jsonify({"error": "Invalid data format"}), 500
@@ -127,15 +116,13 @@ def insurance_plan_details(plan_id):
         return jsonify({"error": "Insurance plan not found"}), 404
 
 
-
-
-@api.route('/insurance/types', methods=['GET'])
+@api.route('/insurances/types', methods=['GET'])
 def insurance_types():
     api_logger.info("Fetching all insurance types")
     types = get_all_insurance_types()
 
     try:
-        return jsonify([Eligible_Insurance(**type_).dict() for type_ in types])
+        return jsonify([Insurance_Type(**type_).dict() for type_ in types])
     except ValidationError as e:
         api_logger.error(f"Data validation error for insurance types: {e}")
         return jsonify({"error": "Invalid data format"}), 500
@@ -143,7 +130,7 @@ def insurance_types():
 
 
 
-@api.route('/insurance/eligibility', methods=['GET'])
+@api.route('/insurances/eligibility', methods=['GET'])
 def eligibility_by_year():
     year = request.args.get('year', type=int)
     api_logger.info(f"Fetching insurance eligibility for year: {year}")
@@ -151,7 +138,7 @@ def eligibility_by_year():
     if year:
         eligibility_list = get_eligibility_by_year(year)
         try:
-            return jsonify([Eligible_Insurance(**item).dict() for item in eligibility_list])
+            return jsonify([Insurance_Type(**item).dict() for item in eligibility_list])
         except ValidationError as e:
             api_logger.error(f"Data validation error for eligibility by year: {e}")
             return jsonify({"error": "Invalid data format"}), 500
@@ -160,27 +147,9 @@ def eligibility_by_year():
         return jsonify({"error": "Year parameter is required"}), 400
 
 
-
-@api.route('/insurance/search', methods=['GET'])
-def insurance_search():
-    query = request.args.get('query', default='', type=str)
-    api_logger.info(f"Performing insurance search with query: '{query}'")
-
-    if query:
-        search_results = search_in_network_insurance(query)
-        try:
-            return jsonify([Eligible_Insurance(**result).dict() for result in search_results])
-        except ValidationError as e:
-            api_logger.error(f"Data validation error for insurance search: {e}")
-            return jsonify({"error": "Invalid data format"}), 500
-    else:
-        api_logger.error("Search query parameter is required for insurance search")
-        return jsonify({"error": "Search query parameter is required"}), 400
-
-
 # Add this to api_routes.py
 
-@api.route('/insurances/<int:system_id>', methods=['GET'])
+@api.route('/insurances/system/<int:system_id>', methods=['GET'])
 def get_insurances_by_system(system_id):
     api_logger.info(f"Fetching insurances for system ID: {system_id}")
     
@@ -188,22 +157,33 @@ def get_insurances_by_system(system_id):
     insurances = get_insurances_by_system_id(system_id)
     
     if insurances:
-        # Convert the list of Pydantic models to a list of dictionaries
-        return jsonify([insurance.dict() for insurance in insurances])
+        # Convert the list of dictionaries to a list of Insurance_Plan Pydantic models
+        insurance_models = [Insurance_Plan(**insurance) for insurance in insurances]
+        return jsonify([insurance_model.dict() for insurance_model in insurance_models])
     else:
         # Log an error and send a 404 response if no data was found
         api_logger.error(f"No insurance data found for system ID: {system_id}")
         return jsonify({"error": "No insurance data found for the given system ID"}), 404
 
+@api.route('/insurances/plans', methods=['GET'])
+def get_insurance_plans_route():
+    api_logger.info("Fetching all insurance plans.")
+    
+    insurance_plans_data = get_insurance_plans()
+    insurance_plans = [Insurance_Plan(**plan).dict() for plan in insurance_plans_data]
+    
+    return jsonify(insurance_plans)
 
-@api.route('/insurances/<int:system_id>/<int:location_id>', methods=['GET'])
-def get_insurances(system_id, location_id):
-    api_logger.info(f"Fetching insurances for system ID: {system_id} and location ID: {location_id}")
-    
-    insurances = get_insurances_by_system_and_location_id(system_id, location_id)
-    
-    if insurances is not None:
-        return jsonify([insurance.dict() for insurance in insurances])
-    else:
-        api_logger.error(f"No insurance data found for system ID: {system_id} and location ID: {location_id}")
-        return jsonify({"error": "No insurance data found for the given system and location ID"}), 404
+@api.route('/insurances/types', methods=['GET'])
+def get_insurance_types_route():
+    api_logger.info("Fetching all insurance types.")
+    try:
+        insurance_types_data = get_insurance_types()
+        insurance_types = [Insurance_Type(**type_data).dict() for type_data in insurance_types_data]
+        return jsonify(insurance_types)
+    except ValidationError as e:
+        api_logger.error(f"Data validation error for insurance types: {e}")
+        return jsonify({"error": "Invalid data format"}), 500
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching insurance types: {e}")
+        return jsonify({"error": "An error occurred"}), 500

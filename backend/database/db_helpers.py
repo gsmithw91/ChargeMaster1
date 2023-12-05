@@ -97,7 +97,25 @@ def get_charge_data_by_system_id(system_id):
             return charge_data, columns  # Return both the data and the columns
     finally:
         conn.close()
-        
+# In your db_helpers.py
+
+def get_insurances_by_system_id(system_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Assuming there is a relationship between systems and insurances
+            # and the relevant table and column names are correctly provided
+            cursor.execute("SELECT * FROM InsurancePlans WHERE SystemID = ?", (system_id,))
+            columns = [column[0] for column in cursor.description]
+            insurances = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return insurances
+    except pyodbc.Error as e:
+        print("Database error:", e)
+        return []
+    finally:
+        conn.close()
+
+
         
 def get_charge_data_by_location_id(system_id, location_id):
     conn = get_connection()
@@ -183,66 +201,68 @@ def get_eligibility_by_year(system_id, year):
     finally:
         conn.close()
 
-# Assuming system_id_to_table_mapping mapping is defined as shown previously
-
-def search_in_network_insurance(system_id, query):
+def get_insurance_plans(system_id=None, location_id=None):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            # Determine the table name based on system_id
-            table_name = system_id_to_table_mapping.get(system_id, 'Elig_Northwestern')
-            search_query = f"%{query}%"
-            sql = f"SELECT * FROM {table_name} WHERE PlanName LIKE ?"
-            cursor.execute(sql, (search_query,))
-            results = [Eligible_Insurance(**dict(zip([column[0] for column in cursor.description], row))) for row in cursor.fetchall()]
+            base_query = "SELECT * FROM InsurancePlans"
+            conditions = []
+            params = []
+            
+            if system_id is not None:
+                conditions.append("SystemID = ?")
+                params.append(system_id)
+            
+            if location_id is not None:
+                conditions.append("LocationID = ?")
+                params.append(location_id)
+            
+            if conditions:
+                query = f"{base_query} WHERE {' AND '.join(conditions)}"
+            else:
+                query = base_query
+            
+            cursor.execute(query, params)
+            columns = [column[0] for column in cursor.description]
+            results = [dict(zip(columns, row)) for row in cursor.fetchall()]
             return results
     finally:
         conn.close()
 
-def get_insurances_by_system_and_location_id(system_id, location_id):
+
+def get_charge_data(system_id, location_id=None):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            # Determine the table name based on system_id
-            table_name = System_ID_Mapping_Table.get(system_id)
+            # Use the mapping to get the table name
+            table_name = system_id_to_table_mapping.get(system_id)
             if table_name is None:
-                print(f"No eligibility table for system ID: {system_id}")
-                return None
+                print(f"No charge table for system ID: {system_id}")
+                return None, None
 
-            # Query the table using the table name from the mapping, filtered by SystemID and LocationID
-            query = f"SELECT * FROM {table_name} WHERE SystemID = ? AND LocationID = ?"
-            cursor.execute(query, (system_id, location_id))
+            query = f"SELECT * FROM {table_name}"
+            params = []
+
+            if location_id is not None:
+                query += " WHERE LocationID = ?"
+                params.append(location_id)
+
+            cursor.execute(query, params)
             columns = [column[0] for column in cursor.description]
-            insurances = [Eligible_Insurance(**dict(zip(columns, row))) for row in cursor.fetchall()]
-            return insurances
-    except pyodbc.Error as e:
-        print("Database error:", e)
-        return None
+            charge_data = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return charge_data, columns
     finally:
         conn.close()
 
 
-# Add this to db_helpers.py
 
-def get_insurances_by_system_id(system_id):
+def get_insurance_types():
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            # Determine the table name based on system_id
-            table_name = System_ID_Mapping_Table.get(system_id)
-            if table_name is None:
-                print(f"No eligibility table for system ID: {system_id}")
-                return []
-
-            # Query the table using the table name from the mapping, filtered by SystemID
-            query = f"SELECT * FROM {table_name} WHERE SystemID = ?"
-            cursor.execute(query, (system_id,))
+            cursor.execute("SELECT * FROM InsuranceTypes")
             columns = [column[0] for column in cursor.description]
-            insurances = [Eligible_Insurance(**dict(zip(columns, row))) for row in cursor.fetchall()]
-            return insurances
-    except pyodbc.Error as e:
-        print("Database error:", e)
-        return []
+            results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return results
     finally:
         conn.close()
-    

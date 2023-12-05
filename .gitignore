@@ -3,5 +3,5 @@ concatenated_data.csv
 concatenated_data.xlsx
 backend/database/db_concat.py
 backend/database/predictor
-database\CarrierPlanStatus\inserttoDB\SqlquerycreatingEligTables.sql
-database\CarrierPlanStatus\inserttoDB\insert_statements.sql
+database/CarrierPlanStatus/inserttoDB/SqlquerycreatingEligTables.sql
+database/CarrierPlanStatus/inserttoDB/insert_statements.sql
