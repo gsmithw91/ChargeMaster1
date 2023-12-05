@@ -12,7 +12,7 @@ from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
 
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_all_insurance_types, get_eligibility_by_year, get_insurance_plan_details, get_charge_data_by_system_id,get_table_data, get_available_locations, get_locations_by_system_id ,get_charge_data_by_location_id, get_location_details
+from backend.database.db_helpers import get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request   
 from logs.custom_logger import get_api_logger
 
@@ -41,61 +41,89 @@ api = Blueprint('api', __name__, url_prefix='/api')
 @api.route('/systems', methods=['GET'])
 def get_systems():
     api_logger.info("Fetching all systems.")
-    systems_data = get_table_data("HospitalSystem")  # Assuming 'HospitalInfo' is the schema name
-    systems = [HospitalSystem(**system).dict() for system in systems_data]
-    return jsonify(systems)
+    try:
+        # Here we call 'get_filtered_data' with just the table name since no filters are needed
+        systems_data = get_filtered_data("HospitalSystem")
+        systems = [HospitalSystem(**system).dict() for system in systems_data]
+        return jsonify(systems)
+    except ValidationError as e:
+        api_logger.error(f"Data validation error for systems: {e}")
+        return jsonify({"error": "Invalid data format"}), 500
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching systems: {e}")
+        return jsonify({"error": "An error occurred"}), 500
+
+
 
 @api.route('/systems/<int:system_id>', methods=['GET'])
 def get_system(system_id):
     api_logger.info(f"Fetching system with ID: {system_id}")
-    systems_data = get_table_data("HospitalSystem")
-    system = next((HospitalSystem(**sys).dict() for sys in systems_data if sys['SystemID'] == system_id), None)
-    if system:
-        return jsonify(system)
+    system_data = get_system_by_id(system_id)
+    if system_data:
+        return jsonify(HospitalSystem(**system_data).dict())
     else:
         api_logger.error(f"System with ID {system_id} not found.")
         return jsonify({"error": "System not found"}), 404
 
+
 @api.route('/locations', methods=['GET'])
-def get_locations():
+def get_all_locations():
     api_logger.info("Fetching all locations.")
-    locations_data = get_table_data("HospitalLocation")  # Assuming 'HospitalInfo' is the schema name
-    locations = [HospitalLocation(**location).dict() for location in locations_data]
-    return jsonify(locations)
+    try:
+        # Use get_filtered_data to fetch all locations
+        locations_data = get_filtered_data("HospitalLocation")
+        locations = [HospitalLocation(**location).dict() for location in locations_data]
+        return jsonify(locations)
+    except ValidationError as e:
+        api_logger.error(f"Data validation error for locations: {e}")
+        return jsonify({"error": "Invalid data format"}), 500
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching locations: {e}")
+        return jsonify({"error": "An error occurred"}), 500
+
 
 @api.route('/locations/<int:system_id>', methods=['GET'])
 def get_locations_by_system(system_id):
     api_logger.info(f"Fetching locations for system ID: {system_id}")
-    locations_data = get_locations_by_system_id(system_id)
-    locations = [HospitalLocation(**location).dict() for location in locations_data]
-    return jsonify(locations)
+    try:
+        # Use get_locations_by_system_id to fetch locations filtered by system_id
+        locations_data = get_locations_by_system_id(system_id)
+        locations = [HospitalLocation(**location).dict() for location in locations_data]
+        return jsonify(locations)
+    except ValidationError as e:
+        api_logger.error(f"Data validation error for locations with system ID {system_id}: {e}")
+        return jsonify({"error": "Invalid data format"}), 500
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching locations for system ID {system_id}: {e}")
+        return jsonify({"error": "An error occurred"}), 500
 
 
-@api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
-def get_charges_by_location(system_id, location_id):
-    api_logger.info(f"Fetching charges for system ID: {system_id}, location ID: {location_id}")
-    
-    charge_data, columns = get_charge_data(system_id, location_id)
-    
-    if charge_data:
-        return jsonify({"data": charge_data, "columns": columns})
-    else:
-        api_logger.error(f"No charge data found for system ID: {system_id}, location ID: {location_id}")
-        return jsonify({"error": "Charge data not found for the given system and location ID"}), 404
+
+@api.route('/insurances/plans', methods=['GET'])
+def get_all_insurance_plans_route():
+    api_logger.info("Fetching all insurance plans")
+    try:
+        plans = get_all_insurance_plans()  # Call the function that actually fetches the plans
+        return jsonify([Insurance_Plan(**plan).dict() for plan in plans])
+    except ValidationError as e:
+        api_logger.error(f"Data validation error for insurance plans: {e}")
+        return jsonify({"error": "Invalid data format"}), 500
+    except Exception as e:
+        api_logger.error(f"An unexpected error occurred while fetching insurance plans: {e}")
+        return jsonify({"error": "An error occurred"}), 500
 
 
-@api.route('/locations/details/location/<int:location_id>', methods=['GET'])
-def get_location_information(location_id):
-    api_logger.info(f"Fetching location information for location ID: {location_id}")
 
-    location_details = get_location_details(location_id)
-    
-    if location_details:
-        return jsonify(location_details)
-    else:
-        api_logger.error(f"Location not found for location ID: {location_id}")
-        return jsonify({"error": "Location not found"}), 404
+@api.route('/insurances/types', methods=['GET'])
+def insurance_types():
+    api_logger.info("Fetching all insurance types")
+    types = get_insurance_types()
 
+    try:
+        return jsonify([Insurance_Type(**type_).dict() for type_ in types])
+    except ValidationError as e:
+        api_logger.error(f"Data validation error for insurance types: {e}")
+        return jsonify({"error": "Invalid data format"}), 500
 
 
 @api.route('/insurances/plans/plan/<int:plan_id>', methods=['GET'])
@@ -116,74 +144,33 @@ def insurance_plan_details(plan_id):
         return jsonify({"error": "Insurance plan not found"}), 404
 
 
-@api.route('/insurances/types', methods=['GET'])
-def insurance_types():
-    api_logger.info("Fetching all insurance types")
-    types = get_all_insurance_types()
 
+
+
+@api.route('/eligibility/in-network/<int:system_id>', methods=['GET'])
+def get_in_network_eligibility_route(system_id):
     try:
-        return jsonify([Insurance_Type(**type_).dict() for type_ in types])
-    except ValidationError as e:
-        api_logger.error(f"Data validation error for insurance types: {e}")
-        return jsonify({"error": "Invalid data format"}), 500
-
-
-
-
-@api.route('/insurances/eligibility', methods=['GET'])
-def eligibility_by_year():
-    year = request.args.get('year', type=int)
-    api_logger.info(f"Fetching insurance eligibility for year: {year}")
-
-    if year:
-        eligibility_list = get_eligibility_by_year(year)
-        try:
-            return jsonify([Insurance_Type(**item).dict() for item in eligibility_list])
-        except ValidationError as e:
-            api_logger.error(f"Data validation error for eligibility by year: {e}")
-            return jsonify({"error": "Invalid data format"}), 500
-    else:
-        api_logger.error("Year parameter is required for insurance eligibility")
-        return jsonify({"error": "Year parameter is required"}), 400
-
-
-# Add this to api_routes.py
-
-@api.route('/insurances/system/<int:system_id>', methods=['GET'])
-def get_insurances_by_system(system_id):
-    api_logger.info(f"Fetching insurances for system ID: {system_id}")
-    
-    # Fetch insurances by system_id using the helper function
-    insurances = get_insurances_by_system_id(system_id)
-    
-    if insurances:
-        # Convert the list of dictionaries to a list of Insurance_Plan Pydantic models
-        insurance_models = [Insurance_Plan(**insurance) for insurance in insurances]
-        return jsonify([insurance_model.dict() for insurance_model in insurance_models])
-    else:
-        # Log an error and send a 404 response if no data was found
-        api_logger.error(f"No insurance data found for system ID: {system_id}")
-        return jsonify({"error": "No insurance data found for the given system ID"}), 404
-
-@api.route('/insurances/plans', methods=['GET'])
-def get_insurance_plans_route():
-    api_logger.info("Fetching all insurance plans.")
-    
-    insurance_plans_data = get_insurance_plans()
-    insurance_plans = [Insurance_Plan(**plan).dict() for plan in insurance_plans_data]
-    
-    return jsonify(insurance_plans)
-
-@api.route('/insurances/types', methods=['GET'])
-def get_insurance_types_route():
-    api_logger.info("Fetching all insurance types.")
-    try:
-        insurance_types_data = get_insurance_types()
-        insurance_types = [Insurance_Type(**type_data).dict() for type_data in insurance_types_data]
-        return jsonify(insurance_types)
-    except ValidationError as e:
-        api_logger.error(f"Data validation error for insurance types: {e}")
-        return jsonify({"error": "Invalid data format"}), 500
+        api_logger.info(f"Fetching in-network eligibility for system ID: {system_id}")
+        eligibility_data = get_in_network_eligibility(system_id)
+        return jsonify(eligibility_data)
     except Exception as e:
-        api_logger.error(f"An error occurred while fetching insurance types: {e}")
+        api_logger.error(f"An error occurred while fetching in-network eligibility for system ID {system_id}: {e}")
         return jsonify({"error": "An error occurred"}), 500
+
+@api.route('/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
+@api.route('/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
+@api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
+def get_charges(system_id, location_id):
+    api_logger.info(f"Fetching charges for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
+
+    try:
+        charge_data, columns = get_charge_data(system_id, location_id)
+        if charge_data:
+            return jsonify({"data": charge_data, "columns": columns})
+        else:
+            api_logger.error(f"No charge data found for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
+            return jsonify({"error": "Charge data not found"}), 404
+    except Exception as e:
+        api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
+        return jsonify({"error": str(e)}), 500
+
