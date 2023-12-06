@@ -12,7 +12,7 @@ from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
 
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
+from backend.database.db_helpers import get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request   
 from logs.custom_logger import get_api_logger
 
@@ -114,8 +114,8 @@ def get_all_insurance_plans_route():
 
 
 
-@api.route('/insurances/types', methods=['GET'])
-def insurance_types():
+@api.route('/insurances/plan-types', methods=['GET'])
+def insurance_plan_types():
     api_logger.info("Fetching all insurance types")
     types = get_insurance_types()
 
@@ -173,4 +173,29 @@ def get_charges(system_id, location_id):
     except Exception as e:
         api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
         return jsonify({"error": str(e)}), 500
+
+
+@api.route('/carriers', methods=['GET'])
+def get_carriers():
+    api_logger.info("Fetching all carriers.")
+    try:
+        carriers = get_all_carriers()
+        return jsonify(carriers)
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching carriers: {e}")
+        return jsonify({"error": "An error occurred"}), 500
+
+@api.route('/carriers/<int:carrier_id>', methods=['GET'])
+def get_carrier(carrier_id):
+    api_logger.info(f"Fetching carrier with ID: {carrier_id}")
+    try:
+        carrier = get_carrier_by_id(carrier_id)
+        if carrier:
+            return jsonify(carrier)
+        else:
+            api_logger.error(f"Carrier with ID {carrier_id} not found.")
+            return jsonify({"error": "Carrier not found"}), 404
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching the carrier: {e}")
+        return jsonify({"error": "An error occurred"}), 500
 

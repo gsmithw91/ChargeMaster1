@@ -295,3 +295,30 @@ def get_all_insurance_plans():
         return []
     finally:
         conn.close()
+
+
+
+def get_all_carriers():
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM Carriers")
+            columns = [column[0] for column in cursor.description]
+            carriers = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return carriers
+    finally:
+        conn.close()
+
+def get_carrier_by_id(carrier_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM Carriers WHERE CarrierID = ?", (carrier_id,))
+            columns = [column[0] for column in cursor.description]
+            carrier = cursor.fetchone()
+            if carrier:
+                return dict(zip(columns, carrier))
+            return None
+    finally:
+        conn.close()
+
