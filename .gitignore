@@ -7,3 +7,4 @@ database/CarrierPlanStatus/inserttoDB/SqlquerycreatingEligTables.sql
 database/CarrierPlanStatus/inserttoDB/insert_statements.sql
 test_scripts/test_results
 database/Agents
+/chargemaster/

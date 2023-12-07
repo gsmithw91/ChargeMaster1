@@ -1,7 +1,6 @@
 # backend/db_helpers.py
 import pyodbc
 import os 
-from backend.models.Elig_Northwestern import Eligible_Insurance  # Import the model
 
 
 def get_connection():
@@ -93,7 +92,6 @@ def get_all_locations():
             return data
     finally:
         conn.close()
-
 
 
 
