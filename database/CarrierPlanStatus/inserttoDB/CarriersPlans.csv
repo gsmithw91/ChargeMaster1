@@ -236,22 +236,22 @@
 4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,Humana,Humana PFFS,,11
 4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,Humana,Humana PPO,,11
 4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,Humana,Humana Honor PPO (Veterans Plan),,11
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United,United HealthCare Chronic Complete Assure (PPO C-SNP),,21
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United,United HealthCare Medicare Complete Access (See IPA/Referral),,21
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United HealthCare,United HealthCare Medicare Advantage PPOÂ ,,22
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage 1 (HMO),,21
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage 2 (HMO),,21
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage Choice (PPO),,21
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United,United Healthcare AARP Medicare Advantage Walgreens (PPO),,21
-4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage Patriot (PPO),,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0001Â ,,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0002Â ,,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0004Â ,,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage Walgreens from UHC IL-0005Â ,,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0003Â ,,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage Walgreens from UHC IL-0006Â ,,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare UHC Complete Care IL-001AÂ ,,21
-4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United,United HealthCare AARPÂ® Medicare Advantage Patriot No Rx IL-MA01Â ,,21
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United HealthCare Chronic Complete Assure (PPO C-SNP),,21
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United HealthCare Medicare Complete Access (See IPA/Referral),,21
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United HealthCare Medicare Advantage PPOÂ ,,22
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage 1 (HMO),,21
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage 2 (HMO),,21
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage Choice (PPO),,21
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United Healthcare AARP Medicare Advantage Walgreens (PPO),,21
+4,27,Northwestern Memorial Hospital,2023,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage Patriot (PPO),,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0001Â ,,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0002Â ,,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0004Â ,,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage Walgreens from UHC IL-0005Â ,,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage from UHC IL-0003Â ,,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage Walgreens from UHC IL-0006Â ,,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare UHC Complete Care IL-001AÂ ,,21
+4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,United Healthcare,United HealthCare AARPÂ® Medicare Advantage Patriot No Rx IL-MA01Â ,,21
 4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,Zing,Choice (HMO) ,,23
 4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,Zing,Choice Diabetes & Heart Complete (PPO C-SNP) ,,23
 4,27,Northwestern Memorial Hospital,2024,Medicare Advantage ,7,Zing,Complete Select (HMO D-SNP) ,,23
@@ -272,3 +272,129 @@
 4,27,Northwestern Memorial Hospital,2023,Managed Medicaid,6,Blue Cross Blue Shield,Blue Cross Blue Shield,,3
 4,27,Northwestern Memorial Hospital,2023,Managed Medicaid,6,CountyCare,CountyCare,,24
 4,27,Northwestern Memorial Hospital,2023,Managed Medicaid,6,Meridian,Meridian,,25
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Choice POS,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Choice POS II,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Elect Choice,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna EPO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Health Network Only,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Health Network Option,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna HMO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Illinois Preferred Plan,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Managed Choice POS>,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna NAP,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Open Access Elect Choice,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Open Access HMO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Open Access Managed Choice,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,"Aetna Open Choice PPO (including, but not limited to Aetna Signature Administrators® and Open Choice)",,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Performance Network (Tier 2),,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Premier Care Network,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Premier Care Network Plus,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna QPOS,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Savings Plus (Tier 2),,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Select,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Student Health,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Traditional Choice,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Aetna,Aetna Voluntary Group Medical Plan (Indemnity Plan),,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Beacon,Beacon Health Options/Beacon Health Strategies,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,MultiPlan-PHCS,Beechstreet (PHCS),,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Cross Blue Shield - Blue Advantage HMO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Cross Blue Shield - Blue Choice PPO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Cross Blue Shield - Blue Choice Options (Tier 1),,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Cross Blue Shield - HMOI (Medical Group/IPA Information in Legend below),,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Cross Blue Shield - PPO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Gold PPO 204,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Gold PPO 707,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Gold HMO 207,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Gold HMO 703 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Gold HMO 707,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 303,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 203,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Silver PPO 706,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMO 206,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMO 306,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMO 704 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMO 706,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 302,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 502,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 201,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 202,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 601,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 701,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 705,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPO 708,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Bronze HMO 205,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Bronze HMO 701 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Blue Cross Blue Shield,Blue Precision Bronze HMO 708,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Gold PPOSM 204 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Gold PPOSM 707,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Gold HMOSM 207,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Gold HMOSM 703 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Gold HMOSM 707,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 203,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 303,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 706,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Silver PPOSM 801 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMOSM 206,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMOSM 306,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMOSM 704 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Silver HMOSM 706,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 201,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 202,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 601 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 701 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Choice Preferred Bronze PPOSM 708,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 205,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 701 - Rx Copays,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2024,Commercial,1,Blue Cross Blue Shield,Blue Precision Bronze HMOSM 708,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Open Access ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Open Access Plus ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Choice Fund Open Access Plus ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - ChoiceCare PPO ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - EPO ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Global Health Benefits ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - GWH POS Open Access Plus ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - HMO (or POS) ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - HMO (or POS) Open Access ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Local Plus ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Network Open Access ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Network POS ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - One Health HMO eff 4/1/19 ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna Plus with Northwestern Medicine 4400 (Effective 1/1/2023)*,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna Plus with Northwestern Medicine 2000 (Effective 1/1/2023)*,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - POS ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - PPO ,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Cigna,Cigna - Shared Administration PPO and OAP,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,ComPsych,ComPsych â€” Behavioral Health/Substance Abuse Network,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Corvel,CorVel - Workers' Compensation Program/Network,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Coventry,"Coventry Health Care - First Health HMO, PPO and POS",,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Curaechoice,Curaechoice,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Global Excel,Global Excel - PPO,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Health Alliance,Health Alliance - PPO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Health Alliance,Health Alliance - HMO,,1
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,HFN,HFN - EPO (HFN20),,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,HFN,HFN - PPO (HFN10),,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,HFN,HFN - Workers' Compensation Program/Network,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - Choice POS ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - ChoiceCare PPO ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - EPO ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - HMO Premier ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - HMO Select ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - Illinois Platinum HMO ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - National Preferred POS - Open Access ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - PPO ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Humana,Humana - Preferred PPO,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Imagine Health,Imagine Health,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Magellan,Magellan ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,The Alliance,The Alliance,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,Optum,United Behavioral Health,,14
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Choice ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Choice Plus ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Core ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - HMO (Patients must have a referral for services),,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - HMO Plus (Patients must have a referral for services),,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Navigate ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Open Access (Patients must have a referral for services),,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Options PPO ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Select Plus ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare - Select ,,
+4,17,Northwestern Medicine Central Dupage Hospital,2023,Commercial,1,United Healthcare,United Healthcare Affiliates - Participate through UHC PPO,,
