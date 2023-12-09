@@ -1,0 +1,77 @@
+Endpoint: http://smithtech.io/api/systems
+Total Requests: 50
+Average Response Time: 0.4925 seconds
+Status Codes: 200
+Max Response Time: 0.9081 seconds
+Min Response Time: 0.2452 seconds
+
+Endpoint: http://smithtech.io/api/systems/1
+Total Requests: 50
+Average Response Time: 0.5390 seconds
+Status Codes: 200
+Max Response Time: 1.0937 seconds
+Min Response Time: 0.1762 seconds
+
+Endpoint: http://smithtech.io/api/locations
+Total Requests: 50
+Average Response Time: 0.4431 seconds
+Status Codes: 200
+Max Response Time: 0.7965 seconds
+Min Response Time: 0.1130 seconds
+
+Endpoint: http://smithtech.io/api/locations/1
+Total Requests: 50
+Average Response Time: 0.4756 seconds
+Status Codes: 200
+Max Response Time: 0.7866 seconds
+Min Response Time: 0.2239 seconds
+
+Endpoint: http://smithtech.io/api/insurances/plans
+Total Requests: 50
+Average Response Time: 0.4344 seconds
+Status Codes: 200
+Max Response Time: 1.2002 seconds
+Min Response Time: 0.0925 seconds
+
+Endpoint: http://smithtech.io/api/insurances/plan-types
+Total Requests: 50
+Average Response Time: 0.0912 seconds
+Status Codes: 200
+Max Response Time: 0.1518 seconds
+Min Response Time: 0.0585 seconds
+
+Endpoint: http://smithtech.io/api/insurances/plans/plan/1
+Total Requests: 50
+Average Response Time: 0.0688 seconds
+Status Codes: 200
+Max Response Time: 0.1009 seconds
+Min Response Time: 0.0392 seconds
+
+Endpoint: http://smithtech.io/api/eligibility/in-network/1
+Total Requests: 50
+Average Response Time: 0.0608 seconds
+Status Codes: 200
+Max Response Time: 0.1017 seconds
+Min Response Time: 0.0421 seconds
+
+Endpoint: http://smithtech.io/api/charges/system/4/location/27
+Total Requests: 50
+Average Response Time: 5.0277 seconds
+Status Codes: 200
+Max Response Time: 9.6190 seconds
+Min Response Time: 3.4443 seconds
+
+Endpoint: http://smithtech.io/api/carriers
+Total Requests: 50
+Average Response Time: 0.0589 seconds
+Status Codes: 200
+Max Response Time: 0.1000 seconds
+Min Response Time: 0.0380 seconds
+
+Endpoint: http://smithtech.io/api/carriers/1
+Total Requests: 50
+Average Response Time: 0.0552 seconds
+Status Codes: 200
+Max Response Time: 0.0821 seconds
+Min Response Time: 0.0393 seconds
+

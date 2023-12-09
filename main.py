@@ -6,7 +6,6 @@ from backend.routes.web_routes import web
 
 
 app = Flask(__name__)
-app.secret_key = 'secret_key'
 
 # Register the blueprint
 app.register_blueprint(api)

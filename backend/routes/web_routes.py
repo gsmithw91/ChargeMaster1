@@ -29,8 +29,3 @@ def index():
         # Handle the error as you see fit (e.g., show a custom error page)
         return render_template('error.html', error="An error occurred"), 500
 
-@web.route('/insurances')
-def insurances():
-    systems_data = get_table_data("HospitalSystem")
-    systems = [HospitalSystem(**system).dict() for system in systems_data]
-    return render_template('insurances.html', systems=systems)
