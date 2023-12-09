@@ -38,6 +38,16 @@ System_ID_Mapping_Table =  {
 api_logger = get_api_logger()
 api = Blueprint('api', __name__, url_prefix='/api')
 
+
+
+@api.route('/', methods=['POST'])
+def handle_post():
+    # Your logic for handling POST requests
+    return jsonify({"message": "POST request handled"}), 200
+
+
+
+
 @api.route('/systems', methods=['GET'])
 def get_systems():
     api_logger.info("Fetching all systems.")
