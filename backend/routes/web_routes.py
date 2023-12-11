@@ -12,8 +12,14 @@ web = Blueprint('web', __name__)
 
 web_logger = get_web_logger()
 
-@web.route('/chargemaster')
+
+@web.route('/')
 def index():
+    return render_template('index.html')
+
+
+@web.route('/chargemaster')
+def chargemaster():
     web_logger.info(f"Accessed the home page with method {request.method} and headers {request.headers}")
     try:
         # Use the updated get_filtered_data function without system_id and location_id
