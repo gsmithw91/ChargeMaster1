@@ -10,17 +10,17 @@ from concurrent.futures import ThreadPoolExecutor
 os.makedirs('test_results', exist_ok=True)
 
 endpoints = [
-    'http://smithtech.io/api/systems',
-    'http://smithtech.io/api/systems/4',  # Example: Use an actual system_id that exists in your database.
-    'http://smithtech.io/api/locations',
-    'http://smithtech.io/api/locations/1',  # Example: Use an actual system_id that exists in your database.
-    'http://smithtech.io/api/insurances/plans',
-    'http://smithtech.io/api/insurances/plan-types',
-    'http://smithtech.io/api/insurances/plans/plan/1',  # Example: Use an actual plan_id that exists in your database.
-    'http://smithtech.io/api/eligibility/in-network/1',  # Example: Use an actual system_id that exists in your database.
-    'http://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
-    'http://smithtech.io/api/carriers',
-    'http://smithtech.io/api/carriers/1' # Use an actual carrier_id that exists in your database.
+    'https://smithtech.io/api/systems',
+    'https://smithtech.io/api/systems/4',  # Example: Use an actual system_id that exists in your database.
+    'https://smithtech.io/api/locations',
+    'https://smithtech.io/api/locations/1',  # Example: Use an actual system_id that exists in your database.
+    'https://smithtech.io/api/insurances/plans',
+    'https://smithtech.io/api/insurances/plan-types',
+    'https://smithtech.io/api/insurances/plans/plan/1',  # Example: Use an actual plan_id that exists in your database.
+    'https://smithtech.io/api/eligibility/in-network/1',  # Example: Use an actual system_id that exists in your database.
+    'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
+    'https://smithtech.io/api/carriers',
+    'https://smithtech.io/api/carriers/1' # Use an actual carrier_id that exists in your database.
 ]
 
 

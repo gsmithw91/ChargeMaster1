@@ -20,21 +20,6 @@ window.onload = function () {
     .catch((error) => console.error("Error fetching systems:", error));
 };
 
-let map;
-
-function initMap(latitude, longitude) {
-  const location = { lat: latitude, lng: longitude };
-  map = new google.maps.Map(document.getElementById("map-container"), {
-    center: location,
-    zoom: 14,
-  });
-
-  new google.maps.Marker({
-    position: location,
-    map: map,
-  });
-}
-
 function fetchAndDisplayLocations(systemId) {
   fetch(`/api/locations/${systemId}`)
     .then((response) => response.json())
@@ -53,39 +38,6 @@ function fetchAndDisplayLocations(systemId) {
       });
     })
     .catch((error) => console.error("Error fetching locations:", error));
-}
-
-function loadChargesForLocation(systemId, locationId) {
-  const chargesTable = $("#charges-table");
-  if ($.fn.DataTable.isDataTable("#charges-table")) {
-    chargesTable.DataTable().clear().destroy();
-  }
-  chargesTable.empty();
-  fetch(`/api/charges/location/${systemId}/${locationId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response.data && response.data.length > 0) {
-        chargesTable.DataTable({
-          data: response.data,
-          columns: response.columns.map((col) => ({ title: col, data: col })),
-          paging: true,
-          searching: true,
-          ordering: true,
-          scrollX: true,
-          fixedHeader: true,
-          dom: "Bfrtip",
-          buttons: [
-            {
-              extend: "colvis",
-              text: "Select Columns",
-            },
-          ],
-        });
-      } else {
-        console.log("No charge data available for this location.");
-      }
-    })
-    .catch((error) => console.error("Error fetching charge data:", error));
 }
 
 function displayLocationInformation(locationId) {
