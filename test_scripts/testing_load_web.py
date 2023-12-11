@@ -11,7 +11,7 @@ os.makedirs('test_results', exist_ok=True)
 
 endpoints = [
     'http://smithtech.io/api/systems',
-    'http://smithtech.io/api/systems/1',  # Example: Use an actual system_id that exists in your database.
+    'http://smithtech.io/api/systems/4',  # Example: Use an actual system_id that exists in your database.
     'http://smithtech.io/api/locations',
     'http://smithtech.io/api/locations/1',  # Example: Use an actual system_id that exists in your database.
     'http://smithtech.io/api/insurances/plans',
