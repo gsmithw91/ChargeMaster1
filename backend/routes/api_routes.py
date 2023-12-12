@@ -1,12 +1,6 @@
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
-from backend.models.Charges_Advcoate import AdvocateCharges
-from backend.models.Charges_LoyolaCDM import LoyolaCDMCharges
-from backend.models.Charges_Loyola import LoyolaCharges
-from backend.models.Charges_Northshore import NorthshoreCharges
-from backend.models.Charges_Northwestern import NorthwesternCharges
-from backend.models.Charges_Rush import RushCharges
-from backend.models.Charges_UCMC import UCMCCharges
+from backend.models.Charges_models import *
 from backend.models.Elig_Northwestern import Eligible_Insurance
 from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
@@ -108,6 +102,15 @@ def get_locations_by_system(system_id):
         return jsonify({"error": "An error occurred"}), 500
 
 
+@api.route('/locations/details/<int:location_id>', methods=['GET'])
+def get_location_details_route(location_id):
+    location_details = get_location_details(location_id)  # Assuming this function is already defined and works properly
+    if location_details:
+        return jsonify(HospitalLocation(**location_details).dict()), 200
+    else:
+        return jsonify({"error": "Location not found"}), 404
+
+
 
 @api.route('/insurances/plans', methods=['GET'])
 def get_all_insurance_plans_route():
@@ -153,38 +156,6 @@ def insurance_plan_details(plan_id):
         api_logger.error(f"Insurance plan not found for plan ID: {plan_id}")
         return jsonify({"error": "Insurance plan not found"}), 404
 
-
-
-
-
-@api.route('/eligibility/in-network/<int:system_id>', methods=['GET'])
-def get_in_network_eligibility_route(system_id):
-    try:
-        api_logger.info(f"Fetching in-network eligibility for system ID: {system_id}")
-        eligibility_data = get_in_network_eligibility(system_id)
-        return jsonify(eligibility_data)
-    except Exception as e:
-        api_logger.error(f"An error occurred while fetching in-network eligibility for system ID {system_id}: {e}")
-        return jsonify({"error": "An error occurred"}), 500
-
-@api.route('/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
-@api.route('/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
-@api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
-def get_charges(system_id, location_id):
-    api_logger.info(f"Fetching charges for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
-
-    try:
-        charge_data, columns = get_charge_data(system_id, location_id)
-        if charge_data:
-            return jsonify({"data": charge_data, "columns": columns})
-        else:
-            api_logger.error(f"No charge data found for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
-            return jsonify({"error": "Charge data not found"}), 404
-    except Exception as e:
-        api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
-        return jsonify({"error": str(e)}), 500
-
-
 @api.route('/carriers', methods=['GET'])
 def get_carriers():
     api_logger.info("Fetching all carriers.")
@@ -208,4 +179,36 @@ def get_carrier(carrier_id):
     except Exception as e:
         api_logger.error(f"An error occurred while fetching the carrier: {e}")
         return jsonify({"error": "An error occurred"}), 500
+
+
+
+@api.route('/eligibility/in-network/<int:system_id>', methods=['GET'])
+def get_in_network_eligibility_route(system_id):
+    try:
+        api_logger.info(f"Fetching in-network eligibility for system ID: {system_id}")
+        eligibility_data = get_in_network_eligibility(system_id)
+        return jsonify(eligibility_data)
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching in-network eligibility for system ID {system_id}: {e}")
+        return jsonify({"error": "An error occurred"}), 500
+
+
+
+
+@api.route('/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
+@api.route('/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
+@api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
+def get_charges(system_id, location_id):
+    api_logger.info(f"Fetching charges for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
+
+    try:
+        charge_data, columns = get_charge_data(system_id, location_id)
+        if charge_data:
+            return jsonify({"data": charge_data, "columns": columns})
+        else:
+            api_logger.error(f"No charge data found for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
+            return jsonify({"error": "Charge data not found"}), 404
+    except Exception as e:
+        api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
+        return jsonify({"error": str(e)}), 500
 
