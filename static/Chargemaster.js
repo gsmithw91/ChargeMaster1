@@ -1,4 +1,16 @@
-window.onload = function () {
+// Attach event handlers or run initial setup code inside this listener
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Code that needs the DOM to be ready can go here
+  // For instance, initializing event listeners or fetching initial data
+  initPage();
+});
+
+function initPage() {
+  // You might fetch the initial system list here, for example
+  fetchSystems();
+}
+
+function fetchSystems() {
   fetch("/api/systems")
     .then((response) => response.json())
     .then((data) => {
@@ -18,7 +30,7 @@ window.onload = function () {
       });
     })
     .catch((error) => console.error("Error fetching systems:", error));
-};
+}
 
 function fetchAndDisplayLocations(systemId) {
   fetch(`/api/locations/${systemId}`)
@@ -26,26 +38,31 @@ function fetchAndDisplayLocations(systemId) {
     .then((locations) => {
       const locationsContainer = document.getElementById("locations-container");
       locationsContainer.innerHTML = ""; // Clear existing buttons
+
       locations.forEach((location) => {
         const locButton = document.createElement("button");
         locButton.className = "location-button";
         locButton.innerText = location.LocationName;
+
+        // When a location button is clicked, fetch and display location details
+        // and fetch and display charges for this location
         locButton.addEventListener("click", () => {
-          loadChargesForLocation(systemId, location.LocationID);
-          fetchAndDisplayLocationDetails(location.LocationID); // Correctly called here
+          fetchAndDisplayLocationDetails(location.LocationID); // Fetch location details
+          loadChargesForLocation(systemId, location.LocationID); // Fetch charges for this location
         });
+
         locationsContainer.appendChild(locButton);
       });
     })
     .catch((error) => console.error("Error fetching locations:", error));
 }
 
+// This function fetches and displays details for a specific location
 function fetchAndDisplayLocationDetails(locationId) {
   fetch(`/api/locations/details/${locationId}`)
     .then((response) => response.json())
     .then((locationDetails) => {
       const infoContainer = document.getElementById("location-information");
-      // Assume locationDetails is the object with the location information
       infoContainer.innerHTML = `
         <h2>Location Information</h2>
         <p>Name: ${locationDetails.LocationName}</p>
@@ -56,11 +73,10 @@ function fetchAndDisplayLocationDetails(locationId) {
     .catch((error) => console.error("Error fetching location details:", error));
 }
 
+// This function fetches and displays the charges data for a specific location in a DataTable
 function loadChargesForLocation(systemId, locationId) {
-  // Construct the URL based on the systemId and locationId
-  const url = `https://smithtech.io/api/charges/system/${systemId}/location/${locationId}`;
-
-  fetch(url)
+  let apiUrl = `/api/charges/system/${systemId}/location/${locationId}`;
+  fetch(apiUrl)
     .then((response) => {
       if (!response.ok) {
         throw new Error("No charge data available for this location.");
