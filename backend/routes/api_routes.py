@@ -194,3 +194,21 @@ def get_in_network_eligibility_route(system_id):
 
 
 
+
+@api.route('/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
+@api.route('/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
+@api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
+def get_charges(system_id, location_id):
+    api_logger.info(f"Fetching charges for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
+
+    try:
+        charge_data, columns = get_charge_data(system_id, location_id)
+        if charge_data:
+            return jsonify({"data": charge_data, "columns": columns})
+        else:
+            api_logger.error(f"No charge data found for system ID: {system_id or 'all'}, location ID: {location_id or 'all'}")
+            return jsonify({"error": "Charge data not found"}), 404
+    except Exception as e:
+        api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
+        return jsonify({"error": str(e)}), 500
+
