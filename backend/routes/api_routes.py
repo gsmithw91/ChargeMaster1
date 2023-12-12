@@ -8,7 +8,7 @@ from backend.models.InsuranceTypes import Insurance_Type
 from pydantic import ValidationError 
 from backend.database.db_helpers import get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request   
-from logs.custom_logger import get_api_logger
+from logs.custom_logger import api_logger
 
 
 charge_models_mapping = {
@@ -29,7 +29,6 @@ System_ID_Mapping_Table =  {
 }
 
 
-api_logger = get_api_logger()
 api = Blueprint('api', __name__, url_prefix='/api')
 
 

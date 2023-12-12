@@ -6,11 +6,9 @@ from backend.models.HospitalLocation import HospitalLocation
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
-from logs.custom_logger import get_web_logger
+from logs.custom_logger import web_logger
 
 web = Blueprint('web', __name__)
-
-web_logger = get_web_logger()
 
 
 @web.route('/')

@@ -1,8 +1,7 @@
 # backend/routes/error_routes.py
 from flask import Blueprint, jsonify
-from logs.custom_logger import get_error_logger
+from logs.custom_logger import error_logger
 
-error_logger = get_error_logger()
 errors = Blueprint('errors', __name__)
 
 @errors.app_errorhandler(404)
