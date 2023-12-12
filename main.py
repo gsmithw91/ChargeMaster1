@@ -1,9 +1,8 @@
 # main.py
 from flask import Flask
-from backend.routes.api_routes import api
-from backend.routes.error_routes import errors
-from backend.routes.web_routes import web
-
+from backend.routes.chargemaster.charges_api_routes import api
+from backend.routes.chargemaster.charges_error_routes import errors
+from backend.routes.chargemaster.charges_web_routes import web
 
 app = Flask(__name__)
 
