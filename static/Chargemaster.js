@@ -85,6 +85,8 @@ function loadChargesForLocation(systemId, locationId) {
     })
     .then((data) => {
       displayChargesData(data.data, data.columns);
+      // Initialize column visibility controls after loading data
+      initializeColumnVisibilityControls(data.columns);
     })
     .catch((error) => {
       console.error(error.message);
@@ -129,27 +131,14 @@ function displayChargesData(chargeData, columns) {
 
   // Initialize DataTable
   $(table).DataTable({
-    // DataTables configuration options
-    paging: true,
-    pageLength: 25,
-    searching: true,
-    ordering: true,
-    order: [[1, "asc"]], // Assuming you want to order by the second column initially
-    scrollY: "50vh",
-    scrollCollapse: true,
-    language: {
-      search: "Filter records:",
-      paginate: {
-        first: "First",
-        last: "Last",
-        next: "Next",
-        previous: "Previous",
-      },
-      info: "Showing _START_ to _END_ of _TOTAL_ entries",
-    },
+    columns: columns.map(function (column) {
+      return { data: column };
+    }),
     dom: "Bfrtip",
     buttons: ["copy", "csv", "excel", "pdf", "print"],
-    responsive: true,
-    stateSave: false,
+    pagingation: true,
+    searching: true,
+    ordering: true,
+    info: true,
   });
 }

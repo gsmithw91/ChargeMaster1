@@ -30,6 +30,23 @@ def get_connection():
     return pyodbc.connect(conn_str)
 
 
+def get_column_names_from_table(table_name):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            # Execute a query to fetch the column names from the specified table
+            cursor.execute(f"SELECT column_name FROM information_schema.columns WHERE table_name = ?", (table_name,))
+            column_names = [row[0] for row in cursor.fetchall()]
+            return column_names
+    except pyodbc.Error as e:
+        print(f"Database error: {e}")
+        return []
+    finally:
+        conn.close()
+
+
+
+
 def get_filtered_data(table_name, system_id=None, location_id=None):
     conn = get_connection()
     try:

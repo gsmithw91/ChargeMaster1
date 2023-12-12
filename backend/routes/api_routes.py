@@ -6,9 +6,10 @@ from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
 
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
+from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request   
 from logs.custom_logger import api_logger
+
 
 
 charge_models_mapping = {
@@ -37,6 +38,21 @@ api = Blueprint('api', __name__, url_prefix='/api')
 def handle_post():
     # Your logic for handling POST requests
     return jsonify({"message": "POST request handled"}), 200
+
+api = Blueprint('api', __name__, url_prefix='/api')
+
+@api.route('/columns/<table_name>', methods=['GET'])
+def get_columns_from_table(table_name):
+    try:
+        # Call a function to get the column names from the specified table
+        column_names = get_column_names_from_table(table_name)
+        if column_names:
+            return jsonify({"columns": column_names})
+        else:
+            return jsonify({"error": "Table not found or no columns available"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 
 
