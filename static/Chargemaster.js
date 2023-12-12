@@ -57,27 +57,22 @@ function fetchAndDisplayLocationDetails(locationId) {
 }
 
 function loadChargesForLocation(systemId, locationId) {
-  let apiUrl = "/api/charges";
-  if (systemId) {
-    apiUrl += `/system/${systemId}`;
-    if (locationId) {
-      apiUrl += `/location/${locationId}`;
-    }
-  }
+  // Construct the URL based on the systemId and locationId
+  const url = `https://smithtech.io/api/charges/system/${systemId}/location/${locationId}`;
 
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.error) {
-        console.error("Error fetching charge data:", data.error);
-        // Handle error - e.g., display a message to the user
-      } else {
-        displayChargesData(data.data, data.columns);
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("No charge data available for this location.");
       }
+      return response.json();
+    })
+    .then((data) => {
+      displayChargesData(data.data, data.columns);
     })
     .catch((error) => {
-      console.error("Error fetching charge data:", error);
-      // Handle fetch error - e.g., display a message to the user
+      console.error(error.message);
+      // Handle the error by showing a message to the user or logging
     });
 }
 
