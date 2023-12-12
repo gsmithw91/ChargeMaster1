@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block head %}
-<!-- DataTables CSS -->
+<!-- DataTables core CSS -->
 <link
   rel="stylesheet"
   type="text/css"
@@ -11,16 +11,23 @@
   type="text/css"
   href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css"
 />
+<!-- DataTables Buttons CSS -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css"
+/>
+<!-- DataTables Responsive feature CSS -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"
+/>
 <!-- Custom styles for your table -->
 <link
   rel="stylesheet"
   type="text/css"
   href="{{ url_for('static', filename='style.css') }}"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"
 />
 {% endblock %} {% block title %}Home Page{% endblock %} {% block content %}
 <div class="content-wrapper">
@@ -54,15 +61,19 @@
     {% endblock %} {% block scripts %}
     <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!-- DataTables JS -->
+    <!-- DataTables core JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <!-- FixedHeader DataTables JS -->
     <script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
-
-    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
-
+    <!-- DataTables Buttons JS -->
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+    <!-- DataTables Responsive feature JS -->
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <!-- Your custom JavaScript file -->
     <script src="{{ url_for('static', filename='Chargemaster.js') }}"></script>
+    <!-- Any additional custom script can be added here -->
     <script>
       // Your custom code can be placed here if needed
     </script>
