@@ -39,7 +39,8 @@ def handle_post():
     # Your logic for handling POST requests
     return jsonify({"message": "POST request handled"}), 200
 
-api = Blueprint('api', __name__, url_prefix='/api')
+
+
 
 @api.route('/columns/<table_name>', methods=['GET'])
 def get_columns_from_table(table_name):
