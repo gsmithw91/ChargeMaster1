@@ -11,3 +11,4 @@ backend/database/__pycache__/db_helpers.cpython-311.pyc
 *.pyc
 venv/
 recycle_bin/
+*.log
