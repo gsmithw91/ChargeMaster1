@@ -2,6 +2,8 @@ import logging
 import os
 from logging.handlers import TimedRotatingFileHandler
 from datetime import datetime
+
+
 base_logs_dir = os.path.join(os.path.dirname(__file__), 'logs')
 
 def create_logger(name, level, log_filename, when='midnight', interval=1, backup_count=30):
@@ -37,8 +39,7 @@ def create_logger(name, level, log_filename, when='midnight', interval=1, backup
 
 
 
-api_logger = create_logger('api_logger', logging.INFO, 'api_activity.log')
-web_logger = create_logger('web_logger', logging.INFO, 'web_activity.log')
-error_logger = create_logger('error_logger', logging.ERROR, 'error.log')
 
-# Web routes logger
+api_logger = create_logger('api_logger', logging.INFO, os.path.join('api', 'api_activity.log'))
+web_logger = create_logger('web_logger', logging.INFO, os.path.join('web', 'web_activity.log'))
+error_logger = create_logger('error_logger', logging.ERROR, os.path.join('error', 'error.log'))
