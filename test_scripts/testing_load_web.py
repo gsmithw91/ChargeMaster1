@@ -18,7 +18,7 @@ endpoints = [
     'https://smithtech.io/api/insurances/plan-types',
     'https://smithtech.io/api/insurances/plans/plan/1',  # Example: Use an actual plan_id that exists in your database.
     'https://smithtech.io/api/eligibility/in-network/1',  # Example: Use an actual system_id that exists in your database.
-    'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
+    # 'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
     'https://smithtech.io/api/carriers',
     'https://smithtech.io/api/carriers/1' # Use an actual carrier_id that exists in your database.
 ]
