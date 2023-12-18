@@ -167,3 +167,16 @@ button:hover {
 .remove-charge:hover {
   background-color: #ff4d4d;
 }
+
+.button-row {
+  margin-bottom: 10px; /* Adds some space below the button row */
+}
+
+.chargesheet-button {
+  margin-right: 5px; /* Adds spacing between buttons if you add more in the future */
+  /* Style the button as you wish (padding, border, background, etc.) */
+}
+
+.hidden {
+  display: none;
+}

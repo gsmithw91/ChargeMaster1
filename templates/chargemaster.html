@@ -78,6 +78,14 @@
   <div>
     <div id="chargesheetContainer">
       <h2>Chargesheet</h2>
+      <div class="button-row">
+        <!-- A container for buttons -->
+        <button id="exportPdfButton">Export as PDF</button>
+        <button id="exportCsvButton">Export as CSV</button>
+        <button id="clearChargesheetButton">Clear Chargesheet</button>
+
+        <!-- Space for additional buttons in the future -->
+      </div>
       <ul id="chargesheetList">
         <!-- Selected items will be added here -->
       </ul>
@@ -101,6 +109,11 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <!-- Your custom JavaScript file -->
     <script src="{{ url_for('static', filename='Chargemaster.js') }}"></script>
+    <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <script src="{{ url_for('static', filename='Chargesheet.js') }}"></script>
     <!-- Any additional custom script can be added here -->
     <script>
       // Your custom code can be placed here if needed
@@ -110,7 +123,6 @@
     <script src="https://cdn.datatables.net/colreorder/1.5.3/js/dataTables.colReorder.min.js"></script>
 
     <!-- Select Extension JS -->
-    <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 
     {% endblock %}
   </div>

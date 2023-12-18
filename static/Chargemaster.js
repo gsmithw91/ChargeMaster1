@@ -1,16 +1,8 @@
 var oTable;
 
-// Attach event handlers or run initial setup code inside this listener
 document.addEventListener("DOMContentLoaded", (event) => {
   // Code that needs the DOM to be ready can go here
-  // For instance, initializing event listeners or fetching initial data
   initPage();
-  document
-    .getElementById("addToChargesheet")
-    .addEventListener("click", function () {
-      var selectedData = oTable.rows({ selected: true }).data();
-      addToChargesheet(selectedData);
-    });
 });
 
 function initPage() {
@@ -155,70 +147,4 @@ function displayChargesData(chargeData, columns) {
     ordering: true,
     info: true,
   });
-}
-
-// Event listener for the "Add to Chargesheet" button
-document.addEventListener("DOMContentLoaded", (event) => {
-  // Code that needs the DOM to be ready can go here
-  initPage(); // Make sure this function is defined elsewhere in your code
-});
-
-// Function to add selected items to the Chargesheet
-function addToChargesheet() {
-  var selectedData = oTable.rows({ selected: true }).data().toArray();
-
-  if (selectedData.length === 0) {
-    console.error("No data selected.");
-    return;
-  }
-
-  var chargesheetList = document.getElementById("chargesheetList");
-
-  selectedData.forEach(function (data) {
-    // Create a container for the charge item
-    var listItem = document.createElement("li");
-    listItem.className = "chargesheet-item";
-
-    // Iterate over each property in the data object
-    for (var key in data) {
-      if (data.hasOwnProperty(key)) {
-        var value = data[key];
-
-        // Create a div to hold the key-value pair
-        var infoDiv = document.createElement("div");
-        infoDiv.className = "charge-info";
-
-        // Create a span for the key
-        var keySpan = document.createElement("span");
-        keySpan.className = "charge-key";
-        keySpan.textContent = key + ": ";
-
-        // Create a span for the value
-        var valueSpan = document.createElement("span");
-        valueSpan.className = "charge-value";
-        valueSpan.textContent = value;
-
-        // Append the key and value spans to the infoDiv
-        infoDiv.appendChild(keySpan);
-        infoDiv.appendChild(valueSpan);
-
-        // Append the infoDiv to the listItem
-        listItem.appendChild(infoDiv);
-      }
-    }
-
-    // Optionally, add a remove button to each listItem
-    var removeBtn = document.createElement("button");
-    removeBtn.className = "remove-charge";
-    removeBtn.textContent = "Remove";
-    removeBtn.onclick = function () {
-      listItem.remove();
-    };
-    listItem.appendChild(removeBtn);
-
-    // Append the listItem to the chargesheetList
-    chargesheetList.appendChild(listItem);
-  });
-
-  oTable.rows({ selected: true }).deselect(); // Deselect after adding
 }
