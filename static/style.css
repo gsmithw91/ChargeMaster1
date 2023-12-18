@@ -121,3 +121,14 @@ button:hover {
 }
 
 /* Additional styles can be added below as needed */
+.dt-buttons .btn-colvis {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  font-weight: bold; /* Make the text bold */
+  border: 2px solid white; /* White border */
+}
+
+/* Change the background color of the button on hover */
+.dt-buttons .btn-colvis:hover {
+  background-color: #45a049;
+}

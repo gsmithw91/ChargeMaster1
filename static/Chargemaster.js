@@ -129,14 +129,25 @@ function displayChargesData(chargeData, columns) {
 
   chargesContainer.appendChild(table);
 
-  // Initialize DataTable
+  // Initialize DataTable with column visibility button
   $(table).DataTable({
     columns: columns.map(function (column) {
-      return { data: column };
+      return { title: column, data: column };
     }),
-    dom: "Bfrtip",
-    buttons: ["copy", "csv", "excel", "pdf", "print"],
-    pagingation: true,
+    dom: "Bfrtip", // The letter 'B' in dom indicates where the buttons should be displayed
+    buttons: [
+      {
+        extend: "colvis",
+        text: "Select columns",
+        className: "btn-colvis",
+      },
+      "copy",
+      "csv",
+      "excel",
+      "pdf",
+      "print",
+    ],
+    paging: true, // Enable pagination
     searching: true,
     ordering: true,
     info: true,

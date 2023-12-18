@@ -29,6 +29,20 @@
   type="text/css"
   href="{{ url_for('static', filename='style.css') }}"
 />
+<!-- ColReorder CSS -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/colreorder/1.5.3/css/colReorder.dataTables.min.css"
+/>
+
+<!-- yadcf CSS -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.jsdelivr.net/npm/yadcf@0.9.4/jquery.dataTables.yadcf.css"
+/>
+
 {% endblock %} {% block title %}Home Page{% endblock %} {% block content %}
 <div class="content-wrapper">
   <h1>Welcome to the ChargeMaster Project</h1>
@@ -70,6 +84,9 @@
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+    <!-- Buttons extension for DataTables -->
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.colVis.min.js"></script>
+
     <!-- DataTables Responsive feature JS -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <!-- Your custom JavaScript file -->
@@ -78,6 +95,13 @@
     <script>
       // Your custom code can be placed here if needed
     </script>
+
+    <!-- ColReorder JS -->
+    <script src="https://cdn.datatables.net/colreorder/1.5.3/js/dataTables.colReorder.min.js"></script>
+
+    <!-- yadcf JS -->
+    <script src="https://cdn.jsdelivr.net/npm/yadcf@0.9.4/jquery.dataTables.yadcf.js"></script>
+
     {% endblock %}
   </div>
 </div>
