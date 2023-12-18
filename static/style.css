@@ -132,3 +132,38 @@ button:hover {
 .dt-buttons .btn-colvis:hover {
   background-color: #45a049;
 }
+
+.charge-info {
+  margin-bottom: 5px;
+}
+
+.charge-key {
+  font-weight: bold;
+}
+
+.charge-value {
+  color: #333;
+}
+
+/* Existing styles */
+.chargesheet-item {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 5px;
+  list-style-type: none;
+}
+
+.remove-charge {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px; /* Add space above the button */
+}
+
+.remove-charge:hover {
+  background-color: #ff4d4d;
+}
