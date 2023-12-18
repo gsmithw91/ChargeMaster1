@@ -33,3 +33,7 @@ def chargemaster():
         # Handle the error as you see fit (e.g., show a custom error page)
         return render_template('error.html', error="An error occurred"), 500
 
+@web.route('/chargemaster/chargesheet')
+def chargesheet_window():
+    web_logger.info(f"Accessed the chargesheet page with method {request.method} and headers {request.headers}")
+    return render_template('chargesheet_window.html')

@@ -1,7 +1,7 @@
-// Attach event handlers or run initial setup code inside this listener
+var oTable;
+
 document.addEventListener("DOMContentLoaded", (event) => {
   // Code that needs the DOM to be ready can go here
-  // For instance, initializing event listeners or fetching initial data
   initPage();
 });
 
@@ -85,8 +85,6 @@ function loadChargesForLocation(systemId, locationId) {
     })
     .then((data) => {
       displayChargesData(data.data, data.columns);
-      // Initialize column visibility controls after loading data
-      initializeColumnVisibilityControls(data.columns);
     })
     .catch((error) => {
       console.error(error.message);
@@ -95,15 +93,15 @@ function loadChargesForLocation(systemId, locationId) {
 }
 
 function displayChargesData(chargeData, columns) {
+  // Clear previous table contents and create a new table element
   const chargesContainer = document.getElementById("charges-container");
-  chargesContainer.innerHTML = ""; // Clear previous table
-
-  // Create a table element
+  chargesContainer.innerHTML = "";
   const table = document.createElement("table");
   table.id = "charges-table";
   table.className = "display";
+  chargesContainer.appendChild(table);
 
-  // Create the headers
+  // Create the header row
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
   columns.forEach((column) => {
@@ -114,7 +112,7 @@ function displayChargesData(chargeData, columns) {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  // Create the table body
+  // Create the body of the table
   const tbody = document.createElement("tbody");
   chargeData.forEach((row) => {
     const tr = document.createElement("tr");
@@ -127,14 +125,10 @@ function displayChargesData(chargeData, columns) {
   });
   table.appendChild(tbody);
 
-  chargesContainer.appendChild(table);
-
-  // Initialize DataTable with column visibility button
-  $(table).DataTable({
-    columns: columns.map(function (column) {
-      return { title: column, data: column };
-    }),
-    dom: "Bfrtip", // The letter 'B' in dom indicates where the buttons should be displayed
+  // Initialize the DataTable with the options
+  oTable = $(table).DataTable({
+    columns: columns.map((column) => ({ title: column, data: column })),
+    dom: "Bfrtip",
     buttons: [
       {
         extend: "colvis",
@@ -147,7 +141,8 @@ function displayChargesData(chargeData, columns) {
       "pdf",
       "print",
     ],
-    paging: true, // Enable pagination
+    select: "multi", // Enable multi-row selection
+    paging: true,
     searching: true,
     ordering: true,
     info: true,
