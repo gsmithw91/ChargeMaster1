@@ -1,8 +1,16 @@
+var oTable;
+
 // Attach event handlers or run initial setup code inside this listener
 document.addEventListener("DOMContentLoaded", (event) => {
   // Code that needs the DOM to be ready can go here
   // For instance, initializing event listeners or fetching initial data
   initPage();
+  document
+    .getElementById("addToChargesheet")
+    .addEventListener("click", function () {
+      var selectedData = oTable.rows({ selected: true }).data();
+      addToChargesheet(selectedData);
+    });
 });
 
 function initPage() {
@@ -85,8 +93,6 @@ function loadChargesForLocation(systemId, locationId) {
     })
     .then((data) => {
       displayChargesData(data.data, data.columns);
-      // Initialize column visibility controls after loading data
-      initializeColumnVisibilityControls(data.columns);
     })
     .catch((error) => {
       console.error(error.message);
@@ -96,14 +102,13 @@ function loadChargesForLocation(systemId, locationId) {
 
 function displayChargesData(chargeData, columns) {
   const chargesContainer = document.getElementById("charges-container");
-  chargesContainer.innerHTML = ""; // Clear previous table
+  chargesContainer.innerHTML = "";
 
-  // Create a table element
   const table = document.createElement("table");
   table.id = "charges-table";
   table.className = "display";
+  chargesContainer.appendChild(table);
 
-  // Create the headers
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
   columns.forEach((column) => {
@@ -114,7 +119,6 @@ function displayChargesData(chargeData, columns) {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  // Create the table body
   const tbody = document.createElement("tbody");
   chargeData.forEach((row) => {
     const tr = document.createElement("tr");
@@ -127,29 +131,36 @@ function displayChargesData(chargeData, columns) {
   });
   table.appendChild(tbody);
 
-  chargesContainer.appendChild(table);
-
-  // Initialize DataTable with column visibility button
-  $(table).DataTable({
-    columns: columns.map(function (column) {
-      return { title: column, data: column };
-    }),
-    dom: "Bfrtip", // The letter 'B' in dom indicates where the buttons should be displayed
-    buttons: [
-      {
-        extend: "colvis",
-        text: "Select columns",
-        className: "btn-colvis",
-      },
-      "copy",
-      "csv",
-      "excel",
-      "pdf",
-      "print",
-    ],
-    paging: true, // Enable pagination
+  oTable = $(table).DataTable({
+    columns: columns.map((column) => ({ title: column, data: column })),
+    dom: "Bfrtip",
+    buttons: ["colvis", "copy", "csv", "excel", "pdf", "print"],
+    select: true,
+    paging: true,
     searching: true,
     ordering: true,
     info: true,
   });
+
+  // Ensure the event listener is added after the DataTable is initialized
+  document
+    .getElementById("addToChargesheet")
+    .addEventListener("click", function () {
+      var selectedData = oTable.rows({ selected: true }).data();
+      console.log(selectedData); // Debug: log the selected data
+      addToChargesheet(selectedData);
+    });
+}
+
+function addToChargesheet(selectedData) {
+  var chargesheetList = document.getElementById("chargesheetList");
+  chargesheetList.innerHTML = "";
+
+  selectedData.each(function (data) {
+    var listItem = document.createElement("li");
+    listItem.textContent = data.join(", ");
+    chargesheetList.appendChild(listItem);
+  });
+
+  oTable.rows({ selected: true }).deselect();
 }
