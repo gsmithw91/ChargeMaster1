@@ -78,14 +78,27 @@
   <div>
     <div id="chargesheetContainer">
       <h2>Chargesheet</h2>
+      <!-- Buttons for Exporting -->
       <div class="button-row">
-        <!-- A container for buttons -->
         <button id="exportPdfButton">Export as PDF</button>
         <button id="exportCsvButton">Export as CSV</button>
-        <button id="clearChargesheetButton">Clear Chargesheet</button>
-
         <!-- Space for additional buttons in the future -->
       </div>
+      <div class="chargesheet-columns">
+        <div id="charges-column">
+          <!-- Charges will be listed here -->
+          <ul id="chargesheetList">
+            <!-- Selected items will be added here -->
+          </ul>
+        </div>
+        <div id="statistics-column">
+          <!-- Summary statistics will be shown here -->
+          <div id="summaryStatistics">
+            <!-- Statistics content -->
+          </div>
+        </div>
+      </div>
+
       <ul id="chargesheetList">
         <!-- Selected items will be added here -->
       </ul>

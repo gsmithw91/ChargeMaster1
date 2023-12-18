@@ -67,7 +67,20 @@ function createRemoveButton(listItem) {
 }
 function exportChargesheetAsPDF() {
   const chargesheetElement = document.getElementById("chargesheetContainer");
+
+  // Check if the chargesheetElement exists
+  if (!chargesheetElement) {
+    console.error("Chargesheet container element not found.");
+    return;
+  }
+
   const buttonRow = document.querySelector(".button-row");
+
+  // Check if the buttonRow exists
+  if (!buttonRow) {
+    console.error("Button row element not found.");
+    return;
+  }
 
   // Temporarily hide the button row
   buttonRow.classList.add("hidden");

@@ -180,3 +180,22 @@ button:hover {
 .hidden {
   display: none;
 }
+
+.chargesheet-columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+#charges-column,
+#statistics-column {
+  flex: 1; /* Each column takes up half the space */
+  padding: 0 10px; /* Add some padding between the columns */
+}
+
+#charges-column {
+  max-width: 50%; /* Limit the width to half of the container */
+}
+
+#statistics-column {
+  /* Add any specific styling for the statistics column here */
+}
