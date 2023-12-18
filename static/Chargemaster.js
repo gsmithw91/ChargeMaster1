@@ -101,14 +101,15 @@ function loadChargesForLocation(systemId, locationId) {
 }
 
 function displayChargesData(chargeData, columns) {
+  // Clear previous table contents and create a new table element
   const chargesContainer = document.getElementById("charges-container");
   chargesContainer.innerHTML = "";
-
   const table = document.createElement("table");
   table.id = "charges-table";
   table.className = "display";
   chargesContainer.appendChild(table);
 
+  // Create the header row
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
   columns.forEach((column) => {
@@ -119,6 +120,7 @@ function displayChargesData(chargeData, columns) {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
+  // Create the body of the table
   const tbody = document.createElement("tbody");
   chargeData.forEach((row) => {
     const tr = document.createElement("tr");
@@ -131,36 +133,54 @@ function displayChargesData(chargeData, columns) {
   });
   table.appendChild(tbody);
 
+  // Initialize the DataTable with the options
   oTable = $(table).DataTable({
     columns: columns.map((column) => ({ title: column, data: column })),
     dom: "Bfrtip",
-    buttons: ["colvis", "copy", "csv", "excel", "pdf", "print"],
-    select: true,
+    buttons: [
+      {
+        extend: "colvis",
+        text: "Select columns",
+        className: "btn-colvis",
+      },
+      "copy",
+      "csv",
+      "excel",
+      "pdf",
+      "print",
+    ],
+    select: "multi", // Enable multi-row selection
     paging: true,
     searching: true,
     ordering: true,
     info: true,
   });
-
-  // Ensure the event listener is added after the DataTable is initialized
-  document
-    .getElementById("addToChargesheet")
-    .addEventListener("click", function () {
-      var selectedData = oTable.rows({ selected: true }).data();
-      console.log(selectedData); // Debug: log the selected data
-      addToChargesheet(selectedData);
-    });
 }
 
-function addToChargesheet(selectedData) {
-  var chargesheetList = document.getElementById("chargesheetList");
-  chargesheetList.innerHTML = "";
+// Event listener for the "Add to Chargesheet" button
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Code that needs the DOM to be ready can go here
+  initPage(); // Make sure this function is defined elsewhere in your code
+});
 
-  selectedData.each(function (data) {
+// Function to add selected items to the Chargesheet
+function addToChargesheet() {
+  var selectedData = oTable.rows({ selected: true }).data().toArray();
+
+  // Check if there's any data selected
+  if (selectedData.length === 0) {
+    console.error("No data selected.");
+    return; // Exit the function if no data is selected
+  }
+
+  var chargesheetList = document.getElementById("chargesheetList");
+
+  selectedData.forEach(function (data) {
+    var jsonText = JSON.stringify(data);
     var listItem = document.createElement("li");
-    listItem.textContent = data.join(", ");
+    listItem.textContent = jsonText;
     chargesheetList.appendChild(listItem);
   });
 
-  oTable.rows({ selected: true }).deselect();
+  oTable.rows({ selected: true }).deselect(); // Deselect after adding
 }
