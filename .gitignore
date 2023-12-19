@@ -12,3 +12,4 @@ backend/database/__pycache__/db_helpers.cpython-311.pyc
 venv/
 recycle_bin/
 *.log
+Chargemaster2.code-workspace
