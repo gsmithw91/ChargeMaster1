@@ -199,3 +199,8 @@ button:hover {
 #statistics-column {
   /* Add any specific styling for the statistics column here */
 }
+.clear-chargesheet {
+  background-color: #ff6347; /* Tomato color for clear button */
+  color: white;
+  /* other styling properties */
+}

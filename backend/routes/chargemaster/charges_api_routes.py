@@ -228,3 +228,21 @@ def get_charges(system_id, location_id):
         api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
         return jsonify({"error": str(e)}), 500
 
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/process-chargesheet', methods=['POST'])
+def get_charge_sheet_data():
+    data = request.json  # Get JSON data sent in the POST request
+
+    # Process data: Omit nulls (and undefined values, which should be handled client-side)
+    processed_data = [omit_nulls(charge) for charge in data]
+
+    # For now, just return the processed data
+    return jsonify(processed_data)
+
+def omit_nulls(charge_dict):
+    """Remove keys with null values from a charge dictionary."""
+    return {k: v for k, v in charge_dict.items() if v is not None}
+

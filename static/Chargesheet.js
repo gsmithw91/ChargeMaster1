@@ -10,7 +10,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
   if (exportPdfButton) {
     exportPdfButton.addEventListener("click", () => exportChargesheetAsPDF());
   }
+
+  // Updated to match the ID in your HTML
+  const clearChargesButton = document.getElementById("clearChargesButton");
+  if (clearChargesButton) {
+    clearChargesButton.addEventListener("click", clearChargesheet);
+  }
 });
+
+function clearChargesheet() {
+  if (confirm("Are you sure you want to clear the chargesheet?")) {
+    var chargesheetList = document.getElementById("chargesheetList");
+    chargesheetList.innerHTML = "";
+  }
+}
 
 function addToChargesheet(selectedData) {
   if (selectedData.length === 0) {
@@ -25,7 +38,11 @@ function addToChargesheet(selectedData) {
     listItem.className = "chargesheet-item";
 
     for (var key in data) {
-      if (data.hasOwnProperty(key)) {
+      if (
+        data.hasOwnProperty(key) &&
+        isValidValue(data[key]) &&
+        !shouldExcludeKey(key)
+      ) {
         var infoDiv = createInfoDiv(key, data[key]);
         listItem.appendChild(infoDiv);
       }
@@ -37,6 +54,16 @@ function addToChargesheet(selectedData) {
   });
 
   oTable.rows({ selected: true }).deselect();
+}
+
+function isValidValue(value) {
+  return value !== null && value !== undefined && value !== "";
+}
+
+function shouldExcludeKey(key) {
+  // Add any keys here that you don't want to include in the chargesheet
+  const excludedKeys = ["SystemID", "LocationID", "CodeID", "Type"];
+  return excludedKeys.includes(key);
 }
 
 function createInfoDiv(key, value) {
@@ -105,4 +132,19 @@ function exportChargesheetAsPDF() {
       // Show the button row again in case of error
       buttonRow.classList.remove("hidden");
     });
+}
+
+function sendChargeSheetData() {
+  var selectedData = oTable.rows({ selected: true }).data().toArray();
+
+  fetch("/process-chargesheet", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(selectedData),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log("Processed data:", data))
+    .catch((error) => console.error("Error:", error));
 }
