@@ -31,6 +31,15 @@ function clearChargesheet() {
   }
 }
 
+function isValidValue(value) {
+  return value !== null && value !== undefined && value !== "";
+}
+
+function shouldExcludeKey(key) {
+  // Add any keys here that you don't want to include in the chargesheet
+  const excludedKeys = ["SystemID", "LocationID", "CodeID", "Type"];
+  return excludedKeys.includes(key);
+}
 function addToChargesheet(selectedData) {
   if (selectedData.length === 0) {
     console.error("No data selected.");
@@ -38,7 +47,6 @@ function addToChargesheet(selectedData) {
   }
 
   var chargesheetList = document.getElementById("chargesheetList");
-  chargesheetList.innerHTML = ""; // Clear the existing list
 
   selectedData.forEach(function (data) {
     var listItem = document.createElement("li");
@@ -63,15 +71,7 @@ function addToChargesheet(selectedData) {
   oTable.rows({ selected: true }).deselect();
 }
 
-function shouldExcludeKey(key) {
-  const excludedKeys = ["SystemID", "LocationID", "CodeID", "Type"];
-  return excludedKeys.includes(key);
-}
-
-function isValidValue(value) {
-  return value !== null && value !== undefined && value !== "";
-}
-
+// Updated createInfoDiv function
 function createInfoDiv(key, value) {
   var infoDiv = document.createElement("div");
   infoDiv.className = "charge-info";

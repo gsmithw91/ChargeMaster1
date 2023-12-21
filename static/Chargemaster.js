@@ -106,7 +106,6 @@ async function fetchLocationDetails(locationId) {
 function displayLocationDetails(locationDetails) {
   const infoContainer = document.getElementById("location-information");
   infoContainer.innerHTML = `
-    <h2>Location Information</h2>
     <p>Name: ${locationDetails.LocationName}</p>
     <p>Address: ${locationDetails.Address}, ${locationDetails.City}, ${locationDetails.State} ${locationDetails.ZipCode}</p>
     <p>Phone: ${locationDetails.Phone}</p>
@@ -142,7 +141,10 @@ function displayChargesData(chargeData, columns) {
   // Create the header row
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
-  columns.forEach((column) => {
+  const filteredColumns = columns.filter(
+    (column) => column !== "LocationID" && column !== "SystemID"
+  );
+  filteredColumns.forEach((column) => {
     const th = document.createElement("th");
     th.textContent = column;
     headerRow.appendChild(th);
@@ -154,7 +156,7 @@ function displayChargesData(chargeData, columns) {
   const tbody = document.createElement("tbody");
   chargeData.forEach((row) => {
     const tr = document.createElement("tr");
-    columns.forEach((column) => {
+    filteredColumns.forEach((column) => {
       const td = document.createElement("td");
       td.textContent = row[column];
       tr.appendChild(td);
@@ -163,38 +165,28 @@ function displayChargesData(chargeData, columns) {
   });
   table.appendChild(tbody);
 
-  // Initialize the DataTable with the options
+  // Initialize the DataTable with filtered columns
   oTable = $(table).DataTable({
-    columns: columns.map((column) => ({ title: column, data: column })),
+    columns: filteredColumns.map((column) => ({ title: column, data: column })),
     dom: "Bfrtip",
     buttons: [
-      {
-        extend: "colvis",
-        text: "Select columns",
-        className: "btn-colvis",
-      },
-      "copy",
-      "csv",
-      "excel",
-      "pdf",
-      "print",
+      // ... button configurations ...
     ],
-    select: "multi", // Enable multi-row selection
+    select: "multi",
     paging: true,
     searching: true,
     ordering: true,
     info: true,
   });
 
-  // Add an event handler to a button or perform other actions here
-  // For example, you can add a button to export the table data
-  // or add any other functionality you need.
+  // Additional code as needed
 }
 
 function createButton(text, className) {
-  const button = document.createElement("button");
-  button.className = className;
-  button.innerText = text;
-  button.style.backgroundColor = colorMapping[text]; // Use the mapping for background color
+  var button = document.createElement("button");
+  button.textContent = text;
+  button.className = className; // Existing class
+  // Add Bootstrap classes
+  button.classList.add("btn", "btn-lg");
   return button;
 }

@@ -14,7 +14,7 @@ p {
 /* Apply a base font to the body */
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
   color: #333;
 }
 
@@ -33,11 +33,31 @@ header {
 }
 
 /* Style buttons for a larger and consistent size */
-.btn {
+.btn,
+#charges-container .dt-buttons .btn {
   padding: 10px 20px;
   font-size: 16px; /* Larger font size */
   border-radius: 5px; /* Rounded corners */
   margin: 5px; /* Spacing between buttons */
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Hover effect */
+.btn:hover,
+#charges-container .dt-buttons .btn:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+  color: #fff; /* Change text color if needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+}
+
+/* Active/Clicked effect */
+.btn:active,
+#charges-container .dt-buttons .btn:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset; /* Inner shadow for depth */
 }
 
 /* Style for the hospital system and location buttons */
@@ -94,4 +114,43 @@ footer {
     width: 100%;
     margin-bottom: 10px;
   }
+}
+
+/*Chargesheetdiv */
+
+.charge-info {
+  display: flex;
+  flex-direction: column; /* Display rows vertically */
+  margin-bottom: 5px; /* Add spacing between rows */
+}
+
+.charge-key {
+  font-weight: bold; /* Make key bold */
+}
+
+.charge-value {
+  color: #333; /* Dark text color for value */
+  margin-top: 5px; /* Add spacing between key and value */
+}
+
+.chargesheet-item {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 5px;
+  list-style-type: none;
+}
+
+.remove-charge {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px; /* Add space above the button */
+}
+
+.remove-charge:hover {
+  background-color: #ff4d4d;
 }
