@@ -6,23 +6,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
       addToChargesheet(selectedData);
     });
   }
-
-  const exportPdfButton = document.getElementById("exportPdfButton");
-  if (exportPdfButton) {
-    exportPdfButton.addEventListener("click", () => exportChargesheetAsPDF());
-  }
-
-  const clearChargesButton = document.getElementById("clearChargesButton");
-  if (clearChargesButton) {
-    clearChargesButton.addEventListener("click", clearChargesheet);
-  }
-
-  // Add this section for sending the chargesheet data
-  const sendDataButton = document.getElementById("sendDataButton");
-  if (sendDataButton) {
-    sendDataButton.addEventListener("click", sendChargeSheetData);
-  }
 });
+
+const exportPdfButton = document.getElementById("exportPdfButton");
+if (exportPdfButton) {
+  exportPdfButton.addEventListener("click", () => exportChargesheetAsPDF());
+}
+
+const clearChargesButton = document.getElementById("clearChargesButton");
+if (clearChargesButton) {
+  clearChargesButton.addEventListener("click", clearChargesheet);
+}
+
+// Add this section for sending the chargesheet data
+const sendDataButton = document.getElementById("sendDataButton");
+if (sendDataButton) {
+  sendDataButton.addEventListener("click", sendChargeSheetData);
+}
 
 function clearChargesheet() {
   if (confirm("Are you sure you want to clear the chargesheet?")) {
@@ -38,6 +38,7 @@ function addToChargesheet(selectedData) {
   }
 
   var chargesheetList = document.getElementById("chargesheetList");
+  chargesheetList.innerHTML = ""; // Clear the existing list
 
   selectedData.forEach(function (data) {
     var listItem = document.createElement("li");
@@ -62,14 +63,13 @@ function addToChargesheet(selectedData) {
   oTable.rows({ selected: true }).deselect();
 }
 
-function isValidValue(value) {
-  return value !== null && value !== undefined && value !== "";
-}
-
 function shouldExcludeKey(key) {
-  // Add any keys here that you don't want to include in the chargesheet
   const excludedKeys = ["SystemID", "LocationID", "CodeID", "Type"];
   return excludedKeys.includes(key);
+}
+
+function isValidValue(value) {
+  return value !== null && value !== undefined && value !== "";
 }
 
 function createInfoDiv(key, value) {
@@ -98,6 +98,7 @@ function createRemoveButton(listItem) {
   };
   return removeBtn;
 }
+
 function exportChargesheetAsPDF() {
   const chargesheetElement = document.getElementById("chargesheetContainer");
 

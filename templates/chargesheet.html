@@ -1,19 +1,39 @@
-{% extends "base.html" %} {% block head %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static', filename='style.css') }}"
-/>
-{% endblock %} {% block title %}Chargesheet{% endblock %} {% block content %}
-<div class="content-wrapper">
-  <h1>Chargesheet</h1>
-  <!-- Display chargesheet data here -->
-  <div id="chargesheetDisplay">
-    {% for charge in chargesheet_data %}
-    <!-- Render each charge item -->
-    <p>{{ charge }}</p>
-    <!-- Modify as needed to display the data -->
-    {% endfor %}
-  </div>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chargesheet</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <h1>Chargesheet</h1>
+      <div class="grid-container">
+        <!-- Left grid: Charges -->
+        <div class="charges-grid">
+          {% for charge in chargesheet_data %}
+          <div
+            class="charge-item"
+            style="background-color: {{ charge['color'] }}"
+          >
+            {% for key, value in charge.items() %} {% if key not in ['SystemID',
+            'LocationID', 'CodeID', 'Type', 'color'] %}
+            <div><strong>{{ key }}:</strong> {{ value }}</div>
+            {% endif %} {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+        <!-- Right grid: Summary (empty for now) -->
+        <div class="summary-info">
+          <!-- Summary information will go here -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

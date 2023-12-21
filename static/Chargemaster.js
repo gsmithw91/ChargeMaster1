@@ -1,79 +1,117 @@
 var oTable;
+const colorMapping = {
+  1: "#a5a7d4",
+  2: "#a30046",
+  3: "#2361fd",
+  4: "#63599e",
+  5: "#006937",
+  6: "#800000",
+};
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // Code that needs the DOM to be ready can go here
   initPage();
 });
 
-function initPage() {
-  // You might fetch the initial system list here, for example
-  fetchSystems();
+async function initPage() {
+  try {
+    // Fetch and display systems
+    const systems = await fetchSystems();
+    displaySystems(systems);
+
+    // Fetch and display locations for the first system by default
+    if (systems.length > 0) {
+      const systemId = systems[0].SystemID;
+      const locations = await fetchLocations(systemId);
+      displayLocations(locations);
+    }
+  } catch (error) {
+    console.error("Error initializing page:", error);
+  }
 }
 
-function fetchSystems() {
-  fetch("/api/systems")
-    .then((response) => response.json())
-    .then((data) => {
-      const systemsContainer = document.getElementById("systems-container");
-      data.forEach((system) => {
-        const button = document.createElement("button");
-        button.className = "system-button";
-        button.innerText = system.SystemName;
-        button.addEventListener("click", function () {
-          document
-            .querySelectorAll(".system-button")
-            .forEach((btn) => btn.classList.remove("selected"));
-          button.classList.add("selected");
-          fetchAndDisplayLocations(system.SystemID);
-        });
-        systemsContainer.appendChild(button);
-      });
-    })
-    .catch((error) => console.error("Error fetching systems:", error));
+async function fetchSystems() {
+  const response = await fetch("/api/systems");
+  if (!response.ok) {
+    throw new Error("Error fetching systems.");
+  }
+  return response.json();
 }
 
-function fetchAndDisplayLocations(systemId) {
-  fetch(`/api/locations/${systemId}`)
-    .then((response) => response.json())
-    .then((locations) => {
-      const locationsContainer = document.getElementById("locations-container");
-      locationsContainer.innerHTML = ""; // Clear existing buttons
+function displaySystems(systems) {
+  const systemsContainer = document.getElementById("systems-container");
 
-      locations.forEach((location) => {
-        const locButton = document.createElement("button");
-        locButton.className = "location-button";
-        locButton.innerText = location.LocationName;
-
-        // When a location button is clicked, fetch and display location details
-        // and fetch and display charges for this location
-        locButton.addEventListener("click", () => {
-          fetchAndDisplayLocationDetails(location.LocationID); // Fetch location details
-          loadChargesForLocation(systemId, location.LocationID); // Fetch charges for this location
-        });
-
-        locationsContainer.appendChild(locButton);
-      });
-    })
-    .catch((error) => console.error("Error fetching locations:", error));
+  systems.forEach((system) => {
+    const button = createButton(system.SystemName, "system-button");
+    const backgroundColor = colorMapping[system.SystemID];
+    button.style.backgroundColor = backgroundColor;
+    button.style.color = "white"; // Set text color to white
+    button.addEventListener("click", async () => {
+      document
+        .querySelectorAll(".system-button")
+        .forEach((btn) => btn.classList.remove("selected"));
+      button.classList.add("selected");
+      const locations = await fetchLocations(system.SystemID);
+      displayLocations(locations);
+    });
+    systemsContainer.appendChild(button);
+  });
 }
 
-// This function fetches and displays details for a specific location
-function fetchAndDisplayLocationDetails(locationId) {
-  fetch(`/api/locations/details/${locationId}`)
-    .then((response) => response.json())
-    .then((locationDetails) => {
-      const infoContainer = document.getElementById("location-information");
-      infoContainer.innerHTML = `
-        <h2>Location Information</h2>
-        <p>Name: ${locationDetails.LocationName}</p>
-        <p>Address: ${locationDetails.Address}, ${locationDetails.City}, ${locationDetails.State} ${locationDetails.ZipCode}</p>
-        <p>Phone: ${locationDetails.Phone}</p>
-      `;
-    })
-    .catch((error) => console.error("Error fetching location details:", error));
+async function fetchLocations(systemId) {
+  const response = await fetch(`/api/locations/${systemId}`);
+  if (!response.ok) {
+    throw new Error("Error fetching locations.");
+  }
+  return response.json();
 }
 
-// This function fetches and displays the charges data for a specific location in a DataTable
+function displayLocations(locations) {
+  const locationsContainer = document.getElementById("locations-container");
+  locationsContainer.innerHTML = ""; // Clear existing buttons
+
+  locations.forEach((location) => {
+    const locButton = createButton(location.LocationName, "location-button");
+    const backgroundColor = colorMapping[location.SystemID]; // Use colorMapping
+    locButton.style.backgroundColor = backgroundColor;
+    locButton.style.color = "white"; // Set text color to white
+    locButton.addEventListener("click", async () => {
+      const locationDetails = await fetchLocationDetails(location.LocationID);
+      displayLocationDetails(locationDetails);
+
+      // Remove existing system color class (if any)
+      document
+        .getElementById("location-information")
+        .classList.remove("system-color");
+
+      // Add the new system color class based on location.SystemID
+      document
+        .getElementById("location-information")
+        .classList.add(`system-color-${location.SystemID}`);
+
+      loadChargesForLocation(location.SystemID, location.LocationID); // Pass SystemID and LocationID
+    });
+    locationsContainer.appendChild(locButton);
+  });
+}
+
+async function fetchLocationDetails(locationId) {
+  const response = await fetch(`/api/locations/details/${locationId}`);
+  if (!response.ok) {
+    throw new Error("Error fetching location details.");
+  }
+  return response.json();
+}
+
+function displayLocationDetails(locationDetails) {
+  const infoContainer = document.getElementById("location-information");
+  infoContainer.innerHTML = `
+    <h2>Location Information</h2>
+    <p>Name: ${locationDetails.LocationName}</p>
+    <p>Address: ${locationDetails.Address}, ${locationDetails.City}, ${locationDetails.State} ${locationDetails.ZipCode}</p>
+    <p>Phone: ${locationDetails.Phone}</p>
+  `;
+}
 function loadChargesForLocation(systemId, locationId) {
   let apiUrl = `/api/charges/system/${systemId}/location/${locationId}`;
   fetch(apiUrl)
@@ -147,4 +185,16 @@ function displayChargesData(chargeData, columns) {
     ordering: true,
     info: true,
   });
+
+  // Add an event handler to a button or perform other actions here
+  // For example, you can add a button to export the table data
+  // or add any other functionality you need.
+}
+
+function createButton(text, className) {
+  const button = document.createElement("button");
+  button.className = className;
+  button.innerText = text;
+  button.style.backgroundColor = colorMapping[text]; // Use the mapping for background color
+  return button;
 }

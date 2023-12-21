@@ -13,13 +13,14 @@ from logs.custom_logger import api_logger
 
 
 charge_models_mapping = {
-    1: AdvocateCharges,
-    2: LoyolaCDMCharges,
-    3: NorthshoreCharges,
-    4: NorthwesternCharges,
-    5: RushCharges,
-    6: UCMCCharges
+    1: AdvocateCharges, # a5a7d4
+    2: LoyolaCDMCharges, #a30046
+    3: NorthshoreCharges, # 2361fd
+    4: NorthwesternCharges, # 63599e
+    5: RushCharges, # 006937
+    6: UCMCCharges # 800000
 }
+
 
 System_ID_Mapping_Table =  {
     1:'Elig_Advocate',
@@ -215,15 +216,25 @@ def get_charges(system_id, location_id):
 
 @api.route('/process-chargesheet', methods=['POST'])
 def get_charge_sheet_data():
-    data = request.json  # Get JSON data sent in the POST request
-
-    # Process data: Omit nulls (and undefined values, which should be handled client-side)
+    data = request.json
     processed_data = [omit_nulls(charge) for charge in data]
 
-    # For now, just return the processed data
-    return jsonify(processed_data)
+    # Color mapping
+    system_id_colors = {
+        1: "#a5a7d4",
+        2: "#a30046",
+        3: "#2361fd",
+        4: "#63599e",
+        5: "#006937",
+        6: "#800000",
+    }
 
+    # Add color information to each charge item
+    for charge in processed_data:
+        system_id = charge.get('SystemID')
+        charge['color'] = system_id_colors.get(system_id, "defaultColor")
 
+    return render_template('chargesheet.html', chargesheet_data=processed_data)
 
 def omit_nulls(charge_dict):
     """
