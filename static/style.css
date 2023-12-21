@@ -196,9 +196,6 @@ button:hover {
   max-width: 50%; /* Limit the width to half of the container */
 }
 
-#statistics-column {
-  /* Add any specific styling for the statistics column here */
-}
 .clear-chargesheet {
   background-color: #ff6347; /* Tomato color for clear button */
   color: white;
