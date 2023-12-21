@@ -10,6 +10,14 @@ const colorMapping = {
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // Code that needs the DOM to be ready can go here
+  var addToChargesheetButton = document.getElementById("addToChargesheet");
+  if (addToChargesheetButton) {
+    addToChargesheetButton.addEventListener("click", function () {
+      var selectedData = oTable.rows({ selected: true }).data().toArray();
+      addToChargesheet(selectedData);
+    });
+  }
+
   initPage();
 });
 
@@ -180,6 +188,86 @@ function displayChargesData(chargeData, columns) {
   });
 
   // Additional code as needed
+}
+
+function clearChargesheet() {
+  if (confirm("Are you sure you want to clear the chargesheet?")) {
+    var chargesheetList = document.getElementById("chargesheetList");
+    chargesheetList.innerHTML = "";
+  }
+}
+
+function isValidValue(value) {
+  return value !== null && value !== undefined && value !== "";
+}
+
+function shouldExcludeKey(key) {
+  // Add any keys here that you don't want to include in the chargesheet
+  const excludedKeys = ["SystemID", "LocationID", "CodeID", "Type"];
+  return excludedKeys.includes(key);
+}
+
+// Updated createInfoDiv function
+function createInfoDiv(key, value) {
+  var infoDiv = document.createElement("div");
+  infoDiv.className = "charge-info";
+
+  var keySpan = document.createElement("span");
+  keySpan.className = "charge-key";
+  keySpan.textContent = key + ": ";
+
+  var valueSpan = document.createElement("span");
+  valueSpan.className = "charge-value";
+  valueSpan.textContent = value;
+
+  infoDiv.appendChild(keySpan);
+  infoDiv.appendChild(valueSpan);
+  return infoDiv;
+}
+
+function createRemoveButton(listItem) {
+  var removeBtn = document.createElement("button");
+  removeBtn.className = "remove-charge";
+  removeBtn.textContent = "Remove";
+  removeBtn.onclick = function () {
+    listItem.remove();
+  };
+  return removeBtn;
+}
+
+function addToChargesheet(selectedData) {
+  if (selectedData.length === 0) {
+    console.error("No data selected.");
+    return;
+  }
+
+  var chargesheetList = document.getElementById("chargesheetList");
+
+  selectedData.forEach(function (data) {
+    var listItem = document.createElement("li");
+    listItem.className = "chargesheet-item";
+
+    for (var key in data) {
+      if (
+        data.hasOwnProperty(key) &&
+        isValidValue(data[key]) &&
+        !shouldExcludeKey(key)
+      ) {
+        console.log("Key:", key); // Debugging statement
+        console.log("Value:", data[key]); // Debugging statement
+
+        var infoDiv = createInfoDiv(key, data[key]);
+        listItem.appendChild(infoDiv);
+      }
+    }
+
+    var removeBtn = createRemoveButton(listItem);
+    listItem.appendChild(removeBtn);
+    chargesheetList.appendChild(listItem);
+  });
+
+  // Deselect rows in oTable (assuming oTable is defined elsewhere)
+  oTable.rows({ selected: true }).deselect();
 }
 
 function createButton(text, className) {

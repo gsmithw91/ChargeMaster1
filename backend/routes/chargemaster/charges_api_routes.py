@@ -7,7 +7,7 @@ from backend.models.InsuranceTypes import Insurance_Type
 
 from pydantic import ValidationError 
 from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
-from flask import Blueprint, jsonify, request   
+from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
 
 
@@ -215,26 +215,13 @@ def get_charges(system_id, location_id):
 
 
 @api.route('/process-chargesheet', methods=['POST'])
-def get_charge_sheet_data():
+def process_chargesheet():
     data = request.json
-    processed_data = [omit_nulls(charge) for charge in data]
+    # Process the data and store it (e.g., in the session)
+    session['chargesheet_data'] = data
+    # Return a response that indicates where to redirect
+    return jsonify({'redirect_url': url_for('web.display_chargesheet')})
 
-    # Color mapping
-    system_id_colors = {
-        1: "#a5a7d4",
-        2: "#a30046",
-        3: "#2361fd",
-        4: "#63599e",
-        5: "#006937",
-        6: "#800000",
-    }
-
-    # Add color information to each charge item
-    for charge in processed_data:
-        system_id = charge.get('SystemID')
-        charge['color'] = system_id_colors.get(system_id, "defaultColor")
-
-    return render_template('chargesheet.html', chargesheet_data=processed_data)
 
 def omit_nulls(charge_dict):
     """

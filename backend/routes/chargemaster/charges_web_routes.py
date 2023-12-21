@@ -1,5 +1,5 @@
 # backend/routes/web_routes.py
-from flask import Blueprint, render_template, request, json
+from flask import Blueprint, render_template, request, json, session
 from backend.database.db_helpers import get_filtered_data
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
@@ -34,8 +34,9 @@ def chargemaster():
         return render_template('error.html', error="An error occurred"), 500
 
 
-@web.route('/display-chargesheet', methods=['POST'])
+@web.route('/display-chargesheet', methods=['GET'])
 def display_chargesheet():
-    chargesheet_data = request.form.get('chargesheetData')
-    chargesheet_data = json.loads(chargesheet_data)  # Convert JSON string back to Python object
+    chargesheet_data = session.get('chargesheet_data')
+    # Optionally, you can clear the data from the session after using it
+    # session.pop('chargesheet_data', None)
     return render_template('chargesheet.html', chargesheet_data=chargesheet_data)

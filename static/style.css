@@ -33,12 +33,11 @@ header {
 }
 
 /* Style buttons for a larger and consistent size */
-.btn,
-#charges-container .dt-buttons .btn {
+.btn {
   padding: 10px 20px;
-  font-size: 16px; /* Larger font size */
-  border-radius: 5px; /* Rounded corners */
-  margin: 5px; /* Spacing between buttons */
+  font-size: 16px;
+  border-radius: 5px;
+  margin: 5px;
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
   background-color: #007bff;
   color: white;
@@ -47,24 +46,15 @@ header {
 }
 
 /* Hover effect */
-.btn:hover,
-#charges-container .dt-buttons .btn:hover {
+.btn:hover {
   background-color: #0056b3; /* Darker shade for hover */
   color: #fff; /* Change text color if needed */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
 }
 
 /* Active/Clicked effect */
-.btn:active,
-#charges-container .dt-buttons .btn:active {
+.btn:active {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset; /* Inner shadow for depth */
-}
-
-/* Style for the hospital system and location buttons */
-.btn-hospital,
-.btn-location {
-  min-width: 150px; /* Minimum width */
-  display: inline-block; /* Align side by side */
 }
 
 /* Make table rows slightly taller for a modern feel */
@@ -116,41 +106,99 @@ footer {
   }
 }
 
-/*Chargesheetdiv */
+/* Style for #chargesheetContainer */
+#chargesheetContainer {
+  background-color: #f7f7f7; /* Background color for chargesheet container */
+  border: 1px solid #ddd; /* Border for chargesheet container */
+  padding: 20px; /* Padding for chargesheet container */
+  margin-bottom: 20px; /* Margin at the bottom of chargesheet container */
+}
 
-.charge-info {
+/* Style the h2 inside #chargesheetContainer */
+#chargesheetContainer h2 {
+  font-size: 24px; /* Larger font size for h2 */
+  margin-bottom: 20px; /* Margin at the bottom of h2 */
+}
+
+/* Style the buttons inside #chargesheetContainer */
+#chargesheetContainer .btn-chargesheet {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin: 5px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Style the ul inside #chargesheetContainer */
+#chargesheetContainer ul {
+  padding: 0; /* Remove padding from ul */
+  width: 100%; /* Make the list take up the full width */
   display: flex;
-  flex-direction: column; /* Display rows vertically */
-  margin-bottom: 5px; /* Add spacing between rows */
+  flex-wrap: wrap;
+  justify-content: space-between; /* Distribute items evenly */
 }
 
-.charge-key {
-  font-weight: bold; /* Make key bold */
+/* Style for individual buttons inside the chargesheet */
+#chargesheetContainer .btn-chargesheet {
+  flex: 1; /* Distribute available space equally among buttons */
+  margin-bottom: 10px; /* Add spacing between buttons */
 }
 
-.charge-value {
-  color: #333; /* Dark text color for value */
-  margin-top: 5px; /* Add spacing between key and value */
+/* Style for individual buttons inside the chargesheet on hover */
+#chargesheetContainer .btn-chargesheet:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+  color: #fff; /* Change text color if needed */
 }
 
-.chargesheet-item {
-  background-color: #f7f7f7;
+/* Style the charges-list-container */
+.charges-list-container {
+  padding: 15px;
   border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Style the chargesheet list */
+#chargesheetList {
+  list-style-type: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Style individual list items */
+#chargesheetList .chargesheet-item {
+  background-color: #fff;
+  border: 1px solid #eee;
   padding: 10px;
-  margin-bottom: 5px;
-  list-style-type: none;
+  margin-bottom: 10px; /* Space between items */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s, border-color 0.3s;
 }
 
-.remove-charge {
-  background-color: #ff6666;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  float: right;
-  margin-top: 10px; /* Add space above the button */
+/* Hover effect for list items */
+#chargesheetList .chargesheet-item:hover {
+  border-color: #007bff; /* Change border color on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
 }
 
-.remove-charge:hover {
-  background-color: #ff4d4d;
+/* Style the remove button inside the chargesheet list items */
+#chargesheetList .remove-charge {
+  background-color: #eb4e10; /* Red background color */
+  color: white; /* White text color */
+  border: none; /* Remove default border */
+  padding: 5px 10px; /* Padding for the button */
+  margin: 5px 0 5px 5px; /* Margin around the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+  font-size: 14px; /* Font size for the button text */
+}
+
+/* Hover effect for the remove button */
+#chargesheetList .remove-charge:hover {
+  background-color: #eb4e10; /* Slightly darker red on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for depth */
 }

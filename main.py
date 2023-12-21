@@ -1,10 +1,13 @@
 # main.py
 from flask import Flask
+from flask_cors import CORS
 from backend.routes.chargemaster.charges_api_routes import api
 from backend.routes.chargemaster.charges_error_routes import errors
 from backend.routes.chargemaster.charges_web_routes import web
 
 app = Flask(__name__)
+app.secret_key = 'fappie'
+CORS(app)
 
 # Register the blueprint
 app.register_blueprint(api)
