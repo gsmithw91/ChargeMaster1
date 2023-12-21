@@ -158,7 +158,7 @@ class NorthwesternCharges(BaseModel):
     
 
 class RushCharges(BaseModel):
-    LocationID : expressionocationID : Optional [int]
+    LocationID :  Optional [int]
     SystemID : Optional [int]
     LocationName : Optional [str]
     Type :  Optional [str]
