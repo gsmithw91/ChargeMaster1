@@ -6,15 +6,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
       addToChargesheet(selectedData);
     });
   }
+
   const exportPdfButton = document.getElementById("exportPdfButton");
   if (exportPdfButton) {
     exportPdfButton.addEventListener("click", () => exportChargesheetAsPDF());
   }
 
-  // Updated to match the ID in your HTML
   const clearChargesButton = document.getElementById("clearChargesButton");
   if (clearChargesButton) {
     clearChargesButton.addEventListener("click", clearChargesheet);
+  }
+
+  // Add this section for sending the chargesheet data
+  const sendDataButton = document.getElementById("sendDataButton");
+  if (sendDataButton) {
+    sendDataButton.addEventListener("click", sendChargeSheetData);
   }
 });
 
@@ -135,16 +141,28 @@ function exportChargesheetAsPDF() {
 }
 
 function sendChargeSheetData() {
-  var selectedData = oTable.rows({ selected: true }).data().toArray();
+  var chargesheetItems = document.querySelectorAll(
+    "#chargesheetList .chargesheet-item"
+  );
+  var dataToSend = Array.from(chargesheetItems).map((item) => {
+    var data = {};
+    item.querySelectorAll(".charge-info").forEach((infoDiv) => {
+      var key = infoDiv
+        .querySelector(".charge-key")
+        .textContent.replace(": ", "");
+      var value = infoDiv.querySelector(".charge-value").textContent;
+      data[key] = value;
+    });
+    return data;
+  });
 
-  fetch("/process-chargesheet", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(selectedData),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log("Processed data:", data))
-    .catch((error) => console.error("Error:", error));
+  console.log("Data to be sent to server:", dataToSend);
+
+  // Set the chargesheet data to the hidden input field
+  var chargesheetDataInput = document.getElementById("chargesheetData");
+  chargesheetDataInput.value = JSON.stringify(dataToSend);
+
+  // Submit the form
+  var form = document.getElementById("chargesheetForm");
+  form.submit();
 }

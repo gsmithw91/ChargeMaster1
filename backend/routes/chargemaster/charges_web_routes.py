@@ -1,5 +1,5 @@
 # backend/routes/web_routes.py
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, json
 from backend.database.db_helpers import get_filtered_data
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
@@ -33,7 +33,9 @@ def chargemaster():
         # Handle the error as you see fit (e.g., show a custom error page)
         return render_template('error.html', error="An error occurred"), 500
 
-@web.route('/chargemaster/chargesheet')
-def chargesheet_window():
-    web_logger.info(f"Accessed the chargesheet page with method {request.method} and headers {request.headers}")
-    return render_template('chargesheet_window.html')
+
+@web.route('/display-chargesheet', methods=['POST'])
+def display_chargesheet():
+    chargesheet_data = request.form.get('chargesheetData')
+    chargesheet_data = json.loads(chargesheet_data)  # Convert JSON string back to Python object
+    return render_template('chargesheet.html', chargesheet_data=chargesheet_data)

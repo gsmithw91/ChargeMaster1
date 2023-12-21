@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='style.css') }}"
+/>
+{% endblock %} {% block title %}Chargesheet{% endblock %} {% block content %}
+<div class="content-wrapper">
+  <h1>Chargesheet</h1>
+  <!-- Display chargesheet data here -->
+  <div id="chargesheetDisplay">
+    {% for charge in chargesheet_data %}
+    <!-- Render each charge item -->
+    <p>{{ charge }}</p>
+    <!-- Modify as needed to display the data -->
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
