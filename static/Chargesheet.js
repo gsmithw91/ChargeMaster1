@@ -100,19 +100,43 @@ async function exportChargesheetAsPDF() {
   pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
   pdf.save("chargesheet.pdf");
 }
-
 async function sendChargeSheetData() {
-  var chargesheetItems = document.querySelectorAll(
-    "#chargesheetList .chargesheet-item"
-  );
+  // Check if the chargesheetList element exists
+  var chargesheetList = document.getElementById("chargesheetList");
+  if (!chargesheetList) {
+    console.error("Element with id 'chargesheetList' not found.");
+    return;
+  }
+
+  // Select all chargesheet-item elements within chargesheetList
+  var chargesheetItems = chargesheetList.querySelectorAll(".chargesheet-item");
+
   var dataToSend = Array.from(chargesheetItems).map((item) => {
     var data = {};
-    item.querySelectorAll(".charge-info").forEach((infoDiv) => {
-      var key = infoDiv
-        .querySelector(".charge-key")
-        .textContent.replace(": ", "");
-      var value = infoDiv.querySelector(".charge-value").textContent;
-      data[key] = value;
+
+    // Check if charge-info elements exist within the current chargesheet-item
+    var chargeInfoDivs = item.querySelectorAll(".charge-info");
+    if (!chargeInfoDivs.length) {
+      console.error(
+        "No '.charge-info' elements found within a chargesheet-item."
+      );
+      return;
+    }
+
+    chargeInfoDivs.forEach((infoDiv) => {
+      // Check if charge-key and charge-value elements exist within charge-info
+      var chargeKey = infoDiv.querySelector(".charge-key");
+      var chargeValue = infoDiv.querySelector(".charge-value");
+
+      if (chargeKey && chargeValue) {
+        var key = chargeKey.textContent.replace(": ", "");
+        var value = chargeValue.textContent;
+        data[key] = value;
+      } else {
+        console.error(
+          "Incomplete charge-info structure within a chargesheet-item."
+        );
+      }
     });
     return data;
   });
