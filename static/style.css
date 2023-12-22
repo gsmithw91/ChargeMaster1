@@ -202,3 +202,12 @@ footer {
   background-color: #eb4e10; /* Slightly darker red on hover */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for depth */
 }
+
+#charges-container {
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+#charges-table {
+  table-layout: auto; /* Allows the table to determine column width based on content */
+  width: 100%; /* Ensures the table fills its container */
+}
