@@ -27,7 +27,6 @@ body {
 
 .container {
   padding: 20px;
-  max-width: 1200px; /* Control the maximum width of the container */
   margin: auto; /* Center the container */
 }
 
@@ -199,8 +198,4 @@ footer {
 /* Horizontal scrolling for tables */
 #charges-container {
   overflow-x: auto;
-}
-
-#charges-table {
-  min-width: 1000px; /* Minimum width of the table to ensure all columns are visible */
 }

@@ -189,9 +189,10 @@ function displayChargesData(chargeData, columns) {
     paging: true, // Enable pagination
     searching: true, // Enable searching
     ordering: true, // Enable column ordering
-    info: true, // Enable the information summary
     responsive: true, // Enable responsive design for mobile devices
     colReorder: true, // Enable column reordering
+    scrollX: true, // Enable horizontal scrolling
+    scrollY: "50vh", // Enable vertical scrolling
     // Additional options here...
     initComplete: function (settings, json) {},
   });
