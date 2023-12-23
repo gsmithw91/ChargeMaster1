@@ -39,34 +39,6 @@ function clearChargesheet() {
   }
 }
 
-function isValidValue(value) {
-  return value !== null && value !== undefined && value !== "";
-}
-
-function shouldExcludeKey(key) {
-  // Add any keys here that you don't want to include in the chargesheet
-  const excludedKeys = ["SystemID", "LocationID", "CodeID", "Type"];
-  return excludedKeys.includes(key);
-}
-
-// Updated createInfoDiv function
-function createInfoDiv(key, value) {
-  var infoDiv = document.createElement("div");
-  infoDiv.className = "charge-info";
-
-  var keySpan = document.createElement("span");
-  keySpan.className = "charge-key";
-  keySpan.textContent = key + ": ";
-
-  var valueSpan = document.createElement("span");
-  valueSpan.className = "charge-value";
-  valueSpan.textContent = value;
-
-  infoDiv.appendChild(keySpan);
-  infoDiv.appendChild(valueSpan);
-  return infoDiv;
-}
-
 function createRemoveButton(listItem) {
   var removeBtn = document.createElement("button");
   removeBtn.className = "remove-charge";

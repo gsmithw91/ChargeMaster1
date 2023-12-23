@@ -176,15 +176,24 @@ function displayChargesData(chargeData, columns) {
   // Initialize the DataTable with filtered columns
   oTable = $(table).DataTable({
     columns: filteredColumns.map((column) => ({ title: column, data: column })),
-    dom: "Bfrtip",
+    dom: "Bfrtip", // Define the elements and their order in the DOM
     buttons: [
-      // ... button configurations ...
+      "copy", // Enable the copy to clipboard button
+      "csv", // Enable the CSV export button
+      "excel", // Enable the Excel export button
+      "pdf", // Enable the PDF export button
+      "print", // Enable the print view button
+      "colvis", // Enable column visibility toggle button
     ],
-    select: "multi",
-    paging: true,
-    searching: true,
-    ordering: true,
-    info: true,
+    select: true, // Enable select extension
+    paging: true, // Enable pagination
+    searching: true, // Enable searching
+    ordering: true, // Enable column ordering
+    info: true, // Enable the information summary
+    responsive: true, // Enable responsive design for mobile devices
+    colReorder: true, // Enable column reordering
+    // Additional options here...
+    initComplete: function (settings, json) {},
   });
 
   // Additional code as needed

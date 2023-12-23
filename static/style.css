@@ -1,29 +1,37 @@
 /* Include Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
 
-/* Reset some basic elements */
+/* Reset and base styles */
 body,
 h1,
 h2,
 h3,
-p {
+p,
+.btn,
+.table,
+footer,
+.navbar,
+.input-search,
+ul {
   margin: 0;
   padding: 0;
-}
-
-/* Apply a base font to the body */
-body {
   font-family: "Open Sans", sans-serif;
-  background-color: #ffffff;
-  color: #333;
 }
 
-/* Style the main content area */
+/* Body and main content area */
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
 .container {
   padding: 20px;
+  max-width: 1200px; /* Control the maximum width of the container */
+  margin: auto; /* Center the container */
 }
 
-/* Style the header */
+/* Header styles */
 header {
   background-color: #007bff;
   color: #fff;
@@ -32,7 +40,7 @@ header {
   margin-bottom: 30px;
 }
 
-/* Style buttons for a larger and consistent size */
+/* Buttons styling */
 .btn {
   padding: 10px 20px;
   font-size: 16px;
@@ -40,42 +48,48 @@ header {
   margin: 5px;
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
-  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
 }
 
-/* Hover effect */
 .btn:hover {
-  background-color: #0056b3; /* Darker shade for hover */
-  color: #fff; /* Change text color if needed */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: add shadow for depth */
+  background-color: #0056b3;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Active/Clicked effect */
 .btn:active {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset; /* Inner shadow for depth */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset;
 }
 
-/* Make table rows slightly taller for a modern feel */
-.table td,
-.table th {
-  padding: 15px; /* More padding inside table cells */
+/* Table styling */
+.table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-/* Footer styles */
+.table th,
+.table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Footer */
 footer {
   background-color: #007bff;
-  color: white;
+  color: #fff;
   text-align: center;
-  padding: 10px;
+  padding: 10px 0;
   position: relative;
   bottom: 0;
   width: 100%;
 }
 
-/* Custom styles for the navigation and headers */
+/* Navigation bar */
 .navbar {
+  background-color: #007bff;
   margin-bottom: 20px;
 }
 
@@ -84,20 +98,19 @@ footer {
   color: #fff !important;
 }
 
-/* Adjust the color of active navigation link */
 .nav-link.active,
 .navbar-brand:hover,
 .nav-link:hover {
   color: #ff0 !important;
 }
 
-/* Style the search input */
+/* Search input */
 .input-search {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/* Responsive adjustments */
+/* Responsive design */
 @media (max-width: 768px) {
   .btn-hospital,
   .btn-location {
@@ -106,108 +119,88 @@ footer {
   }
 }
 
-/* Style for #chargesheetContainer */
+/* Chargesheet container */
 #chargesheetContainer {
-  background-color: #f7f7f7; /* Background color for chargesheet container */
-  border: 1px solid #ddd; /* Border for chargesheet container */
-  padding: 20px; /* Padding for chargesheet container */
-  margin-bottom: 20px; /* Margin at the bottom of chargesheet container */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-/* Style the h2 inside #chargesheetContainer */
 #chargesheetContainer h2 {
-  font-size: 24px; /* Larger font size for h2 */
-  margin-bottom: 20px; /* Margin at the bottom of h2 */
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 700;
 }
 
-/* Style the buttons inside #chargesheetContainer */
 #chargesheetContainer .btn-chargesheet {
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
   margin: 5px;
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-  font-family: "Open Sans", sans-serif;
 }
 
-/* Style the ul inside #chargesheetContainer */
 #chargesheetContainer ul {
-  padding: 0; /* Remove padding from ul */
-  width: 100%; /* Make the list take up the full width */
+  list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* Distribute items evenly */
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Style for individual buttons inside the chargesheet */
-#chargesheetContainer .btn-chargesheet {
-  flex: 1; /* Distribute available space equally among buttons */
-  margin-bottom: 10px; /* Add spacing between buttons */
-}
-
-/* Style for individual buttons inside the chargesheet on hover */
 #chargesheetContainer .btn-chargesheet:hover {
-  background-color: #0056b3; /* Darker shade for hover */
-  color: #fff; /* Change text color if needed */
+  background-color: #0056b3;
+  color: #fff;
 }
 
-/* Style the charges-list-container */
+/* Charges list container */
 .charges-list-container {
   padding: 15px;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
-/* Style the chargesheet list */
 #chargesheetList {
-  list-style-type: none; /* Remove default list style */
-  padding: 0; /* Remove default padding */
-  margin: 0; /* Remove default margin */
+  list-style-type: none;
 }
 
-/* Style individual list items */
 #chargesheetList .chargesheet-item {
   background-color: #fff;
   border: 1px solid #eee;
   padding: 10px;
-  margin-bottom: 10px; /* Space between items */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
   transition: box-shadow 0.3s, border-color 0.3s;
 }
 
-/* Hover effect for list items */
 #chargesheetList .chargesheet-item:hover {
-  border-color: #007bff; /* Change border color on hover */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Style the remove button inside the chargesheet list items */
 #chargesheetList .remove-charge {
-  background-color: #eb4e10; /* Red background color */
-  color: white; /* White text color */
-  border: none; /* Remove default border */
-  padding: 5px 10px; /* Padding for the button */
-  margin: 5px 0 5px 5px; /* Margin around the button */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Cursor changes to pointer on hover */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
-  font-size: 14px; /* Font size for the button text */
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-size: 14px;
 }
 
-/* Hover effect for the remove button */
 #chargesheetList .remove-charge:hover {
-  background-color: #eb4e10; /* Slightly darker red on hover */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  background-color: #bd2130;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Horizontal scrolling for tables */
 #charges-container {
-  overflow-x: auto; /* Enables horizontal scrolling */
+  overflow-x: auto;
 }
 
 #charges-table {
-  table-layout: auto; /* Allows the table to determine column width based on content */
-  width: 100%; /* Ensures the table fills its container */
+  min-width: 1000px; /* Minimum width of the table to ensure all columns are visible */
 }
