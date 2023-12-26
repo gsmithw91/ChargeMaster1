@@ -214,6 +214,27 @@ def get_charges(system_id, location_id):
 
 
 
+
+@api.route('/react/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
+@api.route('/react/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
+@api.route('/react/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
+def get_charges_for_react(system_id, location_id):
+    api_logger.info(f"Fetching charges for React App - System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}")
+
+    try:
+        charge_data, _ = get_charge_data(system_id, location_id)
+        if charge_data:
+            return jsonify(charge_data)
+        else:
+            api_logger.error(f"No charge data found for System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}")
+            return jsonify({"error": "Charge data not found"}), 404
+    except Exception as e:
+        api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+
+
 @api.route('/process-chargesheet', methods=['POST'])
 def process_chargesheet():
     data = request.json
