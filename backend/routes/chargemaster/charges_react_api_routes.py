@@ -118,3 +118,22 @@ def get_columns_for_system(system_id):
     except Exception as e:
         api_logger.error(f"An error occurred while fetching columns: {e}")
         return jsonify({"error": str(e)}), 500
+
+
+
+@react_api.route('/chargesheet', methods=['POST'])
+def receive_chargesheet():
+    try:
+        chargesheet_items = request.json  # Assuming the incoming data is a JSON array
+        if not isinstance(chargesheet_items, list):
+            return jsonify({"error": "Invalid data format. Expected an array."}), 400
+
+        # Process the ChargeSheet items here
+        # For example, save them to a database or perform some calculations
+
+        return jsonify({"message": "ChargeSheet items received successfully"}), 200
+
+    except Exception as e:
+        # Log the exception for debugging purposes
+        print(f"An error occurred: {e}")
+        return jsonify({"error": str(e)}), 500

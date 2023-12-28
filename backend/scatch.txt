@@ -49,3 +49,11 @@ Alter Schema dbo Transfer HospitalInfo.HospitalSystem;
       InsuranceType
       PlanName
       InsuranceTypeID
+
+System Mapping 
+1: 'Advcoate'
+2: 'Loyola'
+3: 'NorthShore'
+4: 'Northwestern'
+5: 'Rush'
+6: 'University of Chicago'
