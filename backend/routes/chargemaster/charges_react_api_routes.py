@@ -9,7 +9,7 @@ from pydantic import ValidationError
 from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
-
+import pandas as pd
 
 react_api = Blueprint('react_api', __name__, url_prefix='/react')
 
@@ -119,19 +119,70 @@ def get_columns_for_system(system_id):
         api_logger.error(f"An error occurred while fetching columns: {e}")
         return jsonify({"error": str(e)}), 500
 
-
-
-@react_api.route('/chargesheet', methods=['POST'])
-def receive_chargesheet():
+@react_api.route('/chargesheet/process-items', methods=['POST'])
+def process_items():
     try:
-        chargesheet_items = request.json  # Assuming the incoming data is a JSON array
-        if not isinstance(chargesheet_items, list):
+        # Get the JSON data from the request
+        selected_items = request.json
+
+        # Clean up the selected items by removing null, undefined, 0, 0.00, or 0.0 values
+        cleaned_items = []
+        for item in selected_items:
+            cleaned_item = {}
+            for key, value in item.items():
+                if value is not None and value != 0 and not (
+                    isinstance(value, str) and value in {"0", "0.00", "0.0"}
+                ):
+                    cleaned_item[key] = value
+            cleaned_items.append(cleaned_item)
+
+        # Create a DataFrame from the cleaned items
+        cleaned_item_df = pd.DataFrame(cleaned_items)
+
+        # Print the head of the DataFrame (first 5 rows) to the console
+        print(cleaned_item_df.head().to_json(orient="split"))
+
+        # You can perform further processing or analysis on the DataFrame here
+
+        return jsonify({"message": "Items processed successfully!"})
+
+    except Exception as e:
+        # Log the exception for debugging purposes
+        print(f"An error occurred: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@react_api.route('/chargesheet/download-csv', methods=['POST'])
+def download_csv():
+    try:
+        # Assuming the incoming data is a JSON array
+        charge_sheet_items = request.json
+        if not isinstance(charge_sheet_items, list):
             return jsonify({"error": "Invalid data format. Expected an array."}), 400
 
-        # Process the ChargeSheet items here
-        # For example, save them to a database or perform some calculations
+        # Clean up the ChargeSheet items by removing null, undefined, 0, 0.00, or 0.0 values
+        cleaned_items = []
+        for item in charge_sheet_items:
+            cleaned_item = {}
+            for key, value in item.items():
+                if value is not None and value != 0 and not (
+                    isinstance(value, str) and value in {"0", "0.00", "0.0"}
+                ):
+                    cleaned_item[key] = value
+            cleaned_items.append(cleaned_item)
 
-        return jsonify({"message": "ChargeSheet items received successfully"}), 200
+        # Create a DataFrame from the cleaned items
+        cleaned_item_df = pd.DataFrame(cleaned_items)
+
+        # Save the cleaned items as a CSV file
+        csv_filename = "cleaned_charge_sheet.csv"
+        cleaned_item_df.to_csv(csv_filename, index=False)
+
+        # Process the cleaned ChargeSheet items here (optional)
+
+        # You can access the SystemID, LocationID, and ChargeID for each selection in cleaned_items
+
+        # Return the CSV file for download
+        return send_file(csv_filename, as_attachment=True)
 
     except Exception as e:
         # Log the exception for debugging purposes
