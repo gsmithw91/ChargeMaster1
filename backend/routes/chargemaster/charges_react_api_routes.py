@@ -64,6 +64,13 @@ def get_locations_by_system_for_react(system_id):
         return jsonify({"error": "An error occurred"}), 500
 
 
+@react_api.route('/locations/details/<int:location_id>', methods=['GET'])
+def get_location_details_route(location_id):
+    location_details = get_location_details(location_id)  # Assuming this function is already defined and works properly
+    if location_details:
+        return jsonify(HospitalLocation(**location_details).dict()), 200
+    else:
+        return jsonify({"error": "Location not found"}), 404
 
 
 
@@ -119,72 +126,3 @@ def get_columns_for_system(system_id):
         api_logger.error(f"An error occurred while fetching columns: {e}")
         return jsonify({"error": str(e)}), 500
 
-@react_api.route('/chargesheet/process-items', methods=['POST'])
-def process_items():
-    try:
-        # Get the JSON data from the request
-        selected_items = request.json
-
-        # Clean up the selected items by removing null, undefined, 0, 0.00, or 0.0 values
-        cleaned_items = []
-        for item in selected_items:
-            cleaned_item = {}
-            for key, value in item.items():
-                if value is not None and value != 0 and not (
-                    isinstance(value, str) and value in {"0", "0.00", "0.0"}
-                ):
-                    cleaned_item[key] = value
-            cleaned_items.append(cleaned_item)
-
-        # Create a DataFrame from the cleaned items
-        cleaned_item_df = pd.DataFrame(cleaned_items)
-
-        # Print the head of the DataFrame (first 5 rows) to the console
-        print(cleaned_item_df.head().to_json(orient="split"))
-
-        # You can perform further processing or analysis on the DataFrame here
-
-        return jsonify({"message": "Items processed successfully!"})
-
-    except Exception as e:
-        # Log the exception for debugging purposes
-        print(f"An error occurred: {e}")
-        return jsonify({"error": str(e)}), 500
-
-@react_api.route('/chargesheet/download-csv', methods=['POST'])
-def download_csv():
-    try:
-        # Assuming the incoming data is a JSON array
-        charge_sheet_items = request.json
-        if not isinstance(charge_sheet_items, list):
-            return jsonify({"error": "Invalid data format. Expected an array."}), 400
-
-        # Clean up the ChargeSheet items by removing null, undefined, 0, 0.00, or 0.0 values
-        cleaned_items = []
-        for item in charge_sheet_items:
-            cleaned_item = {}
-            for key, value in item.items():
-                if value is not None and value != 0 and not (
-                    isinstance(value, str) and value in {"0", "0.00", "0.0"}
-                ):
-                    cleaned_item[key] = value
-            cleaned_items.append(cleaned_item)
-
-        # Create a DataFrame from the cleaned items
-        cleaned_item_df = pd.DataFrame(cleaned_items)
-
-        # Save the cleaned items as a CSV file
-        csv_filename = "cleaned_charge_sheet.csv"
-        cleaned_item_df.to_csv(csv_filename, index=False)
-
-        # Process the cleaned ChargeSheet items here (optional)
-
-        # You can access the SystemID, LocationID, and ChargeID for each selection in cleaned_items
-
-        # Return the CSV file for download
-        return send_file(csv_filename, as_attachment=True)
-
-    except Exception as e:
-        # Log the exception for debugging purposes
-        print(f"An error occurred: {e}")
-        return jsonify({"error": str(e)}), 500
