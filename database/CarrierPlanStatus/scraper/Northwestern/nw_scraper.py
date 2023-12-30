@@ -18,33 +18,7 @@ url_location_map = {'https://www.nm.org/patients-and-visitors/billing-and-insura
        'https://www.nm.org/patients-and-visitors/billing-and-insurance/insurance-information/accepted-insurance-plans/valley-west-hospital' : 43}      
        
        
-carriers_mapping = {
-    "Aetna": 1,
-    "MultiPlan-PHCS": 2,
-    "Blue Cross Blue Shield": 3,
-    "Cigna": 4,
-    "ComPsych": 5,
-    "Coventry": 6,
-    "Curaechoice": 7,
-    "Global Excel": 8,
-    "Health Alliance": 9,
-    "HFN": 10,
-    "Humana": 11,
-    "Imagine Health": 12,
-    "The Alliance": 13,
-    "Optum": 14,
-    "United Healthcare": 15,
-    "CHAMPUS": 16,
-    "Medicare": 17,
-    "Medicaid": 18,
-    "VA": 19,
-    "Tricare East": 20,
-    "United": 21,
-    "United HealthCare": 22,
-    "Zing": 23,
-    "CountyCare": 24,
-    "Meridian": 25,
-}
+
 
 # Function to get the Carrier ID, or return 'Other'
 def get_carrier_id(carrier_name):
