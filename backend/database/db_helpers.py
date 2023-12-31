@@ -337,6 +337,18 @@ def get_charge_data(system_id, location_id=None):
         conn.close()
 
 
+def get_insurance_plans_by_carrier_id(carrier_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            query = "SELECT * FROM InsurancePlans WHERE CarrierID = ?"
+            cursor.execute(query, (carrier_id,))
+            columns = [column[0] for column in cursor.description]
+            results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return results
+    finally:
+        conn.close()
+
 def get_insurance_info_by_carrier(carrier_id):
     conn = get_connection()
     try:

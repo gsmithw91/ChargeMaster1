@@ -119,6 +119,8 @@ function displayLocationDetails(locationDetails) {
     <p>Phone: ${locationDetails.Phone}</p>
   `;
 }
+
+
 function loadChargesForLocation(systemId, locationId) {
   let apiUrl = `/api/charges/system/${systemId}/location/${locationId}`;
   fetch(apiUrl)

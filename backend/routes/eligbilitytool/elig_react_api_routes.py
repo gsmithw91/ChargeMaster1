@@ -110,6 +110,8 @@ def get_insurance_type(insurance_type_id):
         return jsonify({"error": "An error occurred while fetching insurance type details"}), 500
 
 
+
+
 @elig_api.route('/insurance-info/carrier/<int:carrier_id>', methods=['GET'])
 def get_insurance_info(carrier_id):
     """
@@ -125,3 +127,14 @@ def get_insurance_info(carrier_id):
     except Exception as e:
         api_logger.error(f"An error occurred while fetching insurance information: {e}")
         return jsonify({"error": "An error occurred while fetching insurance information"}), 500
+
+
+from backend.database.db_helpers import get_insurance_plans_by_carrier_id
+
+@elig_api.route('/insurance-plans/<int:carrier_id>', methods=['GET'])
+def get_insurance_plans_for_carrier(carrier_id):
+    """
+    Endpoint to get insurance plans for a specific carrier.
+    """
+    insurance_plans = get_insurance_plans_by_carrier_id(carrier_id)
+    return jsonify(insurance_plans)
