@@ -140,15 +140,14 @@ def get_insurance_plans_for_carrier(carrier_id):
 
 from backend.database.elig_db_helpers import get_all_elig_records, elig_system_id_to_table_mapping
 
-
-@elig_api.route('/records/<int:system_id>', methods=['GET'])
-def records(system_id):
+@elig_api.route('/records/<int:system_id>/<int:location_id>', methods=['GET'])
+def records(system_id, location_id):
     # Check if system_id is valid
     if system_id not in elig_system_id_to_table_mapping:
         return jsonify({'error': f'Invalid system ID: {system_id}'}), 400
 
-    # Fetch records for the given system_id
-    records = get_all_elig_records(system_id)
+    # Fetch records for the given system_id and location_id
+    records = get_all_elig_records(system_id, location_id)
     if records is None:
         return jsonify({'error': 'Unable to fetch records or no records found'}), 500
 

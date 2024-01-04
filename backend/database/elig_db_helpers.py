@@ -39,7 +39,9 @@ elig_system_id_to_table_mapping = {
     5: 'Elig_Rush',
     6: 'Elig_UCMC'
 }
-def get_all_elig_records(system_id):
+
+
+def get_all_elig_records(system_id, location_id=None):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
@@ -49,8 +51,12 @@ def get_all_elig_records(system_id):
                 raise ValueError(f"No table mapping found for system ID: {system_id}")
 
             # Prepare and execute the query
-            query = f"SELECT * FROM {table_name}"
-            cursor.execute(query)
+            if location_id is not None:
+                query = f"SELECT * FROM {table_name} WHERE LocationID = ?"
+                cursor.execute(query, (location_id,))
+            else:
+                query = f"SELECT * FROM {table_name}"
+                cursor.execute(query)
 
             # Fetch and structure the data
             columns = [column[0] for column in cursor.description]
@@ -64,4 +70,3 @@ def get_all_elig_records(system_id):
         return None
     finally:
         conn.close()
-
