@@ -14,13 +14,16 @@ endpoints = [
     'http://127.0.0.1:5000/api/systems/1',  # Example: Use an actual system_id that exists in your database.
     'http://127.0.0.1:5000/api/locations',
     'http://127.0.0.1:5000/api/locations/1',  # Example: Use an actual system_id that exists in your database.
-    'http://127.0.0.1:5000/api/insurances/plans',
-    'http://127.0.0.1:5000/api/insurances/plan-types',
-    'http://127.0.0.1:5000/api/insurances/plans/plan/1',  # Example: Use an actual plan_id that exists in your database.
-    'http://127.0.0.1:5000/api/eligibility/in-network/1',  # Example: Use an actual system_id that exists in your database.
     'http://127.0.0.1:5000/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
-    'http://127.0.0.1:5000/api/carriers',
-    'http://127.0.0.1:5000/api/carriers/1' # Use an actual carrier_id that exists in your database.
+    'http://127.0.0.1:5000/react/eligibility/carriers',
+    'http://127.0.0.1:5000/react/eligibility/carriers/1',
+    'http://127.0.0.1:5000/react/eligibility/insurances',
+    'http://127.0.0.1:5000/react/eligibility/insurances/1',
+    'http://127.0.0.1:5000/react/eligibility/insurance-types',
+    'http://127.0.0.1:5000/react/eligibility/insurance-types/1',
+    'http://127.0.0.1:5000/react/eligibility/insurance-info/carrier/1',
+    'http://127.0.0.1:5000/react/eligibility/records/4',
+    'http://127.0.0.1:5000/react/eligibility/records/4/17'
 ]
 
 
