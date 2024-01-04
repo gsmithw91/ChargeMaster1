@@ -39,52 +39,29 @@ elig_system_id_to_table_mapping = {
     5: 'Elig_Rush',
     6: 'Elig_UCMC'
 }
-
-
-
-# New function to get all records from a specific elig table based on system ID
-def get_all_elig_records(elig_system_id):
+def get_all_elig_records(system_id):
+    conn = get_connection()
     try:
-        conn = get_connection()
-        cursor = conn.cursor()
+        with conn.cursor() as cursor:
+            # Get the table name based on the system ID
+            table_name = elig_system_id_to_table_mapping.get(system_id)
+            if not table_name:
+                raise ValueError(f"No table mapping found for system ID: {system_id}")
 
-        # Get the table name based on the system ID
-        table_name = elig_system_id_to_table_mapping.get(elig_system_id)
-        if not table_name:
-            raise ValueError(f"No table mapping found for system ID: {elig_system_id}")
+            # Prepare and execute the query
+            query = f"SELECT * FROM {table_name}"
+            cursor.execute(query)
 
-        query = f"SELECT * FROM {table_name}"
-        cursor.execute(query)
-        rows = cursor.fetchall()
-        return rows
+            # Fetch and structure the data
+            columns = [column[0] for column in cursor.description]
+            data = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return data
     except pyodbc.Error as e:
-        print("Database error:", e)
+        print(f"Database error: {e}")
+        return None
     except ValueError as ve:
-        print("Value error:", ve)
+        print(f"Value error: {ve}")
+        return None
     finally:
-        if conn:
-            conn.close()
-            
-            
-# Function to get records from a specific elig table based on system ID and LocationID
-def get_elig_records_by_location(elig_system_id, location_id):
-    try:
-        conn = get_connection()
-        cursor = conn.cursor()
+        conn.close()
 
-        # Get the table name based on the system ID
-        table_name = elig_system_id_to_table_mapping.get(elig_system_id)
-        if not table_name:
-            raise ValueError(f"No table mapping found for system ID: {elig_system_id}")
-
-        query = f"SELECT * FROM {table_name} WHERE LocationID = ?"
-        cursor.execute(query, (location_id,))
-        rows = cursor.fetchall()
-        return rows
-    except pyodbc.Error as e:
-        print("Database error:", e)
-    except ValueError as ve:
-        print("Value error:", ve)
-    finally:
-        if conn:
-            conn.close()

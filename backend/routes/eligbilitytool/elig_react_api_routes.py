@@ -3,8 +3,7 @@ from backend.database.db_helpers import get_insurance_info_by_carrier, get_insur
 from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
 import pandas as pd
-
-
+from backend.models.Eligiibility import Eligible_Insurance
 
 elig_api = Blueprint('elig_api', __name__, url_prefix='/react/eligibility')
 
@@ -130,7 +129,6 @@ def get_insurance_info(carrier_id):
 
 
 from backend.database.db_helpers import get_insurance_plans_by_carrier_id
-
 @elig_api.route('/insurance-plans/<int:carrier_id>', methods=['GET'])
 def get_insurance_plans_for_carrier(carrier_id):
     """
@@ -138,3 +136,24 @@ def get_insurance_plans_for_carrier(carrier_id):
     """
     insurance_plans = get_insurance_plans_by_carrier_id(carrier_id)
     return jsonify(insurance_plans)
+
+
+from backend.database.elig_db_helpers import get_all_elig_records, elig_system_id_to_table_mapping
+
+
+@elig_api.route('/records/<int:system_id>', methods=['GET'])
+def records(system_id):
+    # Check if system_id is valid
+    if system_id not in elig_system_id_to_table_mapping:
+        return jsonify({'error': f'Invalid system ID: {system_id}'}), 400
+
+    # Fetch records for the given system_id
+    records = get_all_elig_records(system_id)
+    if records is None:
+        return jsonify({'error': 'Unable to fetch records or no records found'}), 500
+
+    # Convert records to Pydantic models
+    eligible_insurances = [Eligible_Insurance(**record) for record in records]
+    
+    # Serialize Pydantic models to JSON
+    return jsonify([insurance.dict() for insurance in eligible_insurances])
