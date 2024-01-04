@@ -159,60 +159,26 @@ charges_system_id_to_table_mapping = {
     5: 'Charges_Rush',
     6: 'Charges_UCMC'
 }
-
-        
-
-
-def get_insurances_by_system_id(system_id):
+def get_all_insurance_plans():
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            # Assuming there is a relationship between systems and insurances
-            # and the relevant table and column names are correctly provided
-            cursor.execute("SELECT * FROM InsurancePlans WHERE SystemID = ?", (system_id,))
+            cursor.execute("SELECT * FROM InsurancePlans")
             columns = [column[0] for column in cursor.description]
-            insurances = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            return insurances
+            plans = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return plans
     except pyodbc.Error as e:
-        print("Database error:", e)
+        print(f"Database error: {e}")
         return []
     finally:
         conn.close()
 
-elig_system_id_to_table_mapping = {
-    1: 'Elig_Advocate',
-    2: 'Elig_LoyolaIns',
-    3: 'Elig_NorthShore',
-    4: 'Elig_NorthWestern',
-    5: 'Elig_Rush',
-    6: 'Elig_UCMC'
-}
-def get_in_network_eligibility(system_id):
+def get_insurance_by_plan_id(plan_id):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            table_name = elig_system_id_to_table_mapping.get(system_id)
-            if not table_name:
-                return []
-
-            sql = f"SELECT * FROM {table_name} WHERE InNetwork = 1"
-            cursor.execute(sql)
-            results = [dict(zip([column[0] for column in cursor.description], row)) for row in cursor.fetchall()]
-            return results
-    except pyodbc.Error as e:
-        return []
-    finally:
-        conn.close()
-
-        
-        
-
-
-def get_insurance_plan_details(plan_id):
-    conn = get_connection()
-    try:
-        with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM InsurancePlans WHERE PlanID = ?", (plan_id,))
+            query = "SELECT * FROM InsurancePlans WHERE PlanID = ?"
+            cursor.execute(query, (plan_id,))
             columns = [column[0] for column in cursor.description]
             result = cursor.fetchone()
             if result:
@@ -221,11 +187,6 @@ def get_insurance_plan_details(plan_id):
                 return None
     finally:
         conn.close()
-
-
-
-
-
 
 
 
@@ -259,6 +220,20 @@ def get_insurance_plans(system_id=None, location_id=None):
 
 
 
+def get_insurance_plan_details(plan_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM InsurancePlans WHERE PlanID = ?", (plan_id,))
+            columns = [column[0] for column in cursor.description]
+            result = cursor.fetchone()
+            if result:
+                return dict(zip(columns, result))
+            else:
+                return None
+    finally:
+        conn.close()
+
 
 def get_insurance_types():
     conn = get_connection()
@@ -268,6 +243,70 @@ def get_insurance_types():
             columns = [column[0] for column in cursor.description]
             results = [dict(zip(columns, row)) for row in cursor.fetchall()]
             return results
+    finally:
+        conn.close()
+
+def get_insurance_type_by_id(insurance_type_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM InsuranceTypes WHERE InsuranceTypeID = ?", (insurance_type_id,))
+            columns = [column[0] for column in cursor.description]
+            result = cursor.fetchone()
+            if result:
+                return dict(zip(columns, result))
+            return None
+    finally:
+        conn.close()
+
+
+elig_system_id_to_table_mapping = {
+    1: 'Elig_Advocate',
+    2: 'Elig_LoyolaIns',
+    3: 'Elig_NorthShore',
+    4: 'Elig_NorthWestern',
+    5: 'Elig_Rush',
+    6: 'Elig_UCMC'
+}
+def get_in_network_eligibility(system_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            table_name = elig_system_id_to_table_mapping.get(system_id)
+            if not table_name:
+                return []
+
+            sql = f"SELECT * FROM {table_name} WHERE InNetwork = 1"
+            cursor.execute(sql)
+            results = [dict(zip([column[0] for column in cursor.description], row)) for row in cursor.fetchall()]
+            return results
+    except pyodbc.Error as e:
+        return []
+    finally:
+        conn.close()
+
+
+def get_all_carriers():
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM Carriers")
+            columns = [column[0] for column in cursor.description]
+            carriers = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return carriers
+    finally:
+        conn.close()
+
+def get_carrier_by_id(carrier_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM Carriers WHERE CarrierID = ?", (carrier_id,))
+            columns = [column[0] for column in cursor.description]
+            carrier = cursor.fetchone()
+            if carrier:
+                return dict(zip(columns, carrier))
+            return None
     finally:
         conn.close()
 
@@ -297,43 +336,40 @@ def get_charge_data(system_id, location_id=None):
     finally:
         conn.close()
 
-def get_all_insurance_plans():
+
+def get_insurance_plans_by_carrier_id(carrier_id):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM InsurancePlans")
+            query = "SELECT * FROM InsurancePlans WHERE CarrierID = ?"
+            cursor.execute(query, (carrier_id,))
             columns = [column[0] for column in cursor.description]
-            plans = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            return plans
-    except pyodbc.Error as e:
-        print(f"Database error: {e}")
-        return []
+            results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return results
     finally:
         conn.close()
 
-
-
-def get_all_carriers():
+def get_insurance_info_by_carrier(carrier_id):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM Carriers")
+            query = """
+            SELECT 
+                Carriers.*, 
+                InsurancePlans.*, 
+                InsuranceTypes.*
+            FROM 
+                Carriers
+            JOIN 
+                InsurancePlans ON Carriers.CarrierID = InsurancePlans.CarrierID
+            JOIN 
+                InsuranceTypes ON InsurancePlans.InsuranceTypeID = InsuranceTypes.InsuranceTypeID
+            WHERE 
+                Carriers.CarrierID = ?
+            """
+            cursor.execute(query, (carrier_id,))
             columns = [column[0] for column in cursor.description]
-            carriers = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            return carriers
+            results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return results
     finally:
         conn.close()
-
-def get_carrier_by_id(carrier_id):
-    conn = get_connection()
-    try:
-        with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM Carriers WHERE CarrierID = ?", (carrier_id,))
-            columns = [column[0] for column in cursor.description]
-            carrier = cursor.fetchone()
-            if carrier:
-                return dict(zip(columns, carrier))
-            return None
-    finally:
-        conn.close()
-

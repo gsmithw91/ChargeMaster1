@@ -6,20 +6,21 @@ from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
 
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,get_insurances_by_system_id,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
-from flask import Blueprint, jsonify, request   
+from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
+from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
 
 
 
 charge_models_mapping = {
-    1: AdvocateCharges,
-    2: LoyolaCDMCharges,
-    3: NorthshoreCharges,
-    4: NorthwesternCharges,
-    5: RushCharges,
-    6: UCMCCharges
+    1: AdvocateCharges, # a5a7d4
+    2: LoyolaCDMCharges, #a30046
+    3: NorthshoreCharges, # 2361fd
+    4: NorthwesternCharges, # 63599e
+    5: RushCharges, # 006937
+    6: UCMCCharges # 800000
 }
+
 
 System_ID_Mapping_Table =  {
     1:'Elig_Advocate',
@@ -32,15 +33,10 @@ System_ID_Mapping_Table =  {
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
-
-
 @api.route('/', methods=['POST'])
 def handle_post():
     # Your logic for handling POST requests
     return jsonify({"message": "POST request handled"}), 200
-
-
-
 
 @api.route('/columns/<table_name>', methods=['GET'])
 def get_columns_from_table(table_name):
@@ -53,9 +49,6 @@ def get_columns_from_table(table_name):
             return jsonify({"error": "Table not found or no columns available"}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-
 
 
 @api.route('/systems', methods=['GET'])
@@ -72,7 +65,6 @@ def get_systems():
     except Exception as e:
         api_logger.error(f"An error occurred while fetching systems: {e}")
         return jsonify({"error": "An error occurred"}), 500
-
 
 
 @api.route('/systems/<int:system_id>', methods=['GET'])
@@ -127,7 +119,6 @@ def get_location_details_route(location_id):
         return jsonify({"error": "Location not found"}), 404
 
 
-
 @api.route('/insurances/plans', methods=['GET'])
 def get_all_insurance_plans_route():
     api_logger.info("Fetching all insurance plans")
@@ -142,7 +133,6 @@ def get_all_insurance_plans_route():
         return jsonify({"error": "An error occurred"}), 500
 
 
-
 @api.route('/insurances/plan-types', methods=['GET'])
 def insurance_plan_types():
     api_logger.info("Fetching all insurance types")
@@ -153,7 +143,6 @@ def insurance_plan_types():
     except ValidationError as e:
         api_logger.error(f"Data validation error for insurance types: {e}")
         return jsonify({"error": "Invalid data format"}), 500
-
 
 @api.route('/insurances/plans/plan/<int:plan_id>', methods=['GET'])
 def insurance_plan_details(plan_id):
@@ -196,8 +185,6 @@ def get_carrier(carrier_id):
         api_logger.error(f"An error occurred while fetching the carrier: {e}")
         return jsonify({"error": "An error occurred"}), 500
 
-
-
 @api.route('/eligibility/in-network/<int:system_id>', methods=['GET'])
 def get_in_network_eligibility_route(system_id):
     try:
@@ -207,9 +194,6 @@ def get_in_network_eligibility_route(system_id):
     except Exception as e:
         api_logger.error(f"An error occurred while fetching in-network eligibility for system ID {system_id}: {e}")
         return jsonify({"error": "An error occurred"}), 500
-
-
-
 
 @api.route('/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
 @api.route('/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
@@ -228,3 +212,46 @@ def get_charges(system_id, location_id):
         api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
         return jsonify({"error": str(e)}), 500
 
+
+
+
+@api.route('/react/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
+@api.route('/react/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
+@api.route('/react/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
+def get_charges_for_react(system_id, location_id):
+    api_logger.info(f"Fetching charges for React App - System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}")
+
+    try:
+        charge_data, _ = get_charge_data(system_id, location_id)
+        if charge_data:
+            return jsonify(charge_data)
+        else:
+            api_logger.error(f"No charge data found for System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}")
+            return jsonify({"error": "Charge data not found"}), 404
+    except Exception as e:
+        api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
+
+
+@api.route('/process-chargesheet', methods=['POST'])
+def process_chargesheet():
+    data = request.json
+    # Process the data and store it (e.g., in the session)
+    session['chargesheet_data'] = data
+    # Return a response that indicates where to redirect
+    return jsonify({'redirect_url': url_for('web.display_chargesheet')})
+
+
+def omit_nulls(charge_dict):
+    """
+    Remove keys with null values from a charge dictionary.
+    
+    Args:
+        charge_dict (dict): A dictionary representing a charge, potentially containing null values.
+    
+    Returns:
+        dict: A new dictionary with all null values removed.
+    """
+    return {k: v for k, v in charge_dict.items() if v is not None}

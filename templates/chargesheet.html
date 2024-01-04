@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chargesheet</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <h1>Chargesheet</h1>
+      <div class="grid-container">
+        <!-- Left grid: Charges -->
+        <div class="charges-grid">
+          {% for charge in chargesheet_data %}
+          <div
+            class="charge-item"
+            style="background-color: {{ charge['color'] }}"
+          >
+            {% for key, value in charge.items() %} {% if key not in ['SystemID',
+            'LocationID', 'CodeID', 'Type', 'color'] %}
+            <div><strong>{{ key }}:</strong> {{ value }}</div>
+            {% endif %} {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+        <!-- Right grid: Summary (empty for now) -->
+        <div class="summary-info">
+          <!-- Summary information will go here -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
