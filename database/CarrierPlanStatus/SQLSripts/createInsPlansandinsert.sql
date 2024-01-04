@@ -1,18 +1,3 @@
-USE ChargeMasterDB;
-GO
-
-
--- Create the new table
-CREATE TABLE InsurancePlans (
-    PlanID INT NOT NULL,
-    InsuranceTypeID INT,
-    CarrierName NVARCHAR(255),
-    CarrierID INT,
-    PlanName NVARCHAR(255),
-    CONSTRAINT PK_InsurancePlans PRIMARY KEY (PlanID),
-    CONSTRAINT FK_InsurancePlans_InsuranceTypes FOREIGN KEY (InsuranceTypeID)
-        REFERENCES InsuranceTypes (InsuranceTypeID)
-);
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('1', '3', 'Blue Cross Blue Shield', '3', 'Blue Choice Preferred Bronze PPO 201');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('2', '3', 'Blue Cross Blue Shield', '3', 'Blue Choice Preferred Bronze PPO 202');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('3', '1', 'Blue Cross Blue Shield', '3', 'Blue Choice Preferred Bronze PPO 302');
@@ -28,16 +13,16 @@ INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, Pla
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('13', '1', 'Blue Cross Blue Shield', '3', 'Blue Choice Preferred Silver PPO 706');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('14', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Advantage HMO');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('15', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield – Blue Advantage HMO');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('16', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Advantage HMO (Patient must have a referral for services)');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('17', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Advantage HMO (Patients must have a referral for services)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('16', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Advantage HMO ');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('17', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Advantage HMO ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('18', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield – Blue Choice Options');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('19', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Choice Options (Tier 1)');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('20', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Choice Options (Tier 1) (Patient must have a referral for services)');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('21', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Choice Options (Tier 1) (Patients must have a referral for services)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('20', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Choice Options (Tier 1) ');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('21', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Choice Options (Tier 1) ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('22', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - Blue Choice PPO');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('23', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - HMOI');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('24', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - HMOI (Medical Group/IPA Information in Legend below)');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('25', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield – HMOI (Medical Group/IPA Information in Legend below)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('24', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - HMOI ');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('25', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield – HMOI ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('26', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield – HMOI ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('27', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - HMOI ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('28', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - PPO');
@@ -83,17 +68,17 @@ INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, Pla
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('68', '1', 'Aetna', '1', 'Aetna Open Access Elect Choice');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('69', '1', 'Aetna', '1', 'Aetna Open Access HMO');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('70', '1', 'Aetna', '1', 'Aetna Open Access Managed Choice');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('71', '1', 'Aetna', '1', 'Aetna Open Choice PPO (including, but not limited to Aetna Signature Administrators® and Open Choice)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('71', '1', 'Aetna', '1', 'Aetna Open Choice PPO ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('72', '1', 'Aetna', '1', 'Aetna Performance Network');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('73', '1', 'Aetna', '1', 'Aetna Performance Network (Tier 2)');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('74', '1', 'Aetna', '1', 'Aetna Premier Care Network');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('75', '1', 'Aetna', '1', 'Aetna Premier Care Network (contact your insurance company)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('75', '1', 'Aetna', '1', 'Aetna Premier Care Network ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('76', '1', 'Aetna', '1', 'Aetna Premier Care Network Plus');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('77', '1', 'Aetna', '1', 'Aetna Premier Care Network Plus (contact your insurance company)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('77', '1', 'Aetna', '1', 'Aetna Premier Care Network Plus ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('78', '1', 'Aetna', '1', 'Aetna Prime HMO-POS');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('79', '1', 'Aetna', '1', 'Aetna QPOS');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('80', '1', 'Aetna', '1', 'Aetna Savings Plus');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('81', '1', 'Aetna', '1', 'Aetna Savings Plus (Services for Delnor Hospital physicians only)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('81', '1', 'Aetna', '1', 'Aetna Savings Plus ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('82', '1', 'Aetna', '1', 'Aetna Savings Plus (Tier 2)');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('83', '1', 'Aetna', '1', 'Aetna Savings Plus (Tier 2)br />');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('84', '1', 'Aetna', '1', 'Aetna Select');
@@ -103,7 +88,6 @@ INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, Pla
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('88', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('89', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield - HMO');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('90', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield – HMO');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('91', '1', 'Blue Cross Blue Shield', '3', 'Blue Cross Blue Shield of Illinois HMO Plans associated with Northwestern Medicine include:');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('92', '2', 'CHAMPUS', '16', 'CHAMPUS');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('93', '1', 'Cigna', '4', 'Cigna - Choice Fund Open Access Plus');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('94', '1', 'Cigna', '4', 'Cigna – Choice Fund Open Access Plus');
@@ -263,12 +247,12 @@ INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, Pla
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('248', '1', 'United', '21', 'United Healthcare – HMO');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('249', '1', 'United', '21', 'United Healthcare - HMO Plus');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('250', '1', 'United', '21', 'United Healthcare – HMO Plus');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('251', '1', 'United', '21', 'United Healthcare - HMO Plus (Patients must have a referral for services)');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('252', '1', 'United', '21', 'United Healthcare - HMO (Patients must have a referral for services)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('251', '1', 'United', '21', 'United Healthcare - HMO Plus ');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('252', '1', 'United', '21', 'United Healthcare - HMO ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('253', '1', 'United', '21', 'United Healthcare - Navigate');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('254', '1', 'United', '21', 'United Healthcare – Navigate');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('255', '1', 'United', '21', 'United Healthcare – Open Access');
-INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('256', '1', 'United', '21', 'United Healthcare - Open Access (Patients must have a referral for services)');
+INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('256', '1', 'United', '21', 'United Healthcare - Open Access ');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('257', '1', 'United', '21', 'United Healthcare - Options PPO');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('258', '1', 'United', '21', 'United Healthcare – Options PPO');
 INSERT INTO InsurancePlans (PlanID, InsuranceTypeID, CarrierName, CarrierID, PlanName) VALUES ('259', '1', 'United', '21', 'United Healthcare - Select');

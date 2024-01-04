@@ -1,10 +1,11 @@
 from pydantic import ValidationError 
 from backend.database.db_helpers import get_insurance_info_by_carrier, get_insurance_type_by_id,get_insurance_by_plan_id, get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types, get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
+from backend.database.elig_db_helpers import get_all_elig_records, get_elig_records_by_location
 from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
 import pandas as pd
 
-
+#Create models for Eligibility response
 
 elig_api = Blueprint('elig_api', __name__, url_prefix='/react/eligibility')
 
@@ -138,3 +139,26 @@ def get_insurance_plans_for_carrier(carrier_id):
     """
     insurance_plans = get_insurance_plans_by_carrier_id(carrier_id)
     return jsonify(insurance_plans)
+
+
+
+@elig_api.route('/eligibility/all/<int:system_id>', methods=['GET'])
+def get_all_eligibility_records(system_id):
+    api_logger.info(f'Fetching all eligibility records for system ID: {system_id}')
+    try:
+        records = get_all_elig_records(system_id)
+        return jsonify(records)
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching eligibility records: {e}")
+        return jsonify({"error": "An error occurred while fetching eligibility records"}), 500
+
+
+@elig_api.route('/eligibility/filter/<int:system_id>/<int:location_id>', methods=['GET'])
+def get_eligibility_records_filtered(system_id, location_id):
+    api_logger.info(f"Fetching filtered eligibility records for system ID: {system_id} and location ID: {location_id}")
+    try:
+        filtered_records = get_elig_records_by_location(system_id, location_id)
+        return jsonify(filtered_records)
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching filtered eligibility records: {e}")
+        return jsonify({"error": "An error occurred while fetching filtered eligibility records"}), 500
