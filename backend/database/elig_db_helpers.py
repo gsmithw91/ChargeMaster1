@@ -91,3 +91,18 @@ def get_network_info_by_plan_id(plan_id):
             continue
 
     return results
+
+
+def get_location_details(location_id):
+    conn = get_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT * FROM HospitalLocation WHERE LocationID = ?", (location_id,))
+            columns = [column[0] for column in cursor.description]
+            results = cursor.fetchone()  # Assuming LocationID is unique and only one record is returned
+            if results:
+                return dict(zip(columns, results))
+            else:
+                return None
+    finally:
+        conn.close()

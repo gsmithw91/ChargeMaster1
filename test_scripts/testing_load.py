@@ -22,9 +22,10 @@ endpoints = [
     'http://127.0.0.1:5000/react/eligibility/insurance-types',
     'http://127.0.0.1:5000/react/eligibility/insurance-types/1',
     'http://127.0.0.1:5000/react/eligibility/insurance-info/carrier/1',
-    'http://127.0.0.1:5000/react/eligibility/records/4',
-    'http://127.0.0.1:5000/react/eligibility/records/4/17',
-    'http://127.0.0.1:5000/react/eligibility/network-info/1'
+    'http://127.0.0.1:5000/react/eligibility/records/system/4/location/17',
+    'http://127.0.0.1:5000/react/eligibility/records/system/4',
+    'http://127.0.0.1:5000/react/eligibility/network-info/1',
+    'http://127.0.0.1:5000/react/locations/details/1'
 ]
 
 

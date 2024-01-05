@@ -1,9 +1,11 @@
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_insurance_info_by_carrier, get_insurance_type_by_id,get_insurance_by_plan_id, get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types, get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
+from backend.database.db_helpers import  get_insurance_info_by_carrier, get_insurance_type_by_id,get_insurance_by_plan_id, get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types, get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
 import pandas as pd
 from backend.models.Eligiibility import Eligible_Insurance
+from backend.database.db_helpers import get_insurance_plans_by_carrier_id 
+from backend.database.elig_db_helpers import get_location_details ,get_all_elig_records, elig_system_id_to_table_mapping, get_network_info_by_plan_id
 
 elig_api = Blueprint('elig_api', __name__, url_prefix='/react/eligibility')
 
@@ -128,7 +130,6 @@ def get_insurance_info(carrier_id):
         return jsonify({"error": "An error occurred while fetching insurance information"}), 500
 
 
-from backend.database.db_helpers import get_insurance_plans_by_carrier_id 
 @elig_api.route('/insurance-plans/<int:carrier_id>', methods=['GET'])
 def get_insurance_plans_for_carrier(carrier_id):
     """
@@ -138,7 +139,6 @@ def get_insurance_plans_for_carrier(carrier_id):
     return jsonify(insurance_plans)
 
 
-from backend.database.elig_db_helpers import get_all_elig_records, elig_system_id_to_table_mapping, get_network_info_by_plan_id
 
 @elig_api.route('/records/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
 @elig_api.route('/records/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
@@ -176,3 +176,19 @@ def network_info(plan_id):
     except Exception as e:
         api_logger.error(f"An error occurred while fetching network information: {e}")
         return jsonify({"error": "An error occurred while fetching network information"}), 500
+    
+@elig_api.route('/location-details/<int:location_id>', methods=['GET'])
+def location_details(location_id):
+    """
+    Endpoint to get details of a specific location by location ID.
+    """
+    api_logger.info(f'Fetching details for location ID: {location_id}')
+    try:
+        location_details = get_location_details(location_id)
+        if location_details:
+            return jsonify(location_details)
+        else:
+            return jsonify({"error": "Location not found"}), 404
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching location details: {e}")
+        return jsonify({"error": "An error occurred while fetching location details"}), 500
