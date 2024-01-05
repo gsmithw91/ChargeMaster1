@@ -128,7 +128,7 @@ def get_insurance_info(carrier_id):
         return jsonify({"error": "An error occurred while fetching insurance information"}), 500
 
 
-from backend.database.db_helpers import get_insurance_plans_by_carrier_id
+from backend.database.db_helpers import get_insurance_plans_by_carrier_id 
 @elig_api.route('/insurance-plans/<int:carrier_id>', methods=['GET'])
 def get_insurance_plans_for_carrier(carrier_id):
     """
@@ -138,7 +138,7 @@ def get_insurance_plans_for_carrier(carrier_id):
     return jsonify(insurance_plans)
 
 
-from backend.database.elig_db_helpers import get_all_elig_records, elig_system_id_to_table_mapping
+from backend.database.elig_db_helpers import get_all_elig_records, elig_system_id_to_table_mapping, get_network_info_by_plan_id
 
 @elig_api.route('/records/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
 @elig_api.route('/records/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
@@ -157,3 +157,22 @@ def records(system_id, location_id):
     
     # Serialize Pydantic models to JSON
     return jsonify([insurance.dict() for insurance in eligible_insurances])
+
+
+
+
+@elig_api.route('/network-info/<int:plan_id>', methods=['GET'])
+def network_info(plan_id):
+    """
+    Endpoint to get network information for a specific plan ID across all eligible systems.
+    """
+    api_logger.info(f'Fetching network info for Plan ID: {plan_id}')
+    try:
+        network_info = get_network_info_by_plan_id(plan_id)
+        if network_info:
+            return jsonify(network_info)
+        else:
+            return jsonify({"error": "No network information found for the specified plan ID"}), 404
+    except Exception as e:
+        api_logger.error(f"An error occurred while fetching network information: {e}")
+        return jsonify({"error": "An error occurred while fetching network information"}), 500

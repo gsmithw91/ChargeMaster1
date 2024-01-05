@@ -70,3 +70,24 @@ def get_all_elig_records(system_id, location_id=None):
         return None
     finally:
         conn.close()
+
+
+def get_network_info_by_plan_id(plan_id):
+    conn = get_connection()
+    results = []
+
+    for system_id, table_name in elig_system_id_to_table_mapping.items():
+        try:
+            with conn.cursor() as cursor:
+                query = f"SELECT SystemID, LocationID FROM {table_name} WHERE PlanID = ? AND InNetwork = 1"
+                cursor.execute(query, (plan_id,))
+
+                # Fetch and structure the data
+                data = [{'SystemID': system_id, 'LocationID': row[1]} for row in cursor.fetchall()]
+                results.extend(data)
+        except pyodbc.Error as e:
+            print(f"Database error in system {system_id}: {e}")
+            # Optionally continue to the next table or break based on your requirement
+            continue
+
+    return results
