@@ -10,5 +10,7 @@ class HospitalLocation(BaseModel):
     State : Optional [str]
     ZipCode : Optional [int]
     Phone : Optional [int]
-
+    BaseURL: Optional [str]
+    ChargesURL: Optional [str]
+    EligURL: Optional [str]
 

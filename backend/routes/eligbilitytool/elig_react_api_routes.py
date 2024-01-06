@@ -177,6 +177,8 @@ def network_info(plan_id):
         api_logger.error(f"An error occurred while fetching network information: {e}")
         return jsonify({"error": "An error occurred while fetching network information"}), 500
     
+    
+    
 @elig_api.route('/location-details/<int:location_id>', methods=['GET'])
 def location_details(location_id):
     """
