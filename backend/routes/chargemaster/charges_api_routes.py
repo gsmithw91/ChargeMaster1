@@ -3,12 +3,11 @@ from backend.models.HospitalLocation import HospitalLocation
 from backend.models.Charges_models import *
 from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
-
 from pydantic import ValidationError 
 from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
-
+import os
 
 
 charge_models_mapping = {
@@ -178,3 +177,19 @@ def omit_nulls(charge_dict):
         dict: A new dictionary with all null values removed.
     """
     return {k: v for k, v in charge_dict.items() if v is not None}
+
+@api.route('/json-file', methods=['GET'])
+def get_json_file():
+    try:
+        # Define the path to your JSON file using a relative path
+        json_file_path = os.path.join(os.path.dirname(__file__), 'static', 'schema_charges_elig_endpoints.json')
+        
+        # Check if the file exists
+        if os.path.exists(json_file_path):
+            with open(json_file_path, 'rb') as json_file:
+                json_data = json_file.read()
+                return jsonify(json_data), 200, {'Content-Type': 'application/json'}
+        else:
+            return jsonify({"error": "JSON file not found"}), 404
+    except Exception as e:
+        return jsonify({"error": "An error occurred while serving the JSON file"}), 500

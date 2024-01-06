@@ -14,15 +14,79 @@ endpoints = [
     'https://smithtech.io/api/systems/4',  # Example: Use an actual system_id that exists in your database.
     'https://smithtech.io/api/locations',
     'https://smithtech.io/api/locations/1',  # Example: Use an actual system_id that exists in your database.
-    'https://smithtech.io/api/insurances/plans',
-    'https://smithtech.io/api/insurances/plan-types',
-    'https://smithtech.io/api/insurances/plans/plan/1',  # Example: Use an actual plan_id that exists in your database.
-    'https://smithtech.io/api/eligibility/in-network/1',  # Example: Use an actual system_id that exists in your database.
-    # 'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
-    'https://smithtech.io/api/carriers',
-    'https://smithtech.io/api/carriers/1' # Use an actual carrier_id that exists in your database.
+    'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
+    'https://smithtech.io/react/eligibility/carriers',
+    'https://smithtech.io/react/eligibility/carriers/1',
+    'https://smithtech.io/react/eligibility/carriers/2',
+    'https://smithtech.io/react/eligibility/carriers/3',
+    'https://smithtech.io/react/eligibility/carriers/4',
+    'https://smithtech.io/react/eligibility/carriers/5',
+    'https://smithtech.io/react/eligibility/carriers/6',
+    'https://smithtech.io/react/eligibility/carriers/7',
+    'https://smithtech.io/react/eligibility/insurances',
+    'https://smithtech.io/react/eligibility/insurances/1',
+    'https://smithtech.io/react/eligibility/insurances/2',
+    'https://smithtech.io/react/eligibility/insurances/3',
+    'https://smithtech.io/react/eligibility/insurances/4',
+    'https://smithtech.io/react/eligibility/insurances/5',
+    'https://smithtech.io/react/eligibility/insurances/6',
+    'https://smithtech.io/react/eligibility/insurances/7',
+    'https://smithtech.io/react/eligibility/insurances/8',
+    'https://smithtech.io/react/eligibility/insurances/9',
+    'https://smithtech.io/react/eligibility/insurances/10',
+    'https://smithtech.io/react/eligibility/insurance-types',
+    'https://smithtech.io/react/eligibility/insurance-types/1',
+    'https://smithtech.io/react/eligibility/insurance-types/2',
+    'https://smithtech.io/react/eligibility/insurance-types/3',
+    'https://smithtech.io/react/eligibility/insurance-info/carrier/1',
+    'https://smithtech.io/react/eligibility/insurance-info/carrier/2',
+    'https://smithtech.io/react/eligibility/insurance-info/carrier/3',
+    'https://smithtech.io/react/eligibility/insurance-info/carrier/4',
+    'https://smithtech.io/react/eligibility/insurance-info/carrier/5',
+    'https://smithtech.io/react/eligibility/insurance-info/carrier/6',
+    'https://smithtech.io/react/eligibility/insurance-plans/1',
+    'https://smithtech.io/react/eligibility/insurance-plans/2',
+    'https://smithtech.io/react/eligibility/insurance-plans/3',
+    'https://smithtech.io/react/eligibility/insurance-plans/4',
+    'https://smithtech.io/react/eligibility/insurance-plans/5',
+    'https://smithtech.io/react/eligibility/insurance-plans/6',
+    'https://smithtech.io/react/eligibility/records/system/1',
+    'https://smithtech.io/react/eligibility/records/system/2',
+    'https://smithtech.io/react/eligibility/records/system/3',
+    'https://smithtech.io/react/eligibility/records/system/3',
+    'https://smithtech.io/react/eligibility/records/system/4',
+    'https://smithtech.io/react/eligibility/records/system/4/location/17',
+    'https://smithtech.io/react/eligibility/records/system/4/location/18',
+    'https://smithtech.io/react/eligibility/records/system/4/location/19',
+    'https://smithtech.io/react/eligibility/records/system/4/location/20',
+    'https://smithtech.io/react/eligibility/network-info/1',
+    'https://smithtech.io/react/eligibility/network-info/2',
+    'https://smithtech.io/react/eligibility/network-info/3',
+    'https://smithtech.io/react/eligibility/network-info/4',
+    'https://smithtech.io/react/eligibility/network-info/5',
+    'https://smithtech.io/react/eligibility/network-info/6',
 ]
 
+
+
+convert_to_yaml_for_schema = [
+    'https://smithtech.io/api/systems',
+    'https://smithtech.io/api/systems/4',  # Example: Use an actual system_id that exists in your database.
+    'https://smithtech.io/api/locations',
+    'https://smithtech.io/api/locations/1',  # Example: Use an actual system_id that exists in your database.
+    'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
+    'https://smithtech.io/react/eligibility/carriers',
+    'https://smithtech.io/react/eligibility/carriers/1',
+    'https://smithtech.io/react/eligibility/insurances',
+    'https://smithtech.io/react/eligibility/insurances/1',
+    'https://smithtech.io/react/eligibility/insurance-types',
+    'https://smithtech.io/react/eligibility/insurance-types/1',
+    'https://smithtech.io/react/eligibility/insurance-info/carrier/1',
+    'https://smithtech.io/react/eligibility/insurance-plans/1',
+    'https://smithtech.io/react/eligibility/records/system/1',
+    'https://smithtech.io/react/eligibility/records/system/4/location/17',
+    'https://smithtech.io/react/eligibility/network-info/1',
+]
 
 
 num_requests_per_endpoint = int(input("How many times do you want to test each endpoint? "))
