@@ -1,6 +1,10 @@
 # backend/db_helpers.py
 import pyodbc
 import os 
+from flask import Blueprint, jsonify, request , url_for, session
+from logs.custom_logger import api_logger
+import pandas as pd
+from pydantic import ValidationError 
 
 
 def get_connection():
@@ -29,3 +33,45 @@ def get_connection():
 
     return pyodbc.connect(conn_str)
 
+def get_table_names():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'")
+    table_names = [row[0] for row in cursor.fetchall()]
+    cursor.close()
+    conn.close()
+    return table_names
+
+
+def get_column_names(table_name):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Updated query with table aliases to avoid ambiguity
+    query = f"""
+    SELECT 
+        cols.COLUMN_NAME, 
+        cols.DATA_TYPE, 
+        cols.IS_NULLABLE,
+        cols.COLUMN_DEFAULT,
+        tc.CONSTRAINT_TYPE
+    FROM 
+        INFORMATION_SCHEMA.COLUMNS AS cols
+        LEFT JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE AS ccu ON cols.TABLE_NAME = ccu.TABLE_NAME AND cols.COLUMN_NAME = ccu.COLUMN_NAME
+        LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS tc ON ccu.CONSTRAINT_NAME = tc.CONSTRAINT_NAME AND tc.TABLE_NAME = cols.TABLE_NAME
+    WHERE 
+        cols.TABLE_NAME = N'{table_name}';
+    """
+    
+    cursor.execute(query)
+    columns_info = [{
+        'column_name': row[0], 
+        'data_type': row[1], 
+        'is_nullable': row[2],
+        'default_value': row[3],
+        'constraint_type': row[4]
+    } for row in cursor.fetchall()]
+    
+    cursor.close()
+    conn.close()
+    return columns_info

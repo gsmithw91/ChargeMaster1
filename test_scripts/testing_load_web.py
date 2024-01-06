@@ -65,6 +65,8 @@ endpoints = [
     'https://smithtech.io/react/eligibility/network-info/4',
     'https://smithtech.io/react/eligibility/network-info/5',
     'https://smithtech.io/react/eligibility/network-info/6',
+    'https://smithtech.io/react/db_admin/tables',
+    'https://smithtech.io/react/db_admin/columns/HospitalSystem',
 ]
 
 
