@@ -67,6 +67,13 @@ endpoints = [
     'https://smithtech.io/react/eligibility/network-info/6',
     'https://smithtech.io/db_admin/tables',
     'https://smithtech.io/db_admin/columns/HospitalSystem',
+    'https://smithtech.io/db_admin/columns/HospitalLocation',
+    'https://smithtech.io/db_admin/columns/Charges_Northwestern',
+    'https://smithtech.io/db_admin/columns/Charges_LoyolaCDM',
+    'https://smithtech.io/db_admin/columns/Charges_NorthShore',
+    'https://smithtech.io/db_admin/columns/Charges_Rush',
+    'https://smithtech.io/db_admin/columns/Charges_UCMC',
+    'https://smithtech.io/db_admin/columns/Charges_Advocate',
 ]
 
 

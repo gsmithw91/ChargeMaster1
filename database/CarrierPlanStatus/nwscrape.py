@@ -37,7 +37,7 @@ def scrape_insurance_plans(hospital_url):
         # Find all divs with the class 'panel panel-alt' which contain the insurance info
         panels = soup.find_all('div', class_='panel panel-alt')
         for panel in panels:
-            # Find the Carrier name
+            # Find the Carrier namec
             carrier = panel.find('h3')
             if carrier:
                 carrier_name = carrier.text.strip()
