@@ -135,7 +135,6 @@ def get_locations_by_system_id(system_id):
 
 
 
-
 def get_location_details(location_id):
     conn = get_connection()
     try:
@@ -159,6 +158,7 @@ charges_system_id_to_table_mapping = {
     5: 'Charges_Rush',
     6: 'Charges_UCMC'
 }
+
 def get_all_insurance_plans():
     conn = get_connection()
     try:

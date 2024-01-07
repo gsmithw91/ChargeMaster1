@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+/* Importing Google Font: Roboto */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+=======
 /* Include Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
+>>>>>>> 5b6a4a5c8e0f33cdde4ef2008b98d3c9b85947a2
 
 /* Reset and base styles */
 body,
@@ -15,6 +20,23 @@ footer,
 ul {
   margin: 0;
   padding: 0;
+<<<<<<< HEAD
+  box-sizing: border-box;
+}
+
+/* Body and HTML Styles */
+body,
+html {
+  height: 100%;
+  font-family: "Roboto", sans-serif; /* Roboto font */
+  background: #f5f5f7; /* Light grey background */
+}
+
+/* Main Content Wrapper */
+.content-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+=======
   font-family: "Open Sans", sans-serif;
 }
 
@@ -26,15 +48,23 @@ body {
 }
 
 .container {
+>>>>>>> 5b6a4a5c8e0f33cdde4ef2008b98d3c9b85947a2
   padding: 20px;
   margin: auto; /* Center the container */
 }
 
+<<<<<<< HEAD
+/* Typographic Styles */
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+=======
 /* Header styles */
 header {
   background-color: #007bff;
   color: #fff;
   padding: 20px 0;
+>>>>>>> 5b6a4a5c8e0f33cdde4ef2008b98d3c9b85947a2
   text-align: center;
   margin-bottom: 30px;
 }
@@ -92,6 +122,90 @@ footer {
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
+.label {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 0;
+  padding-left: 10px;
+}
+
+/* Button Styles */
+button {
+  background-color: #326086;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #74babd;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #74babd;
+  transform: translateY(0);
+}
+
+/* Table Styles */
+#charges-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#charges-table th,
+#charges-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+#charges-table thead {
+  background-color: #8eadc7;
+  color: #ffffff;
+}
+
+/* Chargesheet Item Styles */
+.chargesheet-item {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 5px;
+  list-style-type: none;
+}
+
+.charge-info {
+  margin-bottom: 5px;
+}
+
+.charge-key {
+  font-weight: bold;
+}
+
+.charge-value {
+  color: #333;
+}
+
+.remove-charge {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px;
+}
+
+.remove-charge:hover {
+  background-color: #ff4d4d;
+}
+
+/* Responsive Design */
+=======
 .navbar-brand,
 .nav-link {
   color: #fff !important;
@@ -110,6 +224,7 @@ footer {
 }
 
 /* Responsive design */
+>>>>>>> 5b6a4a5c8e0f33cdde4ef2008b98d3c9b85947a2
 @media (max-width: 768px) {
   .btn-hospital,
   .btn-location {
@@ -118,6 +233,50 @@ footer {
   }
 }
 
+<<<<<<< HEAD
+/* DataTable Buttons Styles */
+.dt-buttons .btn-colvis {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.dt-buttons .btn-colvis:hover {
+  background-color: #45a049;
+}
+
+/* Additional Elements and Styles */
+.button-row {
+  margin-bottom: 10px;
+}
+
+.chargesheet-button {
+  margin-right: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.chargesheet-columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+#charges-column,
+#statistics-column {
+  flex: 1;
+  padding: 0 10px;
+}
+
+#charges-column {
+  max-width: 50%;
+}
+
+#statistics-column {
+  /* Add specific styles for the statistics column here */
+=======
 /* Chargesheet container */
 #chargesheetContainer {
   background-color: #fff;
@@ -198,4 +357,18 @@ footer {
 /* Horizontal scrolling for tables */
 #charges-container {
   overflow-x: auto;
+>>>>>>> 5b6a4a5c8e0f33cdde4ef2008b98d3c9b85947a2
 }
+
+/* Interactive Elements */
+a,
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover,
+button:hover {
+  opacity: 0.8;
+}
+
+/* Additional custom styles can be added below */

@@ -1,15 +1,13 @@
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
 from backend.models.Charges_models import *
-from backend.models.Elig_Northwestern import Eligible_Insurance
 from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
-
 from pydantic import ValidationError 
 from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types,  get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
-
+import os
 
 
 charge_models_mapping = {
@@ -119,82 +117,6 @@ def get_location_details_route(location_id):
         return jsonify({"error": "Location not found"}), 404
 
 
-@api.route('/insurances/plans', methods=['GET'])
-def get_all_insurance_plans_route():
-    api_logger.info("Fetching all insurance plans")
-    try:
-        plans = get_all_insurance_plans()  # Call the function that actually fetches the plans
-        return jsonify([Insurance_Plan(**plan).dict() for plan in plans])
-    except ValidationError as e:
-        api_logger.error(f"Data validation error for insurance plans: {e}")
-        return jsonify({"error": "Invalid data format"}), 500
-    except Exception as e:
-        api_logger.error(f"An unexpected error occurred while fetching insurance plans: {e}")
-        return jsonify({"error": "An error occurred"}), 500
-
-
-@api.route('/insurances/plan-types', methods=['GET'])
-def insurance_plan_types():
-    api_logger.info("Fetching all insurance types")
-    types = get_insurance_types()
-
-    try:
-        return jsonify([Insurance_Type(**type_).dict() for type_ in types])
-    except ValidationError as e:
-        api_logger.error(f"Data validation error for insurance types: {e}")
-        return jsonify({"error": "Invalid data format"}), 500
-
-@api.route('/insurances/plans/plan/<int:plan_id>', methods=['GET'])
-def insurance_plan_details(plan_id):
-    api_logger.info(f"Fetching insurance plan details for plan ID: {plan_id}")
-
-    plan_details = get_insurance_plan_details(plan_id)
-    
-    if plan_details:
-        try:
-            insurance_plan = Insurance_Plan(**plan_details)
-            return jsonify(insurance_plan.dict())
-        except ValidationError as e:
-            api_logger.error(f"Data validation error for insurance plan details: {e}")
-            return jsonify({"error": "Invalid data format"}), 500
-    else:
-        api_logger.error(f"Insurance plan not found for plan ID: {plan_id}")
-        return jsonify({"error": "Insurance plan not found"}), 404
-
-@api.route('/carriers', methods=['GET'])
-def get_carriers():
-    api_logger.info("Fetching all carriers.")
-    try:
-        carriers = get_all_carriers()
-        return jsonify(carriers)
-    except Exception as e:
-        api_logger.error(f"An error occurred while fetching carriers: {e}")
-        return jsonify({"error": "An error occurred"}), 500
-
-@api.route('/carriers/<int:carrier_id>', methods=['GET'])
-def get_carrier(carrier_id):
-    api_logger.info(f"Fetching carrier with ID: {carrier_id}")
-    try:
-        carrier = get_carrier_by_id(carrier_id)
-        if carrier:
-            return jsonify(carrier)
-        else:
-            api_logger.error(f"Carrier with ID {carrier_id} not found.")
-            return jsonify({"error": "Carrier not found"}), 404
-    except Exception as e:
-        api_logger.error(f"An error occurred while fetching the carrier: {e}")
-        return jsonify({"error": "An error occurred"}), 500
-
-@api.route('/eligibility/in-network/<int:system_id>', methods=['GET'])
-def get_in_network_eligibility_route(system_id):
-    try:
-        api_logger.info(f"Fetching in-network eligibility for system ID: {system_id}")
-        eligibility_data = get_in_network_eligibility(system_id)
-        return jsonify(eligibility_data)
-    except Exception as e:
-        api_logger.error(f"An error occurred while fetching in-network eligibility for system ID {system_id}: {e}")
-        return jsonify({"error": "An error occurred"}), 500
-
 @api.route('/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
 @api.route('/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
 @api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
@@ -255,3 +177,19 @@ def omit_nulls(charge_dict):
         dict: A new dictionary with all null values removed.
     """
     return {k: v for k, v in charge_dict.items() if v is not None}
+
+@api.route('/json-file', methods=['GET'])
+def get_json_file():
+    try:
+        # Define the path to your JSON file using a relative path
+        json_file_path = os.path.join(os.path.dirname(__file__), 'static', 'schema_charges_elig_endpoints.json')
+        
+        # Check if the file exists
+        if os.path.exists(json_file_path):
+            with open(json_file_path, 'rb') as json_file:
+                json_data = json_file.read()
+                return jsonify(json_data), 200, {'Content-Type': 'application/json'}
+        else:
+            return jsonify({"error": "JSON file not found"}), 404
+    except Exception as e:
+        return jsonify({"error": "An error occurred while serving the JSON file"}), 500

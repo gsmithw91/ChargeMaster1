@@ -1,5 +1,5 @@
 # backend/routes/web_routes.py
-from flask import Blueprint, render_template, request, json, session
+from flask import Blueprint, render_template, request, json, session, jsonify, send_from_directory
 from backend.database.db_helpers import get_filtered_data
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
@@ -40,3 +40,4 @@ def display_chargesheet():
     # Optionally, you can clear the data from the session after using it
     # session.pop('chargesheet_data', None)
     return render_template('chargesheet.html', chargesheet_data=chargesheet_data)
+

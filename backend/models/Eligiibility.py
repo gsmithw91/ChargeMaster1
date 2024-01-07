@@ -6,7 +6,9 @@ class Eligible_Insurance(BaseModel):
     SystemID : Optional[int]
     LocationID : Optional[int]
     InsuranceTypeID : Optional[int]
-    Carrier : Optional[str]
+    CarrierName : Optional[str]
+    CarrierID : Optional[int]   
     InNetwork : Optional[int]
-    EligibilityYear : Optional[int]
     PlanName : Optional[str]
+    PlanID : Optional[int]
+    

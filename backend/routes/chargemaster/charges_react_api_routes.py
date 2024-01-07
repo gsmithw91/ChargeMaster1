@@ -1,7 +1,6 @@
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
 from backend.models.Charges_models import *
-from backend.models.Elig_Northwestern import Eligible_Insurance
 from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
 
