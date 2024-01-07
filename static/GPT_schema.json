@@ -213,8 +213,8 @@
     },
     "/react/eligibility/insurance-info/carrier/{carrier_id}": {
       "get": {
-        "description": "Get insurance information for a specific carrier",
-        "operationId": "GetCarrierInsuranceInfo",
+        "description": "Get insurance list for a specific carrier",
+        "operationId": "GetCarrierInsuranceList",
         "parameters": [
           {
             "name": "carrier_id",
@@ -307,13 +307,13 @@
         "deprecated": false
       }
     },
-    "/react/eligibility/network-info/{network_id}": {
+    "/react/eligibility/network-info/{plan_id}": {
       "get": {
-        "description": "Get network information for a specific ID",
+        "description": "Get network information for a specific PlanID",
         "operationId": "GetNetworkInformation",
         "parameters": [
           {
-            "name": "network_id",
+            "name": "plan_id",
             "in": "path",
             "required": true,
             "schema": {
