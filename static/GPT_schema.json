@@ -1,0 +1,370 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SmithTech Eligibility and Systems API",
+    "description": "API for handling systems, locations, charges, and various eligibility endpoints in SmithTech.",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://smithtech.io"
+    }
+  ],
+  "paths": {
+    "/api/systems": {
+      "get": {
+        "description": "Get a list of all systems",
+        "operationId": "GetAllSystems",
+        "responses": {
+          "200": {
+            "description": "A list of systems"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/systems/{system_id}": {
+      "get": {
+        "description": "Get details of a specific system",
+        "operationId": "GetSystemDetails",
+        "parameters": [
+          {
+            "name": "system_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the system"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/locations": {
+      "get": {
+        "description": "Get a list of all locations",
+        "operationId": "GetAllLocations",
+        "responses": {
+          "200": {
+            "description": "A list of locations"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/locations/{location_id}": {
+      "get": {
+        "description": "Get details of a specific location",
+        "operationId": "GetLocationDetails",
+        "parameters": [
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the location"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/charges/system/{system_id}/location/{location_id}": {
+      "get": {
+        "description": "Get charge details for a specific system and location",
+        "operationId": "GetSystemLocationCharges",
+        "parameters": [
+          {
+            "name": "system_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Charge details for the specified system and location"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/carriers": {
+      "get": {
+        "description": "Get a list of all carriers",
+        "operationId": "GetAllCarriers",
+        "responses": {
+          "200": {
+            "description": "A list of carriers"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/carriers/{carrier_id}": {
+      "get": {
+        "description": "Get details of a specific carrier",
+        "operationId": "GetCarrierDetails",
+        "parameters": [
+          {
+            "name": "carrier_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the carrier"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/insurances": {
+      "get": {
+        "description": "Get a list of all insurances",
+        "operationId": "GetAllInsurances",
+        "responses": {
+          "200": {
+            "description": "A list of insurances"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/insurances/{insurance_id}": {
+      "get": {
+        "description": "Get details of a specific insurance",
+        "operationId": "GetInsuranceDetails",
+        "parameters": [
+          {
+            "name": "insurance_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the insurance"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/insurance-types": {
+      "get": {
+        "description": "Get a list of all insurance types",
+        "operationId": "GetAllInsuranceTypes",
+        "responses": {
+          "200": {
+            "description": "A list of insurance types"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/insurance-types/{type_id}": {
+      "get": {
+        "description": "Get details of a specific insurance type",
+        "operationId": "GetInsuranceTypeDetails",
+        "parameters": [
+          {
+            "name": "type_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the insurance type"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/insurance-info/carrier/{carrier_id}": {
+      "get": {
+        "description": "Get insurance information for a specific carrier",
+        "operationId": "GetCarrierInsuranceInfo",
+        "parameters": [
+          {
+            "name": "carrier_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Insurance information for the specified carrier"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/insurance-plans/{plan_id}": {
+      "get": {
+        "description": "Get details of a specific insurance plan",
+        "operationId": "GetInsurancePlanDetails",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the insurance plan"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/records/system/{system_id}": {
+      "get": {
+        "description": "Get eligibility records for a specific system",
+        "operationId": "GetSystemEligibilityRecords",
+        "parameters": [
+          {
+            "name": "system_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eligibility records for the specified system"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/records/system/{system_id}/location/{location_id}": {
+      "get": {
+        "description": "Get eligibility records for a specific system and location",
+        "operationId": "GetSystemLocationEligibilityRecords",
+        "parameters": [
+          {
+            "name": "system_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eligibility records for the specified system and location"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/react/eligibility/network-info/{network_id}": {
+      "get": {
+        "description": "Get network information for a specific ID",
+        "operationId": "GetNetworkInformation",
+        "parameters": [
+          {
+            "name": "network_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Network information for the specified ID"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/db_admin/tables": {
+      "get": {
+        "description": "Get a list of all database tables",
+        "operationId": "GetAllDatabaseTables",
+        "responses": {
+          "200": {
+            "description": "A list of database tables"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/db_admin/columns/{table_name}": {
+      "get": {
+        "description": "Get column details for a specific table",
+        "operationId": "GetTableColumns",
+        "parameters": [
+          {
+            "name": "table_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Column details for the specified table"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

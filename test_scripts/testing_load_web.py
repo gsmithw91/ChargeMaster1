@@ -78,7 +78,7 @@ endpoints = [
 
 
 
-convert_to_yaml_for_schema = [
+convert_to_json_for_schema = [
     'https://smithtech.io/api/systems',
     'https://smithtech.io/api/systems/4',  # Example: Use an actual system_id that exists in your database.
     'https://smithtech.io/api/locations',
@@ -95,6 +95,15 @@ convert_to_yaml_for_schema = [
     'https://smithtech.io/react/eligibility/records/system/1',
     'https://smithtech.io/react/eligibility/records/system/4/location/17',
     'https://smithtech.io/react/eligibility/network-info/1',
+    'https://smithtech.io/db_admin/tables',
+    'https://smithtech.io/db_admin/columns/HospitalSystem',
+    'https://smithtech.io/db_admin/columns/HospitalLocation',
+    'https://smithtech.io/db_admin/columns/Charges_Northwestern',
+    'https://smithtech.io/db_admin/columns/Charges_LoyolaCDM',
+    'https://smithtech.io/db_admin/columns/Charges_NorthShore',
+    'https://smithtech.io/db_admin/columns/Charges_Rush',
+    'https://smithtech.io/db_admin/columns/Charges_UCMC',
+    'https://smithtech.io/db_admin/columns/Charges_Advocate',
 ]
 
 
