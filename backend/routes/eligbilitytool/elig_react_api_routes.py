@@ -120,22 +120,6 @@ def get_insurance_type(insurance_type_id):
 
 
 
-@elig_api.route('/insurance-info/carrier/<int:carrier_id>', methods=['GET'])
-def get_insurance_info(carrier_id):
-    """
-    Endpoint to get insurance information for a specific carrier.
-    """
-    api_logger.info(f'Fetching insurance info for Carrier ID: {carrier_id}')
-    try:
-        insurance_info = get_insurance_info_by_carrier(carrier_id)
-        if insurance_info:
-            return jsonify(insurance_info)
-        else:
-            return jsonify({"error": "No insurance information found for the specified carrier"}), 404
-    except Exception as e:
-        api_logger.error(f"An error occurred while fetching insurance information: {e}")
-        return jsonify({"error": "An error occurred while fetching insurance information"}), 500
-
 
 @elig_api.route('/insurance-plans/<int:carrier_id>', methods=['GET'])
 def get_insurance_plans_for_carrier(carrier_id):

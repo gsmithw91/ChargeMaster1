@@ -14,7 +14,9 @@ web = Blueprint('web', __name__)
 @web.route('/')
 def index():
     return render_template('index.html')
-
+@web.route('/<path:path>', methods=['GET'])
+def catch_all(path):
+    return redirect('/')
 
 # @web.route('/chargemaster')
 # def chargemaster():
@@ -33,11 +35,4 @@ def index():
 #         # Handle the error as you see fit (e.g., show a custom error page)
 #         return render_template('error.html', error="An error occurred"), 500
 
-
-@web.route('/display-chargesheet', methods=['GET'])
-def display_chargesheet():
-    chargesheet_data = session.get('chargesheet_data')
-    # Optionally, you can clear the data from the session after using it
-    # session.pop('chargesheet_data', None)
-    return render_template('chargesheet.html', chargesheet_data=chargesheet_data)
 

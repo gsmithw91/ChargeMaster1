@@ -86,8 +86,6 @@ convert_to_json_for_schema = [
     'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
     'https://smithtech.io/api/charges/system/4/location/27?filter_value=heart&filter_type=ServiceDescription',
     'https://smithtech.io/api/charges/system/4/location/27?filter_value=lung&filter_type=ServiceDescription',
-    'https://smithtech.io/react/eligibility/carriers',
-    'https://smithtech.io/react/eligibility/carriers/1',
     'https://smithtech.io/react/eligibility/insurances',
     'https://smithtech.io/react/eligibility/insurances/1',
     'https://smithtech.io/react/eligibility/insurance-types',

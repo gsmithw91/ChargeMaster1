@@ -13,358 +13,343 @@
   "paths": {
     "/api/systems": {
       "get": {
-        "description": "Get a list of all systems",
-        "operationId": "GetAllSystems",
+        "description": "This endpoint is a reference table containing the system names and ID for the hospital systems. It should be use whenever a SystemID is needed to be passed into another route",
         "responses": {
           "200": {
-            "description": "A list of systems"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/api/systems/{system_id}": {
+    "/api/systems/<int: SystemID>": {
       "get": {
-        "description": "Get details of a specific system",
-        "operationId": "GetSystemDetails",
-        "parameters": [
-          {
-            "name": "system_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "# Example: Use an actual system_id that exists in your database.",
         "responses": {
           "200": {
-            "description": "Details of the system"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
+      }
+    },
+    "/api/systems/4 :": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
       }
     },
     "/api/locations": {
       "get": {
-        "description": "Get a list of all locations",
-        "operationId": "GetAllLocations",
+        "description": "This endpoint is a reference table containing the location names and ID for the hospital systems. It should be use whenever a LocationID is needed to be passed into another route",
         "responses": {
           "200": {
-            "description": "A list of locations"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/api/locations/{location_id}": {
+    "/api/locations/<int: SystemID>": {
       "get": {
-        "description": "Get details of a specific location",
-        "operationId": "GetLocationDetails",
-        "parameters": [
-          {
-            "name": "location_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "Refers to the locations by a specific SystemID",
         "responses": {
           "200": {
-            "description": "Details of the location"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/api/charges/system/{system_id}/location/{location_id}": {
+    "/api/locations/1": {
       "get": {
-        "description": "Get charge details for a specific system and location",
-        "operationId": "GetSystemLocationCharges",
-        "parameters": [
-          {
-            "name": "system_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "location_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "Example use for location for SystemID = 1",
         "responses": {
           "200": {
-            "description": "Charge details for the specified system and location"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/carriers": {
+    "/api/charges/system/<int: SystemID>/location/<int: LocationID>": {
       "get": {
-        "description": "Get a list of all carriers",
-        "operationId": "GetAllCarriers",
+        "description": "Returns a table for all the charges at system 4 and location 27",
         "responses": {
           "200": {
-            "description": "A list of carriers"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/carriers/{carrier_id}": {
+    "/api/charges/system/4/location/27": {
       "get": {
-        "description": "Get details of a specific carrier",
-        "operationId": "GetCarrierDetails",
-        "parameters": [
-          {
-            "name": "carrier_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "Returns a table for all the charges at system 4 and location 27",
         "responses": {
           "200": {
-            "description": "Details of the carrier"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
     "/react/eligibility/insurances": {
       "get": {
-        "description": "Get a list of all insurances",
-        "operationId": "GetAllInsurances",
+        "description": "This endpoint is a reference table containing the insurance plan names and ID for the hospital systems. It should be use whenever a PlanID needed to be passed into another route",
         "responses": {
           "200": {
-            "description": "A list of insurances"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/insurances/{insurance_id}": {
+    "/react/eligibility/insurances/<int: PlanID>": {
       "get": {
-        "description": "Get details of a specific insurance",
-        "operationId": "GetInsuranceDetails",
-        "parameters": [
-          {
-            "name": "insurance_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "Returns the plan information for given PlanID",
         "responses": {
           "200": {
-            "description": "Details of the insurance"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/insurance-types": {
+    "/react/eligibility/insurances/1": {
       "get": {
-        "description": "Get a list of all insurance types",
-        "operationId": "GetAllInsuranceTypes",
+        "description": "Example use returning CarrierID,CarrierName,InsuranceTypeID, PlanID,PlanN\nhttps://smithtech.io/react/eligibility/insurance-types",
         "responses": {
           "200": {
-            "description": "A list of insurance types"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/insurance-types/{type_id}": {
+    "/react/eligibility/insurance-types/<int: InsuranceTypeID>": {
       "get": {
-        "description": "Get details of a specific insurance type",
-        "operationId": "GetInsuranceTypeDetails",
-        "parameters": [
-          {
-            "name": "type_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "returns information regarding a specific InsuranceTypeID, returns InsuranceTypeID and InsuranceType",
         "responses": {
           "200": {
-            "description": "Details of the insurance type"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/insurance-info/carrier/{carrier_id}": {
+    "/react/eligibility/insurance-types/1": {
       "get": {
-        "description": "Get insurance list for a specific carrier",
-        "operationId": "GetCarrierInsuranceList",
-        "parameters": [
-          {
-            "name": "carrier_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "#example use passing InsuranceTypeID",
         "responses": {
           "200": {
-            "description": "Insurance information for the specified carrier"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/insurance-plans/{carrier_id}": {
+    "/react/eligibility/insurance-plans/<int: CarrierID>": {
       "get": {
-        "description": "Get the plans that a specific carrier offers ",
-        "operationId": "GetInsurancePlanDetails",
-        "parameters": [
-          {
-            "name": "plan_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "This route returns the all of the plans for a specific carrierreturns list of plans with CarrierID,CarrierName,InsuranceTypeID, PlanID, PlanName",
         "responses": {
           "200": {
-            "description": "Details of the insurance plan"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/records/system/{system_id}": {
+    "/react/eligibility/insurance-plans/1": {
       "get": {
-        "description": "Get eligibility records for a specific system",
-        "operationId": "GetSystemEligibilityRecords",
-        "parameters": [
-          {
-            "name": "system_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "Example use returns eligible SystemID and LocationID for a given planID",
         "responses": {
           "200": {
-            "description": "Eligibility records for the specified system"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/records/system/{system_id}/location/{location_id}": {
+    "/react/eligibility/records/system/<int: SystemID>": {
       "get": {
-        "description": "Get eligibility records for a specific system and location",
-        "operationId": "GetSystemLocationEligibilityRecords",
-        "parameters": [
-          {
-            "name": "system_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "location_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "Returns in-network plans for a given SystemID",
         "responses": {
           "200": {
-            "description": "Eligibility records for the specified system and location"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/react/eligibility/network-info/{plan_id}": {
+    "/react/eligibility/records/system/4": {
       "get": {
-        "description": "Get network information for a specific PlanID",
-        "operationId": "GetNetworkInformation",
-        "parameters": [
-          {
-            "name": "plan_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "description": "Returns in-network providers for a specific SystemID",
         "responses": {
           "200": {
-            "description": "Network information for the specified ID"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
+      }
+    },
+    "/react/eligibility/records/system/<int: SystemID>/location/<int: LocationID>": {
+      "get": {
+        "description": "Returns in-network providers for a specific SystemID and LocationID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/records/system/4/location/17": {
+      "get": {
+        "description": "Returns in-network providers for LocationID =17 and SystemID =4",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/network-info/<int: PlanID>": {
+      "get": {
+        "description": "Returns in-network plan list for a specific PlanID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/network-info/1": {
+      "get": {
+        "description": "Returns list of in network locations for given PlanID, returns\na list of LocationID and SystemID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
       }
     },
     "/db_admin/tables": {
       "get": {
-        "description": "Get a list of all database tables",
-        "operationId": "GetAllDatabaseTables",
+        "description": "Returns all the table in the database",
         "responses": {
           "200": {
-            "description": "A list of database tables"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
       }
     },
-    "/db_admin/columns/{table_name}": {
+    "/db_admin/columns/HospitalSystem": {
       "get": {
-        "description": "Get column details for a specific table",
-        "operationId": "GetTableColumns",
-        "parameters": [
-          {
-            "name": "table_name",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Refrences the columsn in the Hospital System table",
         "responses": {
           "200": {
-            "description": "Column details for the specified table"
+            "description": "Successful response"
           }
-        },
-        "deprecated": false
+        }
+      }
+    },
+    "/db_admin/columns/HospitalLocation": {
+      "get": {
+        "description": "Refrences the columsn in the HospitalLocation table",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/Charges_Northwestern": {
+      "get": {
+        "description": "Refrences the columsn in the Charges_Northwestern table",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/Charges_LoyolaCDM": {
+      "get": {
+        "description": "Refrences the columsn in the Charges_LoyolaCDM table",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/Charges_NorthShore": {
+      "get": {
+        "description": "Refrences the columsn in the Charges_NorthShore table",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/Charges_Rush": {
+      "get": {
+        "description": "Refrences the columsn in the Charges_Rush table",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/Charges_UCMC :\nRefrences the columsn in the Charges_UCMC table": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/Charges_Advocate": {
+      "get": {
+        "description": "Refrences the columsn in the Charges_Advocate table",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/billingcode/<string: BillingCode>": {
+      "get": {
+        "description": "Searches all charges tables for a BillingCode like \"%{BillingCode}%\"",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/billingcode/99212": {
+      "get": {
+        "description": "is an exmaple of the use that find all charges where the code is like 99212",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/description/<string: description>": {
+      "get": {
+        "description": "Searches all charges tables for a ServiceDescription like \"%{description}%\"",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/description/lung": {
+      "get": {
+        "description": "is an exmaple of the use that find all charges where lung is in the description/",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
       }
     }
-  },
-  "components": {
-    "schemas": {}
   }
 }
