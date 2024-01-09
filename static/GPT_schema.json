@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "SmithTech Eligibility and Systems API",
-    "description": "API for handling systems, locations, charges, and various eligibility endpoints in SmithTech.",
+    "title": "SmithTech Limited API",
+    "description": "Limited API endpoints for SmithTech.",
     "version": "v1.0.0"
   },
   "servers": [
@@ -31,16 +31,6 @@
         }
       }
     },
-    "/api/systems/4 :": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
     "/api/locations": {
       "get": {
         "description": "This endpoint is a reference table containing the location names and ID for the hospital systems. It should be use whenever a LocationID is needed to be passed into another route",
@@ -54,16 +44,6 @@
     "/api/locations/<int: SystemID>": {
       "get": {
         "description": "Refers to the locations by a specific SystemID",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
-    "/api/locations/1": {
-      "get": {
-        "description": "Example use for location for SystemID = 1",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -111,9 +91,9 @@
         }
       }
     },
-    "/react/eligibility/insurances/1": {
+    "/react/eligibility/insurance-types": {
       "get": {
-        "description": "Example use returning CarrierID,CarrierName,InsuranceTypeID, PlanID,PlanN\nhttps://smithtech.io/react/eligibility/insurance-types",
+        "description": "This endpoint is a reference table containing the insurance type names and ID for the hospital systems. It should be use whenever a InsuranceTypeID needed to be passed into another route",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -131,29 +111,9 @@
         }
       }
     },
-    "/react/eligibility/insurance-types/1": {
-      "get": {
-        "description": "#example use passing InsuranceTypeID",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
     "/react/eligibility/insurance-plans/<int: CarrierID>": {
       "get": {
         "description": "This route returns the all of the plans for a specific carrierreturns list of plans with CarrierID,CarrierName,InsuranceTypeID, PlanID, PlanName",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
-    "/react/eligibility/insurance-plans/1": {
-      "get": {
-        "description": "Example use returns eligible SystemID and LocationID for a given planID",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -171,27 +131,7 @@
         }
       }
     },
-    "/react/eligibility/records/system/4": {
-      "get": {
-        "description": "Returns in-network providers for a specific SystemID",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
     "/react/eligibility/records/system/<int: SystemID>/location/<int: LocationID>": {
-      "get": {
-        "description": "Returns in-network providers for a specific SystemID and LocationID",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
-    "/react/eligibility/records/system/4/location/17": {
       "get": {
         "description": "Returns in-network providers for LocationID =17 and SystemID =4",
         "responses": {
@@ -204,16 +144,6 @@
     "/react/eligibility/network-info/<int: PlanID>": {
       "get": {
         "description": "Returns in-network plan list for a specific PlanID",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
-    "/react/eligibility/network-info/1": {
-      "get": {
-        "description": "Returns list of in network locations for given PlanID, returns\na list of LocationID and SystemID",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -291,7 +221,17 @@
         }
       }
     },
-    "/db_admin/columns/Charges_UCMC :\nRefrences the columsn in the Charges_UCMC table": {
+    "/db_admin/columns/Charges_UCMC :": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "Refrences the columsn in the Charges_UCMC table": {
       "get": {
         "description": "",
         "responses": {
