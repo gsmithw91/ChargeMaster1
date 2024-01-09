@@ -310,9 +310,16 @@ def get_carrier_by_id(carrier_id):
     finally:
         conn.close()
 
-
+charges_system_id_to_table_mapping = {
+    1: 'Charges_Advocate',
+    2: 'Charges_LoyolaIns',
+    3: 'Charges_NorthShore',
+    4: 'Charges_NorthWestern',
+    5: 'Charges_Rush',
+    6: 'Charges_UCMC'
+}
         
-def get_charge_data(system_id, location_id=None):
+def get_charge_data(system_id, location_id=None, filter_value=None, filter_type='ServiceDescription'):
     conn = get_connection()
     try:
         with conn.cursor() as cursor:
@@ -324,10 +331,23 @@ def get_charge_data(system_id, location_id=None):
 
             query = f"SELECT * FROM {table_name}"
             params = []
+            conditions = []
 
             if location_id is not None:
-                query += " WHERE LocationID = ?"
+                conditions.append("LocationID = ?")
                 params.append(location_id)
+
+            if filter_value is not None:
+                if filter_type == 'ServiceDescription':
+                    conditions.append("ServiceDescription LIKE ?")
+                elif filter_type == 'BillingCode':
+                    conditions.append("BillingCode LIKE ?")
+                else:
+                    raise ValueError("Invalid filter type. Must be 'ServiceDescription' or 'BillingCode'.")
+                params.append(f"%{filter_value}%")
+
+            if conditions:
+                query += " WHERE " + " AND ".join(conditions)
 
             cursor.execute(query, params)
             columns = [column[0] for column in cursor.description]
@@ -335,6 +355,7 @@ def get_charge_data(system_id, location_id=None):
             return charge_data, columns
     finally:
         conn.close()
+
 
 
 def get_insurance_plans_by_carrier_id(carrier_id):

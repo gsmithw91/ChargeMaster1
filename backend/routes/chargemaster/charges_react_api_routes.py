@@ -73,27 +73,29 @@ def get_location_details_route(location_id):
 
 
 
-@react_api.route('/charges', defaults={'system_id': None, 'location_id': None}, methods=['GET'])
-@react_api.route('/charges/system/<int:system_id>', defaults={'location_id': None}, methods=['GET'])
-@react_api.route('/charges/system/<int:system_id>/location/<int:location_id>', methods=['GET'])
-def get_charges_for_react(system_id, location_id):
-    api_logger.info(f"Received request for charges - System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}")
+@react_api.route('/charges', defaults={'system_id': None, 'location_id': None, 'filter_value': None, 'filter_type': 'ServiceDescription'}, methods=['GET'])
+@react_api.route('/charges/system/<int:system_id>', defaults={'location_id': None, 'filter_value': None, 'filter_type': 'ServiceDescription'}, methods=['GET'])
+@react_api.route('/charges/system/<int:system_id>/location/<int:location_id>', defaults={'filter_value': None, 'filter_type': 'ServiceDescription'}, methods=['GET'])
+def get_charges_for_react(system_id, location_id, filter_value, filter_type):
+    api_logger.info(f"Received request for charges - System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}, Filter: {filter_value or 'none'}, Filter Type: {filter_type}")
+
+    filter_value = request.args.get('filter_value', filter_value)
+    filter_type = request.args.get('filter_type', filter_type)
 
     try:
         # Log the specific query being executed (if applicable)
-        api_logger.info(f"Querying charges data for System ID: {system_id}, Location ID: {location_id}")
-        charge_data, _ = get_charge_data(system_id, location_id)
+        api_logger.info(f"Querying charges data with System ID: {system_id}, Location ID: {location_id}, Filter Value: {filter_value}, Filter Type: {filter_type}")
+        charge_data, _ = get_charge_data(system_id, location_id, filter_value, filter_type)
 
         if charge_data:
-            api_logger.info(f"Found charge data for System ID: {system_id}, Location ID: {location_id}")
+            api_logger.info(f"Found charge data for System ID: {system_id}, Location ID: {location_id}, Filter Value: {filter_value}, Filter Type: {filter_type}")
             return jsonify(charge_data)
         else:
-            api_logger.warning(f"No charge data found for System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}")
+            api_logger.warning(f"No charge data found for System ID: {system_id or 'all'}, Location ID: {location_id or 'all'}, Filter Value: {filter_value or 'none'}, Filter Type: {filter_type}")
             return jsonify({"error": "Charge data not found"}), 404
     except Exception as e:
         api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
         return jsonify({"error": str(e)}), 500
-
 
 
 

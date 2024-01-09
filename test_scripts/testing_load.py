@@ -25,7 +25,9 @@ endpoints = [
     'http://127.0.0.1:5000/react/eligibility/records/system/4/location/17',
     'http://127.0.0.1:5000/react/eligibility/records/system/4',
     'http://127.0.0.1:5000/react/eligibility/network-info/1',
-    'http://127.0.0.1:5000/react/locations/details/1'
+    'http://127.0.0.1:5000/react/locations/details/1',
+    'http://127.0.0.1:5000/apicharges/system/4/location/27?filter_value=heart&filter_type=ServiceDescription',
+    'http://127.0.01:5000/api/charges/system/4/location/27?filter_value=lung&filter_type=ServiceDescription'
 ]
 
 

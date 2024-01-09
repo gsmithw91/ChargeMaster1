@@ -104,6 +104,9 @@ convert_to_json_for_schema = [
     'https://smithtech.io/db_admin/columns/Charges_Rush',
     'https://smithtech.io/db_admin/columns/Charges_UCMC',
     'https://smithtech.io/db_admin/columns/Charges_Advocate',
+    'https://smithtech.io/apicharges/system/4/location/27?filter_value=heart&filter_type=ServiceDescription',
+    'https://smithtech.io/api/charges/system/4/location/27?filter_value=lung&filter_type=ServiceDescription'
+
 ]
 
 

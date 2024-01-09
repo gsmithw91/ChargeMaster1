@@ -233,9 +233,9 @@
         "deprecated": false
       }
     },
-    "/react/eligibility/insurance-plans/{plan_id}": {
+    "/react/eligibility/insurance-plans/{carrier_id}": {
       "get": {
-        "description": "Get details of a specific insurance plan",
+        "description": "Get the plans that a specific carrier offers ",
         "operationId": "GetInsurancePlanDetails",
         "parameters": [
           {
