@@ -5,7 +5,7 @@ from backend.models.InsurancePlan import Insurance_Plan
 from backend.models.InsuranceTypes import Insurance_Type
 
 from pydantic import ValidationError 
-from backend.database.db_helpers import get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types, get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
+from backend.database.db_helpers import   get_all_charges_by_billing_code, get_all_charges_by_description ,  get_column_names_from_table, get_carrier_by_id, get_all_carriers , get_all_insurance_plans,get_in_network_eligibility, get_system_by_id,get_insurance_types, get_insurance_plans, get_charge_data, get_insurance_plan_details, get_filtered_data, get_locations_by_system_id , get_location_details
 from flask import Blueprint, jsonify, request , url_for, session
 from logs.custom_logger import api_logger
 import pandas as pd
@@ -73,6 +73,17 @@ def get_location_details_route(location_id):
 
 
 
+System_ID_Charges_Tables_Mapping = {
+    1:'Charges_Advocate',
+    2:'Charges_LoyolaIns',
+    3:'Charges_Northshore',
+    4:'Charges_Northwestern',
+    5:'Charges_Rush',
+    6:'Charges_UCMC',
+}
+
+
+
 @react_api.route('/charges', defaults={'system_id': None, 'location_id': None, 'filter_value': None, 'filter_type': 'ServiceDescription'}, methods=['GET'])
 @react_api.route('/charges/system/<int:system_id>', defaults={'location_id': None, 'filter_value': None, 'filter_type': 'ServiceDescription'}, methods=['GET'])
 @react_api.route('/charges/system/<int:system_id>/location/<int:location_id>', defaults={'filter_value': None, 'filter_type': 'ServiceDescription'}, methods=['GET'])
@@ -97,17 +108,40 @@ def get_charges_for_react(system_id, location_id, filter_value, filter_type):
         api_logger.error(f"An unexpected error occurred while fetching charge data: {e}")
         return jsonify({"error": str(e)}), 500
 
+@react_api.route('/charges/description/<string:description_search>', methods=['GET'])
+def search_charges_by_description(description_search):
+    print(f"Route called: Searching for charges with description like: {description_search}")
+
+    try:
+        print("Calling get_all_charges_by_description function")
+        charges_data = get_all_charges_by_description(description_search)
+
+        if charges_data:
+            print(f"Data found: {len(charges_data)} records")
+            return jsonify(charges_data)
+        else:
+            print("No data found matching the description")
+            return jsonify({"error": "No charge data found matching the description"}), 404
+
+    except Exception as e:
+        print(f"An error occurred in the route: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
+@react_api.route('/charges/billingcode/<string:billingcode_search>', methods=['GET'])
+def search_charges_by_billing_code(billingcode_search):
+    api_logger.info(f"Searching for charges with billing code like: {billingcode_search}")
 
-System_ID_Charges_Tables_Mapping = {
-    1:'Charges_Advocate',
-    2:'Charges_LoyolaIns',
-    3:'Charges_Northshore',
-    4:'Charges_Northwestern',
-    5:'Charges_Rush',
-    6:'Charges_UCMC',
-}
+    try:
+        charges_data = get_all_charges_by_billing_code(billingcode_search)
+        if charges_data:
+            return jsonify(charges_data)
+        else:
+            return jsonify({"error": "No charge data found matching the billing code"}), 404
+    except Exception as e:
+        api_logger.error(f"An error occurred while searching charges by billing code: {e}")
+        return jsonify({"error": str(e)}), 500
+
 
 @react_api.route('/columns/<int:system_id>', methods=['GET'])
 def get_columns_for_system(system_id):

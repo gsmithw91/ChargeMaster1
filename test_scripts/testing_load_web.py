@@ -84,6 +84,8 @@ convert_to_json_for_schema = [
     'https://smithtech.io/api/locations',
     'https://smithtech.io/api/locations/1',  # Example: Use an actual system_id that exists in your database.
     'https://smithtech.io/api/charges/system/4/location/27',  # Example: Use actual system_id and location_id values.
+    'https://smithtech.io/api/charges/system/4/location/27?filter_value=heart&filter_type=ServiceDescription',
+    'https://smithtech.io/api/charges/system/4/location/27?filter_value=lung&filter_type=ServiceDescription',
     'https://smithtech.io/react/eligibility/carriers',
     'https://smithtech.io/react/eligibility/carriers/1',
     'https://smithtech.io/react/eligibility/insurances',
@@ -104,9 +106,8 @@ convert_to_json_for_schema = [
     'https://smithtech.io/db_admin/columns/Charges_Rush',
     'https://smithtech.io/db_admin/columns/Charges_UCMC',
     'https://smithtech.io/db_admin/columns/Charges_Advocate',
-    'https://smithtech.io/apicharges/system/4/location/27?filter_value=heart&filter_type=ServiceDescription',
-    'https://smithtech.io/api/charges/system/4/location/27?filter_value=lung&filter_type=ServiceDescription'
-
+    'https://smithtech.io/react/charges/billingcode/99212',
+    'https://smithtech.io/react/charges/description/lung',
 ]
 
 

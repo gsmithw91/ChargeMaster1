@@ -357,6 +357,73 @@ def get_charge_data(system_id, location_id=None, filter_value=None, filter_type=
         conn.close()
 
 
+def get_all_charges_by_description(description_search):
+    print(f"Function called: Searching across all tables for description like '{description_search}'")
+    conn = get_connection()
+    all_charges_data = []
+
+    try:
+        with conn.cursor() as cursor:
+            # Iterate through each table in the mapping
+            for system_id, table_name in charges_system_id_to_table_mapping.items():
+                print(f"Querying table: {table_name}")
+                # Construct the SQL query for each table
+                query = f"SELECT *, '{system_id}' as SystemID FROM {table_name} WHERE ServiceDescription LIKE ?"
+                params = [f"%{description_search}%"]
+
+                # Execute the query
+                cursor.execute(query, params)
+                # Fetch the results
+                charge_data = [dict(zip([column[0] for column in cursor.description], row)) for row in cursor.fetchall()]
+                # Append the results from this table to the overall list
+                all_charges_data.extend(charge_data)
+                print(f"Records found in {table_name}: {len(charge_data)}")
+
+    except pyodbc.Error as e:
+        print(f"Database error: {e}")
+    except Exception as e:
+        print(f"General error in get_all_charges_by_description: {e}")
+
+    finally:
+        conn.close()
+
+    return all_charges_data
+
+
+
+def get_all_charges_by_billing_code(filter_value):
+    print(f"Function called: Searching across all tables for billing code like '{filter_value}'")
+    conn = get_connection()
+    all_charges_data = []
+
+    try:
+        with conn.cursor() as cursor:
+            # Iterate through each table in the mapping
+            for system_id, table_name in charges_system_id_to_table_mapping.items():
+                print(f"Querying table: {table_name}")
+                # Construct the SQL query for each table
+                query = f"SELECT *, '{system_id}' as SystemID FROM {table_name} WHERE BillingCode LIKE ?"
+                params = [f"%{filter_value}%"]
+
+                # Execute the query
+                cursor.execute(query, params)
+                # Fetch the results
+                charge_data = [dict(zip([column[0] for column in cursor.description], row)) for row in cursor.fetchall()]
+                # Append the results from this table to the overall list
+                all_charges_data.extend(charge_data)
+                print(f"Records found in {table_name}: {len(charge_data)}")
+
+    except pyodbc.Error as e:
+        print(f"Database error: {e}")
+    except Exception as e:
+        print(f"General error in get_all_charges_by_billing_code: {e}")
+
+    finally:
+        conn.close()
+
+    return all_charges_data
+
+
 
 def get_insurance_plans_by_carrier_id(carrier_id):
     conn = get_connection()
@@ -369,6 +436,8 @@ def get_insurance_plans_by_carrier_id(carrier_id):
             return results
     finally:
         conn.close()
+        
+
 
 def get_insurance_info_by_carrier(carrier_id):
     conn = get_connection()
