@@ -27,7 +27,7 @@ app.register_blueprint(db_admin_api)
 def get_json_file():
     try:
         # Return the JSON file from the static folder
-        return app.send_static_file('GPT_schema.json')
+        return app.send_static_file('smithtech_openapi_with_ids.json')
     except Exception as e:
         return jsonify({"error": "An error occurred while serving the JSON file"}), 500
 

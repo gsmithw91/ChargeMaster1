@@ -1,0 +1,235 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SmithTech Limited API with Operation IDs",
+    "description": "Limited API endpoints for SmithTech with operation IDs.",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://smithtech.io"
+    }
+  ],
+  "paths": {
+    "/api/systems": {
+      "get": {
+        "description": "This endpoint is a reference table containing the system names and ID for the hospital systems. It should be use whenever a SystemID is needed to be passed into another route",
+        "operationId": "getAllSystems",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/systems/<int: SystemID>": {
+      "get": {
+        "description": "# Example: Use an actual system_id that exists in your database.",
+        "operationId": "getSystemBySystemID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/locations": {
+      "get": {
+        "description": "This endpoint is a reference table containing the location names and ID for the hospital systems. It should be use whenever a LocationID is needed to be passed into another route",
+        "operationId": "getAllLocations",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/locations/<int: SystemID>": {
+      "get": {
+        "description": "Refers to the locations by a specific SystemID",
+        "operationId": "getLocatoinsbySystemID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/charges/system/<int: SystemID>/location/<int: LocationID>": {
+      "get": {
+        "description": "Returns a table for all the given SystemID and LocationID",
+        "operationId": "getChargesbySystemIDandLocationID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/insurances": {
+      "get": {
+        "description": "This endpoint is a reference table containing the insurance plan names and ID for the hospital systems. It should be use whenever a PlanID needed to be passed into another route",
+        "operationId": "getAllInsurances",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/insurances/<int: PlanID>": {
+      "get": {
+        "description": "Returns the plan information for given PlanID",
+        "operationId": "getPlanbyPlanID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/insurance-types": {
+      "get": {
+        "description": "This endpoint is a reference table containing the insurance type names and ID for the hospital systems. It should be use whenever a InsuranceTypeID needed to be passed into another route",
+        "operationId": "getInsuranceTypes",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/insurance-types/<int: InsuranceTypeID>": {
+      "get": {
+        "description": "returns information regarding a specific InsuranceTypeID, returns InsuranceTypeID and InsuranceType",
+        "operationId": "getInsuranceTypebyID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/insurance-plans/<int: CarrierID>": {
+      "get": {
+        "description": "This route returns the all of the plans for a specific carrierreturns list of plans with CarrierID,CarrierName,InsuranceTypeID, PlanID, PlanName",
+        "operationId": "getInsurancePlansbyCarrierID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/records/system/<int: SystemID>": {
+      "get": {
+        "description": "Returns in-network plans for a given SystemID",
+        "operationId": "getInNetworkPlansbySystemID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/records/system/<int: SystemID>/location/<int: LocationID>": {
+      "get": {
+        "description": "Returns in-network providers for a given SystemID and LocationID",
+        "operationId": "get13",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/eligibility/network-info/<int: PlanID>": {
+      "get": {
+        "description": "Returns in-network plan list for a specific PlanID",
+        "operationId": "getLocationsInNetworkbyPlanID",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/tables": {
+      "get": {
+        "description": "Returns all the table in the database",
+        "operationId": "getAllTables",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/HospitalSystem": {
+      "get": {
+        "description": "Refrences the columsn in the Hospital System table",
+        "operationId": "GetHospitalSystemColumns",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/db_admin/columns/{table_name}": {
+      "get": {
+        "description": "Refrences the columsn in the given table",
+        "operationId": "getColumnsforTable",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/billingcode/<string: BillingCode>": {
+      "get": {
+        "description": "Searches all charges tables for a BillingCode like \"%{BillingCode}%\"",
+        "operationId": "get25",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/billingcode/99212": {
+      "get": {
+        "description": "is an exmaple of the use that find all charges where the code is like 99212",
+        "operationId": "get26",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/description/<string: description>": {
+      "get": {
+        "description": "Searches all charges tables for a ServiceDescription like \"%{description}%\"",
+        "operationId": "get27",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/react/charges/description/lung": {
+      "get": {
+        "description": "is an exmaple of the use that find all charges where lung is in the description/",
+        "operationId": "get28",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
+}

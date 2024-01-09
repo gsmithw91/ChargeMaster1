@@ -1,5 +1,5 @@
 # backend/routes/web_routes.py
-from flask import Blueprint, render_template, request, json, session, jsonify, send_from_directory
+from flask import Blueprint, render_template, request, json, session, jsonify, send_from_directory, redirect
 from backend.database.db_helpers import get_filtered_data
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
