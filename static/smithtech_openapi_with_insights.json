@@ -13,21 +13,9 @@
   "paths": {
     "/api/systems": {
       "get": {
-        "description": "This endpoint is a reference table containing the system names and ID for the hospital systems. It should be use whenever a SystemID is needed to be passed into another route",
-        "operationId": "getOperation0",
-        "insight": "Endpoint '/api/systems' is designed for This endpoint is a reference table containing the system names and ID for the hospital systems.",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
-    "/api/systems/1": {
-      "get": {
-        "description": "Example Use returns SystemID,SystemName for SystemID = 1,",
-        "operationId": "getOperation1",
-        "insight": "Endpoint '/api/systems/1' is designed for Example Use returns SystemID,SystemName for SystemID = 1,.",
+        "description": "This endpoint is a reference table containing the SystemName and SytemID for the hospital systems. It should be use whenever a SystenName or SystemID is needed  or given by the user. There ar eother routes that require a SystemID and should use this as a  reference table",
+        "operationId": "getSystems",
+        "insight": "Endpoint '/api/systems' is designed as a reference table containing the system names and ID for the hospital systems.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -38,8 +26,8 @@
     "/api/locations": {
       "get": {
         "description": "This endpoint is a reference table containing the location names and ID for the hospital systems. It should be use whenever a LocationID is needed to be passed into another route",
-        "operationId": "getOperation2",
-        "insight": "Endpoint '/api/locations' is designed for This endpoint is a reference table containing the location names and ID for the hospital systems.",
+        "operationId": "getLocations",
+        "insight": "Endpoint '/api/locations' is designed as a reference table containing the LocationName and LocationID for all locations, also contains SystemID, address, URL information.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -47,11 +35,11 @@
         }
       }
     },
-    "/api/locations/2": {
+    "/api/locations/<int: SystemID>": {
       "get": {
-        "description": "Example Use returns LocationID,LocationName for SystemID = 1,",
-        "operationId": "getOperation3",
-        "insight": "Endpoint '/api/locations/2' is designed for Example Use returns LocationID,LocationName for SystemID = 1,.",
+        "description": "This endpoint is a reference table containing the location names and ID for the hospital systems. It should be use whenever a LocationID is needed to be passed into another route",
+        "operationId": "getLocations",
+        "insight": "Endpoint '/api/locations/<int: SystemID>' is designed as a reference table containing the Location information and ID for the given hospital system using SystemID.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -63,7 +51,7 @@
       "get": {
         "description": "This endpoint is a reference table containing the insurance plan names and ID for the hospital systems. It should be use whenever a PlanID needed to be passed into another route",
         "operationId": "getOperation4",
-        "insight": "Endpoint '/react/eligibility/insurances' is designed for This endpoint is a reference table containing the insurance plan names and ID for the hospital systems.",
+        "insight": "Endpoint '/react/eligibility/insurances' is designed for This endpoint is a reference table containing the PlanName PanID for all the Insurance Plans.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -71,11 +59,11 @@
         }
       }
     },
-    "/react/eligibility/insurances/1": {
+    "/react/eligibility/insurances/<int: PlanID>": {
       "get": {
         "description": "Example used to get InsurancePlan information for PlanID = 1",
         "operationId": "getOperation5",
-        "insight": "Endpoint '/react/eligibility/insurances/1' is designed for Example used to get InsurancePlan information for PlanID = 1.",
+        "insight": "Endpoint '/react/eligibility/insurances/<int: PlanID>' is designed for Example used to get InsurancePlan information for the given PlanID.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -87,7 +75,7 @@
       "get": {
         "description": "This endpoint is a reference table containing the insurance type names and ID for the hospital systems. It should be use whenever a InsuranceTypeID needed to be passed into another route",
         "operationId": "getOperation6",
-        "insight": "Endpoint '/react/eligibility/insurance-types' is designed for This endpoint is a reference table containing the insurance type names and ID for the hospital systems.",
+        "insight": "Endpoint '/react/eligibility/insurance-types' is  reference table containing the InsurancyTypeID, InsuranceTypeName for all of the different insurance types.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -95,11 +83,11 @@
         }
       }
     },
-    "/react/eligibility/insurance-types/3": {
+    "/react/eligibility/insurance-types/<int: InsuranceTypeID>": {
       "get": {
-        "description": "Example used to get InsuranceTypeID, InsuranceType for InsuranceTypeID =3",
+        "description": "Example used to get InsuranceTypeID, InsuranceType for  given InsuranceTypeID ",
         "operationId": "getOperation7",
-        "insight": "Endpoint '/react/eligibility/insurance-types/3' is designed for Example used to get InsuranceTypeID, InsuranceType for InsuranceTypeID =3.",
+        "insight": "Endpoint '/react/eligibility/insurance-types/<int: InsuranceTypeID>' is designed for Example used to get InsuranceType information for given InsuranceTypeID .",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -107,11 +95,11 @@
         }
       }
     },
-    "/react/eligibility/insurance-plans/4": {
+    "/react/eligibility/insurance-plans/<int: PlanID>": {
       "get": {
         "description": "Example used to get plans for given CarrierID",
         "operationId": "getOperation8",
-        "insight": "Endpoint '/react/eligibility/insurance-plans/4' is designed for Example used to get plans for given CarrierID.",
+        "insight": "Endpoint '/react/eligibility/insurance-plans/<int: PlanID>' is designed for Example used to get plans for given CarrierID.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -119,11 +107,11 @@
         }
       }
     },
-    "/react/eligibility/records/system/3": {
+    "/react/eligibility/records/system/<int: SystemID>": {
       "get": {
-        "description": "Example gets in network for SystemID = 4",
+        "description": "Get In-network insurance plans for a SystemID",
         "operationId": "getOperation9",
-        "insight": "Endpoint '/react/eligibility/records/system/3' is designed for Example gets in network for SystemID = 4.",
+        "insight": "Endpoint '/react/eligibility/records/system/3' is designed  to get in network for a given SystemID.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -131,11 +119,11 @@
         }
       }
     },
-    "/react/eligibility/records/system/4/location/17": {
+    "/react/eligibility/records/system/<SystemID>/location/<LocationID>": {
       "get": {
         "description": "Example gets in network insurnace plans for SystemID = 4 and Location  = 17",
         "operationId": "getOperation10",
-        "insight": "Endpoint '/react/eligibility/records/system/4/location/17' is designed for Example gets in network insurnace plans for SystemID = 4 and Location  = 17.",
+        "insight": "Endpoint '/react/eligibility/records/system/<SystemID>/location/<LocationID>' is designed to get in network insurnace plans for a given SystemID and LocationID.",
         "responses": {
           "200": {
             "description": "Successful response"
@@ -143,11 +131,11 @@
         }
       }
     },
-    "/react/eligibility/network-info/1": {
+    "/react/eligibility/network-info/<int: PlanID>": {
       "get": {
         "description": "Example Use get the LocationID and SystemID for given PlanID",
         "operationId": "getOperation11",
-        "insight": "Endpoint '/react/eligibility/network-info/1' is designed for Example Use get the LocationID and SystemID for given PlanID.",
+        "insight": "Endpoint '/react/eligibility/network-info/<int PlanID>' is designed  to get all in network SystemID and LocationID for given PlanID.",
         "responses": {
           "200": {
             "description": "Successful response"
