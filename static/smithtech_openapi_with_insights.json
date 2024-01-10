@@ -170,7 +170,7 @@
     "/react/charges/description/<string: Description>": {
       "get": {
         "description": "Example returns list of rows where descroptin is like ",
-        "operationId": "getOperation14",
+        "operationId": "getChargesbyDescription",
         "insight": "Endpoint '/react/charges/description/<string: Description>' is designed for Example returns list of rows where BillingCode is like '%lung%'.",
         "responses": {
           "200": {
