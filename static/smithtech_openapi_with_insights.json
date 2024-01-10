@@ -157,7 +157,7 @@
     },
     "/react/charges/billingcode/<string: BillingCode>": {
       "get": {
-        "description": "Example returns list of rows where billing code",
+        "description": "Example returns list of rows for a specifi billing code.",
         "operationId": "getChargesbyBillingCode",
         "insight": "Endpoint '/react/charges/billingcode/99212' is designed for Example returns list of rows where ServiceDescription is = 99212.",
         "responses": {
