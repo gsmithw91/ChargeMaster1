@@ -110,7 +110,7 @@
     "/react/eligibility/records/system/<int: SystemID>": {
       "get": {
         "description": "Get In-network insurance plans for a SystemID",
-        "operationId": "get",
+        "operationId": "getInNetworkPlans by SystemID",
         "insight": "Endpoint '/react/eligibility/records/system/<int: SystemID>' is designed  to get in network insurance plans for a given SystemID.",
         "responses": {
           "200": {
@@ -122,7 +122,7 @@
     "/react/eligibility/records/system/<SystemID>/location/<LocationID>": {
       "get": {
         "description": "Get charges for a given SystemID and LocationID",
-        "operationId": "getOperation10",
+        "operationId": "getAllChargesforSystemIDandLocationID",
         "insight": "Endpoint '/react/eligibility/records/system/<SystemID>/location/<LocationID>' is designed to get in network insurnace plans for a given SystemID and LocationID.",
         "responses": {
           "200": {
@@ -134,7 +134,7 @@
     "/react/eligibility/network-info/<int: PlanID>": {
       "get": {
         "description": "Example Use get the LocationID and SystemID for given PlanID",
-        "operationId": "getOperation11",
+        "operationId": "getInNetworkLocationIDanSystemIDbyPlanID",
         "insight": "Endpoint '/react/eligibility/network-info/<int PlanID>' is designed  to get all in network SystemID and LocationID for given PlanID.",
         "responses": {
           "200": {
@@ -146,7 +146,7 @@
     "/db_admin/tables": {
       "get": {
         "description": "Returns all the table in the database",
-        "operationId": "getOperation12",
+        "operationId": "getTables",
         "insight": "Endpoint '/db_admin/tables' is designed for Returns all the table in the database.",
         "responses": {
           "200": {
@@ -155,10 +155,10 @@
         }
       }
     },
-    "/react/charges/billingcode/99212": {
+    "/react/charges/billingcode/<string: BillingCode>": {
       "get": {
-        "description": "Example returns list of rows where ServiceDescription is = 99212",
-        "operationId": "getOperation13",
+        "description": "Example returns list of rows where billing code",
+        "operationId": "getChargesbyBillingCode",
         "insight": "Endpoint '/react/charges/billingcode/99212' is designed for Example returns list of rows where ServiceDescription is = 99212.",
         "responses": {
           "200": {
@@ -167,11 +167,11 @@
         }
       }
     },
-    "/react/charges/description/lung": {
+    "/react/charges/description/<string: Description>": {
       "get": {
-        "description": "Example returns list of rows where BillingCode is like '%lung%'",
+        "description": "Example returns list of rows where descroptin is like ",
         "operationId": "getOperation14",
-        "insight": "Endpoint '/react/charges/description/lung' is designed for Example returns list of rows where BillingCode is like '%lung%'.",
+        "insight": "Endpoint '/react/charges/description/<string: Description>' is designed for Example returns list of rows where BillingCode is like '%lung%'.",
         "responses": {
           "200": {
             "description": "Successful response"
