@@ -2,10 +2,11 @@ https://smithtech.io/api/systems : This endpoint is a reference table containing
 https://smithtech.io/api/locations : This endpoint is a reference table containing the location names and ID for the hospital systems. It should be use whenever a LocationID is needed to be passed into another route
 https://smithtech.io/react/eligibility/insurances : This endpoint is a reference table containing the insurance plan names and ID for the hospital systems. It should be use whenever a PlanID needed to be passed into another route
 https://smithtech.io/react/eligibility/insurance-types : This endpoint is a reference table containing the insurance type names and ID for the hospital systems. It should be use whenever a InsuranceTypeID needed to be passed into another route
-https://smithtech.io/react/eligibility/insurance-plans/<int: PlanID> : Example used to get plans for given CarrierID
+https://smithtech.io/react/eligibility/insurance-plans/4<int: PlanID> : Example used to get plans for given CarrierID
 https://smithtech.io/react/eligibility/records/system/<inst: SystemID> : Example gets in network for SystemID give, if a SystemName is given use 'https://smithtech.io/api/systems' for reference  
 https://smithtech.io/react/eligibility/records/system/<int: SystemID>/location/<int: LocationID> : Example gets in network insurnace plans for SystemID (use reference table if SystemName is given),  LocationID(https://smithtech.io/api/locations)
 https://smithtech.io/react/eligibility/network-info/<int: PlanD> : Example Use get the LocationID and SystemID for given PlanID 
 https://smithtech.io/db_admin/tables : Returns all the table in the database
+https://smithtech.io/db_admin/columns/<string: TableName> : Returns all the columns in the the given table. Please use 'https://smithtech.io/db_admin/tables'  
 https://smithtech.io/react/charges/billingcode/<string: BillingCode> : Example returns list of rows where ServiceDescription is = 99212
 https://smithtech.io/react/charges/description/<string: Description> : Example returns list of rows where BillingCode is like '%lung%'

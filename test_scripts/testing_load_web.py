@@ -93,7 +93,7 @@ convert_to_json_for_schema = [
     'https://smithtech.io/react/eligibility/insurance-info/carrier/1',
     'https://smithtech.io/react/eligibility/insurance-plans/1',
     'https://smithtech.io/react/eligibility/records/system/1',
-    'https://smithtech.io/react/eligibility/rec`ords/system/4/location/17',
+    'https://smithtech.io/react/eligibility/records/system/4/location/17',
     'https://smithtech.io/react/eligibility/network-info/1',
     'https://smithtech.io/db_admin/tables',
     'https://smithtech.io/db_admin/columns/HospitalSystem',
