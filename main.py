@@ -7,8 +7,6 @@ from backend.routes.chargemaster.charges_web_routes import web
 from backend.routes.chargemaster.charges_react_api_routes import react_api
 from backend.routes.eligbilitytool.elig_react_api_routes import elig_api
 from backend.routes.db_admin.db_admin_routes import db_admin_api
-from backend.routes.login.login_routes import login_api
-
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'fappie'
