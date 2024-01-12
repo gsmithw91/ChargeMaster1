@@ -1,7 +1,7 @@
 import requests
 
 def test_user_registration():
-    url = "http://smithtech.io/react/auth/register"
+    url = "http://smithtech.io/auth/register"
     user_data = {
         "first_name": "John",
         "last_name": "Doe",
@@ -22,7 +22,7 @@ def test_user_registration():
         print(f"Request failed: {e}")
 
 def test_user_authentication():
-    url = "http://smithtech.io/react/auth/authenticate"
+    url = "http://smithtech.io/auth/authenticate"
     login_data = {
         "email": "johndoe@example.com",
         "password": "securepassword123"
