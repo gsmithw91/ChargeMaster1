@@ -1,7 +1,7 @@
 import requests
 
 def test_user_registration():
-    url = "http://127.0.0.1/:5000/login/register"
+    url = "http://127.0.0.1:5000/login/register"
     user_data = {
         "first_name": "John",
         "last_name": "Doe",
@@ -22,7 +22,7 @@ def test_user_registration():
         print(f"Request failed: {e}")
 
 def test_user_authentication():
-    url = "http://127.0.0.1/:5000/login/authenticate"
+    url = "http://127.0.0.1:5000/login/authenticate"
     login_data = {
         "email": "johndoe@example.com",
         "password": "securepassword123"
