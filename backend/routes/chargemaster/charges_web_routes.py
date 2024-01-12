@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, json, session, jsonify, s
 from backend.database.db_helpers import get_filtered_data
 from backend.models.HospitalSystem import HospitalSystem
 from backend.models.HospitalLocation import HospitalLocation
-import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
 from logs.custom_logger import web_logger
