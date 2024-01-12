@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from logs.custom_logger import api_logger
 from backend.database.login_helpers import register_user, authenticate_user
 
-login_api = Blueprint('login_api', __name__, url_prefix='/auth')
+login_api = Blueprint('login_api', __name__, url_prefix='/react/auth')
 
 @login_api.route('/register', methods=['POST'])
 def user_register():
