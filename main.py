@@ -23,7 +23,7 @@ app.register_blueprint(web)
 app.register_blueprint(react_api)
 app.register_blueprint(elig_api)
 app.register_blueprint(db_admin_api)
-app.register_blueprint(login_api)
+
 
 @app.route('/json-file', methods=['GET'])
 def get_json_file():
