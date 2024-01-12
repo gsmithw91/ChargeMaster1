@@ -12,7 +12,7 @@ app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'fappie'
 
 # Enable CORS for your app
-CORS(app, resources={r"/react/*": {"origins": "http://localhost:3000"}})  # Adjust as needed
+CORS(app, origins="http://localhost:3000")
 
 # Register the blueprints
 app.register_blueprint(api)
@@ -21,7 +21,7 @@ app.register_blueprint(web)
 app.register_blueprint(react_api)
 app.register_blueprint(elig_api)
 app.register_blueprint(db_admin_api)
-app.register_blueprint(login_api)  # Register the login_api Blueprint
+app.register_blueprint(login_api)  
 
 @app.route('/json-file', methods=['GET'])
 def get_json_file():
