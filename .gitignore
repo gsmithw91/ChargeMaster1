@@ -13,3 +13,4 @@ venv/
 recycle_bin/
 *.log
 logs/
+database/CarrierPlanStatus/SQLSripts/
