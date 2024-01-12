@@ -1,6 +1,5 @@
 # backend/routes/login/login_routes.py
 from flask import Blueprint, jsonify, request
-from logs.custom_logger import api_logger
 from backend.database.login_helpers import register_user, authenticate_user
 
 login_api = Blueprint('login_api', __name__, url_prefix='/react/auth')
@@ -20,7 +19,6 @@ def user_register():
         )
         return jsonify({'message': 'User registered successfully'}), 201
     except Exception as e:
-        api_logger.error(f"Error registering user: {e}")
         return jsonify({'error': str(e)}), 500
 
 @login_api.route('/authenticate', methods=['POST'])
@@ -36,5 +34,4 @@ def user_authenticate():
         else:
             return jsonify({'message': 'Invalid credentials'}), 401
     except Exception as e:
-        api_logger.error(f"Error authenticating user: {e}")
         return jsonify({'error': str(e)}), 500
