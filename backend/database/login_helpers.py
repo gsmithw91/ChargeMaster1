@@ -76,5 +76,22 @@ def authenticate_user(email, password):
     finally:
         cursor.close()
         conn.close()
-register_user("Test", "User", "<EMAIL>", "0412345678", "Test Company", 1, "test(")
-print(authenticate_user("<EMAIL>", "test"))
+        
+def get_user_info(user_id):
+    conn = get_connection_UsersDB()
+    cursor = conn.cursor()
+    query = '''
+    SELECT UserId, UserFirstName, UserLastName, UserEmail, UserPhoneNumber, UserCompany, UserTypeID
+    FROM STSUsers
+    WHERE UserId = ?;
+    '''
+    try:
+        cursor.execute(query, (user_id,))
+        user_info = cursor.fetchone()
+        return user_info  # This will be a tuple with user data
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+    finally:
+        cursor.close()
+        conn.close()
