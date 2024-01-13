@@ -20,3 +20,6 @@ def serve_static(filename):
     return send_from_directory('static', filename)
 
 # Redirect all non-API requests to the index.html for React Router to handle
+@web.route('/<path:path>', methods=['GET'])
+def catch_all(path):
+    return send_from_directory('static', 'index.html')
