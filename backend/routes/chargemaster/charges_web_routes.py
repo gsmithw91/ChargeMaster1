@@ -17,9 +17,13 @@ def index():
 # Serve static files (CSS, JS, images, etc.)
 @web.route('/static/<path:filename>')
 def serve_static(filename):
-    return send_from_directory('static', filename)
+    if filename.endswith(".glb"):
+        return send_from_directory('static', filename, mimetype='application/octet-stream')
+    else:
+        return send_from_directory('static', filename)
 
 # Redirect all non-API requests to the index.html for React Router to handle
 @web.route('/<path:path>', methods=['GET'])
 def catch_all(path):
     return send_from_directory('static', 'index.html')
+
