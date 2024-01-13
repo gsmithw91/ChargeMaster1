@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory   
 from flask_cors import CORS  # Import the CORS module
 from backend.routes.chargemaster.charges_api_routes import api
 from backend.routes.chargemaster.charges_error_routes import errors
@@ -30,6 +30,10 @@ def get_json_file():
         return app.send_static_file('smithtech_openapi_with_insights.json')
     except Exception as e:
         return jsonify({"error": "An error occurred while serving the JSON file"}), 500
+
+
+
+
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
