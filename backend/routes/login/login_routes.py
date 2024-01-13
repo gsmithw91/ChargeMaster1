@@ -1,6 +1,9 @@
 # backend/routes/login/login_routes.py
 from flask import Blueprint, jsonify, request
 from backend.database.login_helpers import register_user, authenticate_user,get_user_info
+import traceback
+
+
 
 login_api = Blueprint('login_api', __name__, url_prefix='/auth')
 
@@ -34,8 +37,8 @@ def user_authenticate():
         else:
             return jsonify({'message': 'Invalid credentials'}), 401
     except Exception as e:
+        traceback.print_exc()  # This will log the full traceback to your server logs
         return jsonify({'error': str(e)}), 500
-
 
 @login_api.route('/user/<int:user_id>', methods=['GET'])
 def get_user_info_route(user_id):
