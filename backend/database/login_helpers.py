@@ -63,7 +63,7 @@ def register_user(first_name, last_name, email, phone_number, company, user_type
 def authenticate_user(email, password):
     conn = get_connection_UsersDB()
     cursor = conn.cursor()
-    select_query = 'SELECT UserId, UserPassword FROM STSUsers WHERE UserEmail = ? and IsAuthGS is  <> 0;'
+    select_query = 'SELECT UserId, UserPassword FROM STSUsers WHERE UserEmail = ? and IsAuthGS <> 0;'
     try:
         cursor.execute(select_query, (email,))
         user_record = cursor.fetchone()
