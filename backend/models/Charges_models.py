@@ -269,3 +269,5 @@ class UCMCCharges(BaseModel):
     FSC_77_Discounted_Cash_Price : Optional [float]
     FSC_170_Price : Optional [float]
     FSC_170_Discounted_Cash_Price : Optional [float]
+    
+    

@@ -2,6 +2,8 @@
 from flask import Blueprint, jsonify, request
 from backend.database.login_helpers import register_user, authenticate_user,get_user_info
 import traceback
+from flask_jwt_extended import create_access_token
+import datetime
 
 
 
@@ -33,13 +35,18 @@ def user_authenticate():
             password=data['password']
         )
         if user_id:
-            return jsonify({'message': 'User authenticated successfully', 'user_id': user_id}), 200
+            # Create JWT token
+            expires = datetime.timedelta(days=1)  # Token expires in 1 day
+            access_token = create_access_token(identity=user_id, expires_delta=expires)
+            
+            return jsonify({'message': 'User authenticated successfully', 
+                            'access_token': access_token}), 200
         else:
             return jsonify({'message': 'Invalid credentials'}), 401
     except Exception as e:
-        traceback.print_exc()  # This will log the full traceback to your server logs
+        traceback.print_exc()
         return jsonify({'error': str(e)}), 500
-
+    
 @login_api.route('/user/<int:user_id>', methods=['GET'])
 def get_user_info_route(user_id):
     try:
