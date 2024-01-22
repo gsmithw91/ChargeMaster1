@@ -26,8 +26,9 @@ def serve_static(filename):
 @web.route('/privacy-policy')
 def privacy_policy():
     return send_from_directory('static', 'privacy.html')
-# # Redirect all non-API requests to the index.html for React Router to handle
-# @web.route('/<path:path>', methods=['GET'])
-# def catch_all(path):
-#     return send_from_directory('static', 'index.html')
+# Redirect all non-API requests to the index.html for React Router to handle
+
+@web.route('/<path:path>', methods=['GET'])
+def catch_all(path):
+    return send_from_directory('static', 'index.html')
 
