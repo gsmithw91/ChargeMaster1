@@ -10,7 +10,7 @@ from backend.database.chargesheet_helpers import (
     get_charge_details_for_user_chargesheet
 )
 
-chargesheet_api = Blueprint('chargesheet_api', __name__, url_prefix='/chargesheet')
+chargesheet_api = Blueprint('chargesheet_api', __name__, url_prefix='/react/chargesheet')
 
 @chargesheet_api.route('/create', methods=['POST'])
 def create_chargesheet():
