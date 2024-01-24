@@ -7,7 +7,8 @@ from backend.database.chargesheet_helpers import (
     get_chargesheet_by_user_ID,
     add_charge_to_sheet,
     add_charges_to_sheet,
-    get_charge_details_for_user_chargesheet
+    get_charge_details_for_user_chargesheet,
+    get_charge_info_by_location_and_id
 )
 
 chargesheet_api = Blueprint('chargesheet_api', __name__, url_prefix='/react/chargesheet')
@@ -70,4 +71,27 @@ def add_multiple_charges():
         add_charges_to_sheet(user_charge_sheet_id, user_id, charges)
         return jsonify({'message': 'Charges added successfully'}), 200
     except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+    
+
+@chargesheet_api.route('/get_charge_info', methods=['POST'])
+def get_charge_info():
+    try:
+        data = request.json
+        system_id = data.get('system_id')
+        location_id = data.get('location_id')
+        charge_id = data.get('charge_id')
+
+        if not all([system_id, location_id, charge_id]):
+            return jsonify({'error': 'Missing parameters'}), 400
+
+        charge_info = get_charge_info_by_location_and_id(system_id, location_id, charge_id)
+        
+        if charge_info:
+            return jsonify({'charge_info': charge_info}), 200
+        else:
+            return jsonify({'error': 'No charge info found'}), 404
+    except Exception as e:
+        api_logger.error(f"Error getting charge info: {e}")
         return jsonify({'error': str(e)}), 500

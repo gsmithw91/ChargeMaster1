@@ -29,6 +29,34 @@ def get_connection_UsersDB():
 
     return pyodbc.connect(conn_str)
 
+def get_connection_ChargesDB():
+    # Check the environment variable
+    app_env = os.getenv('APP_ENV', 'desktop')  # Defaults to 'desktop' if not set
+    app_env = 'server'
+    if app_env == 'server':
+        # Connection string for the server
+        conn_str = (
+            r"DRIVER={ODBC Driver 18 for SQL Server};" +
+            r"SERVER=172.234.28.216;" +  # Replace with your Linode server IP or hostname
+            r"DATABASE=ChargeMasterDB;" +
+            r"UID=SA;" +            # Replace with your SQL username
+            r"PWD=B90b909021!;" +   # Replace with your SQL password
+            r"TrustServerCertificate=yes;"  # This might be optional depending on your setup
+        )
+    else:
+        # Connection string for the desktop
+        conn_str = (
+            r'DRIVER={ODBC Driver 18 for SQL Server};'
+            r'SERVER=DESKTOP-MPVS60R\MSSQLSERVER01;'  # Replace with your desktop server details
+            r'DATABASE=ChargeMasterDB;'
+            r'Trusted_Connection=yes;'
+            r'TrustServerCertificate=yes;'
+        )
+
+    return pyodbc.connect(conn_str)
+
+
+
 def test_db_connection():
     try:
         conn = get_connection_UsersDB()
@@ -232,3 +260,37 @@ def get_chargesheet_by_id(chargesheet_id):
         
         
         
+        
+charges_system_id_to_table_mapping = {
+    1: 'Charges_Advocate',
+    2: 'Charges_LoyolaIns',
+    3: 'Charges_NorthShore',
+    4: 'Charges_NorthWestern',
+    5: 'Charges_Rush',
+    6: 'Charges_UCMC'
+}
+
+def get_charge_info_by_location_and_id(system_id, location_id, charge_id):
+    # Use the mapping to get the table name
+    table_name = charges_system_id_to_table_mapping.get(system_id)
+    
+    if not table_name:
+        print(f"No table mapped for SystemID: {system_id}")
+        return []
+
+    conn = get_connection_ChargesDB()
+    try:
+        with conn.cursor() as cursor:
+            # Format your query string with the table name
+            # Make sure to use parameterized queries to prevent SQL injection
+            query = f"SELECT * FROM {table_name} WHERE LocationID = ? AND ChargeID = ?"
+            
+            cursor.execute(query, (location_id, charge_id))
+            columns = [column[0] for column in cursor.description]
+            charges_info = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return charges_info
+    except pyodbc.Error as e:
+        print(f"Database error: {e}")
+        return []
+    finally:
+        conn.close()
