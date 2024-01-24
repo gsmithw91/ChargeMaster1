@@ -28,6 +28,8 @@ def list_charge_sheets(user_id):
             row_dict = {
                 'UserChargeSheetID': row.UserChargeSheetID,
                 'UserID': row.UserID,
+                'CreatedAt': row.CreatedAt,
+                'ChargeSheetNameDefault' : row.ChargeSheetNameDefault,
                 # Include other fields as necessary
             }
             charge_sheets_dicts.append(row_dict)
