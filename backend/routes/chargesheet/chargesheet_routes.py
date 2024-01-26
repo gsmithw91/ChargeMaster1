@@ -103,10 +103,6 @@ def get_charge_info():
 
 @chargesheet_api.route('/delete/<int:user_id>/<int:user_charge_sheet_id>', methods=['DELETE'])
 def delete_chargesheet(user_id, user_charge_sheet_id):
-    # Check if the user is authorized to delete the chargesheet
-    if not is_user_authorized_to_delete(user_charge_sheet_id, user_id):
-        return jsonify({'error': 'Unauthorized access'}), 403
-
     # Attempt to delete the chargesheet and its details
     if delete_user_chargesheet_and_details(user_id, user_charge_sheet_id):
         return jsonify({'message': 'Charge sheet deleted successfully'}), 200
