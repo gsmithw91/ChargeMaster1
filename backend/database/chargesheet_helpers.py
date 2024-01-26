@@ -294,3 +294,36 @@ def get_charge_info_by_location_and_id(system_id, location_id, charge_id):
         return []
     finally:
         conn.close()
+
+
+def delete_user_chargesheet_and_details(user_id, user_charge_sheet_id):
+    conn = get_connection_UsersDB()
+    try:
+        with conn.cursor() as cursor:
+            # Start transaction
+            conn.autocommit = False
+
+            # First, delete the ChargeSheetDetails
+            delete_details_query = """
+            DELETE FROM ChargeSheetDetails 
+            WHERE UserChargeSheetID = ?
+            """
+            cursor.execute(delete_details_query, (user_charge_sheet_id,))
+
+            # Next, delete the UserChargeSheet
+            delete_sheet_query = """
+            DELETE FROM UserChargeSheet 
+            WHERE UserChargeSheetID = ? AND UserID = ?
+            """
+            cursor.execute(delete_sheet_query, (user_charge_sheet_id, user_id))
+
+            # Commit transaction
+            conn.commit()
+            return True
+    except pyodbc.Error as e:
+        print(f"Database error: {e}")
+        conn.rollback()  # Rollback in case of error
+        return False
+    finally:
+        conn.autocommit = True
+        conn.close()

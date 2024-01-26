@@ -8,7 +8,10 @@ from backend.database.chargesheet_helpers import (
     add_charge_to_sheet,
     add_charges_to_sheet,
     get_charge_details_for_user_chargesheet,
-    get_charge_info_by_location_and_id
+    get_charge_info_by_location_and_id,
+    is_user_authorized_to_access,
+    is_user_authorized_to_delete,
+    delete_user_chargesheet_and_details
 )
 
 chargesheet_api = Blueprint('chargesheet_api', __name__, url_prefix='/react/chargesheet')
@@ -95,3 +98,17 @@ def get_charge_info():
     except Exception as e:
         api_logger.error(f"Error getting charge info: {e}")
         return jsonify({'error': str(e)}), 500
+
+
+
+@chargesheet_api.route('/delete/<int:user_id>/<int:user_charge_sheet_id>', methods=['DELETE'])
+def delete_chargesheet(user_id, user_charge_sheet_id):
+    # Check if the user is authorized to delete the chargesheet
+    if not is_user_authorized_to_delete(user_charge_sheet_id, user_id):
+        return jsonify({'error': 'Unauthorized access'}), 403
+
+    # Attempt to delete the chargesheet and its details
+    if delete_user_chargesheet_and_details(user_id, user_charge_sheet_id):
+        return jsonify({'message': 'Charge sheet deleted successfully'}), 200
+    else:
+        return jsonify({'error': 'Failed to delete charge sheet'}), 500
