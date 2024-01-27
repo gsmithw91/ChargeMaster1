@@ -13,11 +13,15 @@ from backend.database.chargesheet_helpers import (
 
 chargesheet_api = Blueprint('chargesheet_api', __name__, url_prefix='/react/chargesheet')
 
+
 @chargesheet_api.route('/create', methods=['POST'])
 def create_chargesheet():
     user_id = request.json.get('user_id')
-    charge_sheet_id = create_user_charge_sheet(user_id)
+    charge_sheet_name_default = request.json.get('charge_sheet_name_default', None)
+    
+    charge_sheet_id = create_user_charge_sheet(user_id, charge_sheet_name_default)
     return jsonify({'charge_sheet_id': charge_sheet_id}), 200 if charge_sheet_id else 500
+
 
 @chargesheet_api.route('/list/<int:user_id>', methods=['GET'])
 def list_charge_sheets(user_id):

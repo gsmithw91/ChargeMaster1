@@ -32,7 +32,7 @@ def get_connection_UsersDB():
 def get_connection_ChargesDB():
     # Check the environment variable
     app_env = os.getenv('APP_ENV', 'desktop')  # Defaults to 'desktop' if not set
-    app_env = 'server'
+    app_env = 'desktop'
     if app_env == 'server':
         # Connection string for the server
         conn_str = (
@@ -73,16 +73,20 @@ def test_db_connection():
             conn.close()
 
 
-def create_user_charge_sheet(user_id):
+def create_user_charge_sheet(user_id, charge_sheet_name_default=None):
     conn = get_connection_UsersDB()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO UserChargeSheet (UserID) VALUES (?)", user_id)
+
+    if charge_sheet_name_default:
+        cursor.execute("INSERT INTO UserChargeSheet (UserID, ChargeSheetNameDefault) VALUES (?, ?)", (user_id, charge_sheet_name_default))
+    else:
+        cursor.execute("INSERT INTO UserChargeSheet (UserID) VALUES (?)", (user_id,))
+    
     conn.commit()
     cursor.execute("SELECT @@IDENTITY AS ID")
     user_charge_sheet_id = cursor.fetchone()[0]
     conn.close()
     return user_charge_sheet_id
-
 
 def get_chargesheet_by_user_ID(user_ID):
     conn = get_connection_UsersDB()

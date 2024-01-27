@@ -11,7 +11,7 @@ from backend.database.chargesheet_helpers import (
     create_user_charge_sheet,
     get_chargesheet_by_user_ID,
     add_charge_to_sheet,
-    get_charge_details_for_user_chargesheet
+    get_charge_details_for_user_chargesheet,
 )
 
 def run_tests():
@@ -21,10 +21,11 @@ def run_tests():
 
     # Set a test user ID
     test_user_id = 59
+    test_charge_sheet_name = "Test Charge Sheet Name"
 
-    # Create a new user charge sheet
-    print(f"\nCreating a user charge sheet for User ID {test_user_id}...")
-    user_charge_sheet_id = create_user_charge_sheet(test_user_id)
+    # Create a new user charge sheet with a name
+    print(f"\nCreating a user charge sheet for User ID {test_user_id} with name '{test_charge_sheet_name}'...")
+    user_charge_sheet_id = create_user_charge_sheet(test_user_id, test_charge_sheet_name)
     print(f"Created UserChargeSheetID: {user_charge_sheet_id}")
 
     # Retrieve charge sheets for the user
@@ -33,9 +34,9 @@ def run_tests():
     print("Charge sheets:", charge_sheets)
 
     # Add a charge to the sheet
-    for i in range (1,5):
+    for i in range(1, 15):
         print(f"\nAdding a charge to the UserChargeSheetID {user_charge_sheet_id}...")
-        location_id, system_id, charge_id = i, i, i  # Example IDs
+        location_id, system_id, charge_id = 1, 1, i  # Set SystemID, LocationID, and ChargeID to 1
         add_charge_to_sheet(user_charge_sheet_id, test_user_id, location_id, system_id, charge_id)
         print("Charge added to the sheet.")
 
