@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, send_from_directory   
 from flask_cors import CORS  # Import the CORS module
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager
 from backend.routes.chargemaster.charges_api_routes import api
 from backend.routes.chargemaster.charges_error_routes import errors
 from backend.routes.chargemaster.charges_web_routes import web
@@ -13,14 +13,8 @@ from backend.routes.chargesheet.chargesheet_routes import chargesheet_api
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'fappie'
-
-app.config['JWT_SECRET_KEY'] = 'STS91GS'  # Replace with your own secret key
-jwt = JWTManager(app)
-
-
 # Enable CORS for your app
-CORS(app, origins="*", supports_credentials=True)
-
+CORS(app, origins="http://localhost:3000")
 
 # Register the blueprints
 app.register_blueprint(api)
