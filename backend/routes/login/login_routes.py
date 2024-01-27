@@ -1,9 +1,13 @@
 # backend/routes/login/login_routes.py
 from flask import Blueprint, jsonify, request
 from backend.database.login_helpers import register_user, authenticate_user, get_user_info
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import traceback
 
 login_api = Blueprint('login_api', __name__, url_prefix='/auth')
+
+# Configure Flask-JWT-Extended
+jwt = JWTManager()
 
 @login_api.route('/register', methods=['POST'])
 def user_register():
@@ -31,8 +35,9 @@ def user_authenticate():
             password=data['password']
         )
         if user_id:
-            # Return user ID instead of JWT token
-            return jsonify({'message': 'User authenticated successfully', 'user_id': user_id}), 200
+            # Create a JWT token with the user's ID
+            access_token = create_access_token(identity=user_id)
+            return jsonify({'access_token': access_token}), 200
         else:
             return jsonify({'message': 'Invalid credentials'}), 401
     except Exception as e:
@@ -40,8 +45,13 @@ def user_authenticate():
         return jsonify({'error': str(e)}), 500
 
 @login_api.route('/user/<int:user_id>', methods=['GET'])
+@jwt_required()
 def get_user_info_route(user_id):
     try:
+        current_user_id = get_jwt_identity()
+        if user_id != current_user_id:
+            return jsonify({'message': 'Unauthorized'}), 403
+
         user_data = get_user_info(user_id)
         if user_data:
             response = {
