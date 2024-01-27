@@ -19,10 +19,7 @@ jwt = JWTManager(app)
 
 
 # Enable CORS for your app
-CORS(app, origins="http://localhost:3000, https://smithtech.io", supports_credentials=True)
-
-
-
+CORS(app, origins="*", supports_credentials=True)
 
 
 # Register the blueprints
