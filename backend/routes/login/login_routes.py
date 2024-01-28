@@ -36,7 +36,7 @@ def user_authenticate():
         if user_id:
             # Create JWT access token
             access_token = create_access_token(identity=user_id)
-            return jsonify(access_token=access_token), 200
+            return jsonify(access_token=access_token,user_id=user_id), 200
         else:
             return jsonify({'message': 'Invalid credentials'}), 401
     except Exception as e:
