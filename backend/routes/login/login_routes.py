@@ -1,7 +1,7 @@
 # backend/routes/login/login_routes.py
 from flask import Blueprint, jsonify, request
 from backend.database.login_helpers import register_user, authenticate_user, get_user_info
-from flask_jwt_extended import create_access_token, jwt_required
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import traceback
 import jwt 
 import datetime
@@ -45,10 +45,13 @@ def user_authenticate():
     
     
     
-@login_api.route('/user/<int:user_id>', methods=['GET'])
+@login_api.route('/user', methods=['GET'])
 @jwt_required()
-def get_user_info_route(user_id):
+def get_user_info_route():
     try:
+        # Get the identity of the current user (user_id from the token)
+        user_id = get_jwt_identity()
+
         user_data = get_user_info(user_id)
         if user_data:
             response = {
