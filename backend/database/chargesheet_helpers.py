@@ -146,7 +146,7 @@ def get_charge_details_for_user_chargesheet(user_id, charge_sheet_id):
             query = """
             SELECT ChargeSheetDetails.*, UserChargeSheet.ChargeSheetNameDefault 
             FROM ChargeSheetDetails 
-            JOIN UserChargeSheet ON ChargeSheetDetails.UserChargeSheetID = UserChargeSheet.UserChargeSheetID
+            INNER JOIN UserChargeSheet ON ChargeSheetDetails.UserChargeSheetID = UserChargeSheet.UserChargeSheetID
             WHERE ChargeSheetDetails.UserChargeSheetID = ? AND ChargeSheetDetails.UserID = ?
             """
             cursor.execute(query, (charge_sheet_id, user_id))
@@ -158,6 +158,7 @@ def get_charge_details_for_user_chargesheet(user_id, charge_sheet_id):
         return []
     finally:
         conn.close()
+
 
 def update_chargesheet_DB_by_user(updated_chargesheet):
     conn = get_connection_UsersDB()  # Connect to your database
