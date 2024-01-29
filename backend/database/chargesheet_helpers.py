@@ -334,3 +334,28 @@ def delete_user_chargesheet_and_details(user_id, user_charge_sheet_id):
     finally:
         conn.autocommit = True
         conn.close()
+
+
+import pyodbc
+
+def get_filtered_charge_sheets( user_id, max_rows=1000):
+    try:
+        conn = get_connection_UsersDB()
+        cursor = conn.cursor()
+        query = f"""
+            SELECT TOP ({max_rows}) [UserChargeSheetID]
+                ,[UserID]
+                ,[CreatedAt]
+                ,[ChargeSheetNameDefault]
+            FROM [ChargeMaster_Users].[dbo].[UserChargeSheet]
+            WHERE [UserID] = ?;
+        """
+        cursor.execute(query, (user_id,))
+        columns = [column[0] for column in cursor.description]
+        charge_sheets = [dict(zip(columns, row)) for row in cursor.fetchall()]
+        return charge_sheets
+    except pyodbc.Error as e:
+        print(f"Database error: {e}")
+        return []
+    finally:
+        conn.close()
