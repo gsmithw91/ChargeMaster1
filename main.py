@@ -14,7 +14,7 @@ from backend.routes.chargesheet.chargesheet_routes import chargesheet_api
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'fappie'
 # Enable CORS for your app
-CORS(app, origins=["http://localhost:3000"])
+CORS(app)
 
 app.config['JWT_SECRET_KEY'] = 'fappie'  # Change this to a random secret key
 jwt = JWTManager(app)

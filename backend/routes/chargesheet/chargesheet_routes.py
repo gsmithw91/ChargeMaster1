@@ -62,8 +62,10 @@ def add_charge():
 @chargesheet_api.route('/details/<int:user_id>/<int:charge_sheet_id>', methods=['GET'])
 def charge_sheet_details(user_id, charge_sheet_id):
     details = get_charge_details_for_user_chargesheet(user_id, charge_sheet_id)
-    return jsonify({'details': details}), 200 if details else 500
-
+    if details:
+        return jsonify({'details': details}), 200
+    else:
+        return jsonify({'message': 'No charge sheet details found'}), 200
 
 
 
