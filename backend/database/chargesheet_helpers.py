@@ -32,7 +32,7 @@ def get_connection_UsersDB():
 def get_connection_ChargesDB():
     # Check the environment variable
     app_env = os.getenv('APP_ENV', 'desktop')  # Defaults to 'desktop' if not set
-    app_env = 'desktop'
+    app_env = 'server'
     if app_env == 'server':
         # Connection string for the server
         conn_str = (
