@@ -144,12 +144,13 @@ def get_charge_details_for_user_chargesheet(user_id, charge_sheet_id):
     try:
         with conn.cursor() as cursor:
             query = """
-            SELECT ChargeSheetDetails.*, UserChargeSheet.ChargeSheetNameDefault 
-            FROM ChargeSheetDetails 
-            INNER JOIN UserChargeSheet ON ChargeSheetDetails.UserChargeSheetID = UserChargeSheet.UserChargeSheetID
-            WHERE ChargeSheetDetails.UserChargeSheetID = ? AND ChargeSheetDetails.UserID = ?
+            SELECT *
+            FROM UserChargeSheet
+            JOIN ChargeSheetDetails
+            ON UserChargeSheet.UserChargeSheetID = ChargeSheetDetails.UserChargeSheetID
+            WHERE UserChargeSheet.UserID = ? AND UserChargeSheet.UserChargeSheetID = ?
             """
-            cursor.execute(query, (charge_sheet_id, user_id))
+            cursor.execute(query, (user_id, charge_sheet_id))
             columns = [column[0] for column in cursor.description]
             details = [dict(zip(columns, row)) for row in cursor.fetchall()]
             return details
@@ -158,6 +159,7 @@ def get_charge_details_for_user_chargesheet(user_id, charge_sheet_id):
         return []
     finally:
         conn.close()
+
 
 
 def update_chargesheet_DB_by_user(updated_chargesheet):
