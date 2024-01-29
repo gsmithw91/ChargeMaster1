@@ -62,12 +62,13 @@ def add_charge():
 @chargesheet_api.route('/details/<int:user_id>/<int:charge_sheet_id>', methods=['GET'])
 def charge_sheet_details(user_id, charge_sheet_id):
     details = get_charge_details_for_user_chargesheet(user_id, charge_sheet_id)
+
     if details:
-        return jsonify({'details': details}), 200
+        # Assuming ChargeSheetNameDefault is the same for all details, use the first item
+        charge_sheet_name_default = details[0].get("ChargeSheetNameDefault", "Unknown") if details else "Unknown"
+        return jsonify({'details': details, 'chargeSheetNameDefault': charge_sheet_name_default}), 200
     else:
         return jsonify({'message': 'No charge sheet details found'}), 200
-
-
 
 @chargesheet_api.route('/add_multiple_charges', methods=['POST'])
 def add_multiple_charges():
