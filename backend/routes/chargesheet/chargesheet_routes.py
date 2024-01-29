@@ -44,6 +44,7 @@ def list_charge_sheets(user_id):
     except Exception as e:
         return handle_api_error(e, f"Error fetching charge sheets for user {user_id}")
 
+
 @chargesheet_api.route('/get_charge_sheet_data/<int:user_id>/<int:user_charge_sheet_id>', methods=['GET'])
 def get_charge_sheet_data(user_id, user_charge_sheet_id):
     try:
@@ -54,9 +55,9 @@ def get_charge_sheet_data(user_id, user_charge_sheet_id):
 
         return jsonify(charge_sheet_data), 200
     except Exception as e:
-        return handle_api_error(e, "Error fetching charge sheet data")
+        return handle_api_error(e, "Error fetching charge sheet data")@chargesheet_api.route('/add_charge', methods=['POST'])
 
-@chargesheet_api.route('/add_charge', methods=['POST'])
+
 def add_charge():
     try:
         data = request.json

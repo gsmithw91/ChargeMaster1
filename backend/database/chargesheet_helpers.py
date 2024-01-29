@@ -338,7 +338,7 @@ def delete_user_chargesheet_and_details(user_id, user_charge_sheet_id):
 
 import pyodbc
 
-def get_filtered_charge_sheets( user_id, max_rows=1000):
+def get_filtered_charge_sheets(user_id, user_charge_sheet_id, max_rows=1000):
     try:
         conn = get_connection_UsersDB()
         cursor = conn.cursor()
@@ -348,9 +348,9 @@ def get_filtered_charge_sheets( user_id, max_rows=1000):
                 ,[CreatedAt]
                 ,[ChargeSheetNameDefault]
             FROM [ChargeMaster_Users].[dbo].[UserChargeSheet]
-            WHERE [UserID] = ?;
+            WHERE [UserID] = ? AND [UserChargeSheetID] = ?;
         """
-        cursor.execute(query, (user_id,))
+        cursor.execute(query, (user_id, user_charge_sheet_id))
         columns = [column[0] for column in cursor.description]
         charge_sheets = [dict(zip(columns, row)) for row in cursor.fetchall()]
         return charge_sheets
