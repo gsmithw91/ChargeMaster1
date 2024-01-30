@@ -57,7 +57,7 @@ def get_charge_sheet_data(user_id, user_charge_sheet_id):
     except Exception as e:
         return handle_api_error(e, "Error fetching charge sheet data")@chargesheet_api.route('/add_charge', methods=['POST'])
 
-
+@chargesheet_api.route('/add_charge', methods=['POST'])
 def add_charge():
     try:
         data = request.json

@@ -111,13 +111,13 @@ def add_charge_to_sheet(user_charge_sheet_id, user_id, location_id, system_id, c
     try:
         cursor.execute(
             "INSERT INTO ChargeSheetDetails (UserChargeSheetID, UserID, LocationID, SystemID, ChargeID) VALUES (?, ?, ?, ?, ?)",
-            user_charge_sheet_id, user_id, location_id, system_id, charge_id
+            (user_charge_sheet_id, user_id, location_id, system_id, charge_id)
         )
         conn.commit()
     finally:
         cursor.close()
         conn.close()
-
+        
 def add_charges_to_sheet(user_charge_sheet_id, user_id, charges):
     conn = get_connection_UsersDB()
     cursor = conn.cursor()
