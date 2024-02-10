@@ -302,6 +302,38 @@ def get_charge_info_by_location_and_id(system_id, location_id, charge_id):
     finally:
         conn.close()
 
+def get_charge_info_by_multiple_ids(charge_details):
+    charges_info = []
+    conn = get_connection_ChargesDB()
+    try:
+        with conn.cursor() as cursor:
+            for detail in charge_details:
+                system_id = detail['system_id']
+                location_id = detail['location_id']
+                charge_id = detail['charge_id']
+
+                # Use the mapping to get the table name
+                table_name = charges_system_id_to_table_mapping.get(system_id)
+                if not table_name:
+                    print(f"No table mapped for SystemID: {system_id}")
+                    continue
+
+                # Format your query string with the table name
+                query = f"SELECT * FROM {table_name} WHERE LocationID = ? AND ChargeID = ?"
+                cursor.execute(query, (location_id, charge_id))
+                columns = [column[0] for column in cursor.description]
+                row = cursor.fetchone()
+                if row:
+                    charges_info.append(dict(zip(columns, row)))
+
+    except pyodbc.Error as e:
+        print(f"Database error: {e}")
+    finally:
+        conn.close()
+
+    return charges_info
+
+
 
 def delete_user_chargesheet_and_details(user_id, user_charge_sheet_id):
     conn = get_connection_UsersDB()
