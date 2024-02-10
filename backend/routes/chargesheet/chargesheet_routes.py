@@ -68,14 +68,6 @@ def add_charge():
     except Exception as e:
         return handle_api_error(e, "Error adding charge")
 
-@chargesheet_api.route('/details/<int:user_id>/<int:charge_sheet_id>', methods=['GET'])
-def charge_sheet_details(user_id, charge_sheet_id):
-    try:
-        details = get_charge_details_for_user_chargesheet(user_id, charge_sheet_id)
-        charge_sheet_name_default = details[0].get("ChargeSheetNameDefault", "Unknown") if details else "Unknown"
-        return jsonify({'details': details, 'chargeSheetNameDefault': charge_sheet_name_default}), 200
-    except Exception as e:
-        return handle_api_error(e, "Error fetching charge sheet details")
 
 @chargesheet_api.route('/add_multiple_charges', methods=['POST'])
 def add_multiple_charges():
@@ -97,6 +89,23 @@ def get_charge_info():
         return jsonify({'charge_info': charge_info}), 200 if charge_info else 404
     except Exception as e:
         return handle_api_error(e, "Error getting charge info")
+
+
+@chargesheet_api.route('/get_multiple_charge_info', methods=['POST'])
+def get_multiple_charge_info():
+    try:
+        data = request.json
+        # Expect data to be a list of dictionaries, each containing 'system_id', 'location_id', and 'charge_id'
+        if not all('system_id' in item and 'location_id' in item and 'charge_id' in item for item in data):
+            return jsonify({'error': 'Missing parameters in one or more items'}), 400
+
+        charge_infos = get_charge_info_by_multiple_ids(data)
+        return jsonify({'charge_infos': charge_infos}), 200 if charge_infos else 404
+    except Exception as e:
+        return handle_api_error(e, "Error getting multiple charge infos")
+
+
+
 
 @chargesheet_api.route('/delete/<int:user_id>/<int:user_charge_sheet_id>', methods=['DELETE'])
 def delete_chargesheet(user_id, user_charge_sheet_id):
